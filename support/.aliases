@@ -1,0 +1,2 @@
+alias nah="git reset --hard && git clean -df"
+alias fzfp="fzf --preview \"(highlight -O xterm256 {})\""

@@ -1,0 +1,3 @@
+.git
+.neovimsession.vim
+vendor/phpunit/php-code-coverage/src/Report

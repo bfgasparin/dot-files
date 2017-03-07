@@ -1,0 +1,964 @@
+Press q to dismiss, <Tab> to lose focus
+About {{{2
+  Bruno Neovim Cheat Sheet Menu :D
+  (powered by Cheat40 Plugin)
+
+  Abbreviations used in descriptions:
+
+  »      Forwards/rightwards
+  «      Backwards/leftwards
+  WORD   Space-delimited word
+
+  Notation for key sequences:
+
+  ‹Ldr›     Leader (see `<leader>`)
+  ‹a›       A line number {address}
+            See `address`
+  ‹r›       A register (", *, 0, 1, …)
+            See `registers`
+  ‹Move›    A motion or a text object
+            See `motion.txt`
+            See `text-objects`
+  ‹P›       A regular expression (pattern)
+            See `pattern.txt`
+  ‹Cmd›     An Ex command
+            See `cmdline.txt`
+  ‹Var›     A variable or option name
+            See `variables`
+            See `options.txt`
+  ‹n›       A (possibly optional) number
+  ‹c›       A single character
+  …         Any text
+  «C-…»     Press ctrl and … together
+  «M-…»     Press option or Meta and … together
+  «Spc»     Press space bar
+  «CR»      Press Enter
+
+  Similarly, other special keys are
+  written between « and ». All other
+  characters are meant to be typed
+  literally.
+
+  Note that spaces are made explicit
+  only when it is not obvious that a
+  space must be used (e.g., «Ldr»«Spc», that
+  is, leader followed by space). Ditto
+  for «CR».
+
+  Labels:
+
+  N    Type in Normal mode
+  C    Type in Command mode
+  I    Type in Insert mode
+  V    Type in Visual mode
+  X    Type in Terminal mode
+  M    Motion (may be used by itself or
+       after an operator)
+  T    Text object (use in Visual mode
+       or after an operator)
+  O    Operator (use in Visual mode, or
+       before a motion or a text object)
+  *    Acts on text under/after cursor
+}}}
+
+‹P› Patterns {{{1
+Inside Visual area       \%V           C
+Beginning of line (put   ^             C
+at start of the pattern)
+Beginning of file        \%^           C
+End of line (put at end  $             C
+of the pattern)
+End of file              \%$           C
+Any single caracter      .             C
+Literal $                \$            C
+Literal ^                \^            C
+# Example of usage:
+# s/foo\%V/bar/g  replaces foo for bar
+# inside visual selected area
+}}}
+
+‹a› Address {{{1
+an absolute line number  ‹n›           C
+the current line         .             C
+the last line of file    $             C
+equal to 1,$             %             C
+(the entire file)
+position of mark t       't            C
+(lowercase)
+position of mark T       'T            C
+(uppercase); when the
+mark is in another file
+it cannot be used in a
+range
+}}}
+
+File {{{1
+New untitled document    :enew         N
+New/open file or dir     :e …          N
+Split window (horizontal):sp …         N
+Ditto
+Split window (horizontal):sp +term     N
+with a terminal buffer
+Split window (vertical)  :vs …         N
+Split window (vertical)  :sv +term     N
+with a terminal buffer
+Delete buffer            :bd           N
+Ditto                    «Ldr»d        N
+Delete all buffer        :%bd          N
+Save                     :w            N
+Ditto                    «Ldr»s        N
+Save all                 :wa           N
+Reload file from disk    :e            N
+Revert to last saved     :e!           N
+# Unsaved changes are lost!
+Quit (window)            :q            N
+Save and quit (window)   :x            N
+Ditto                    ZZ            N
+Quit without saving      :q!           N
+Ditto                    ZQ            N
+Save all and exit Vim    :xa           N
+Exit Vim without saving  :qa!          N
+Session {{{2
+Save Session             «F2»          N
+Restore Session          «F3»          N
+}}}
+
+Edit {{{1
+Basics {{{2
+Back to normal mode      «Esc»      NIVC
+Back to normal mode      «C-c»      VC
+Ditto                    «C-[»      NIVC
+Ditto                    jj         I
+(not enable in terminal buffers)
+Cancel command/operation «C-c»      NIVC
+Insert at cursor pos.    i             N
+Append after the cursor  a             N
+Insert at start of line  I             N
+Append at end of line    A             N
+Open new line below      o             N
+Open new line above      O             N
+Replace character        r‹c›         *N
+Replace mode/overwrite   R             N
+Change                   c             O
+Replace line             cc            N
+Repeat last command      .             N
+}}}
+Undo                     u             N
+Redo                     «C-r»         N
+Next text state          g+            N
+Prev text state          g-            N
+Cut                      d             O
+Cut into OS clipboard    "*d           O
+Cut ‹n› lines            ‹n›dd         N
+Cut until the EOL        D             N
+Cut ‹n› characters »     ‹n›x          N
+Cut ‹n› characters «     ‹n›X          N
+Cut all                  :%d           N
+Copy                     y             O
+Copy into OS clipboard   «M-y»         O
+Ditto                    "*y           O
+Copy ‹n› lines           ‹n›yy         N
+Copy ‹n› lines into OS   ‹n›«M-y»      N
+clipboard
+Ditto                    ‹n›"*Y        N
+Copy until the EOL       y$            N
+Copy all                 :%y           N
+Paste after cursor       p             N
+Paste after cursor and   gp            N
+leave the cursor after
+text
+Paste from OS clipboard  «M-p»         N
+after cursor
+Ditto                    "*p           N
+Paste before cursor      P             N
+before cursor
+Paste from OS clipboard  «M-P»         N
+Ditto                    "*P           N
+Paste onto selection     p             V
+Paste from OS clipboard  «M-p»         V
+onto selection
+Ditto                    "*p           V
+Move line above          «M-k»         N
+Move line below          «M-j»         N
+Move to line ‹a›         :m‹a›         O
+Copy to after line ‹a›   :co‹a›        O
+Exec. cmd and go back    «C-o» ‹Cmd›   I
+to insert mode
+Insert black line above  [«Spc»        N
+Insert black line below  ]«Spc»        N
+Delete character         «C-h»         C
+Delete a word            «C-w»         C
+Delete all before cursor «C-u»         C
+Insert this word         «C-r»«C-w»    C
+Insert this WORD         «C-r»«C-a»    C
+Insert this file path    «C-r»«C-f»    C
+Insert the current       %             C
+filename
+# see :h extension-removal
+Insert the current       %:h           C
+file path
+# see :h filename-modifiers
+Sort lines by length     «Ldr»sl       V
+Registers {{{2
+Clear all registers      :ClearRegist  N
+                         ers
+Cut into register ‹r›    "‹r›d         O
+Copy into register ‹r›   "‹r›y         O
+Paste from register ‹r›  "‹r›p         N
+Paste from register ‹r›  «C-r»‹r›     IC
+Paste the current buffer «C-r»%       IC
+qualified filename
+View registers           :display      N
+Ditto                    :di           N
+Ditto                    :registers    N
+#Examples:
+# "ay$  to copy rest of line to reg. a
+# "6p   to paste the content of reg. 6
+# Pasting from this register usually
+# produces better results than using
+# the system paste («C-v»)
+#
+# Ten types of registers:
+# 1. The unnamed register ""
+# 2. 10 numbered registers "0 to "9
+# >    :0  Last yank.
+# >    :1  Last deletion.
+# >    :2  Second last deletion.
+# >    And so on. Think of registers 1-9
+# >    as a read-only queue with 9
+#    elements.
+# 3. The small delete register "-
+# 4. 26 named registers "a to "z or
+#    "A to "Z
+# 5. three read-only registers
+#    ":, "., "%
+#    Can be only used with p, P or :put
+#    commands and «C-r»
+# >    ". Contains last insert text
+# >    "% Contains current file name
+# >    ": Contains most recent executed
+# >       ‹Cmd›
+# 6. alternate buffer register "#
+# 7. the expression register "=
+# 8. The selection and drop registers
+#   "*, "+ and "~
+# Use these registers for storing and
+# retrieving the selected text for
+# the GUI.
+# For Mac OS X, use "*
+#9. The black hole register "_
+#10. Last search pattern register "/
+}}}
+Visual mode (select)     v             N
+Linewise visual mode     V             N
+Block visual mode        «C-v»         N
+Insert in selected lines «C-v»‹Move›I  N
+Append to selected lines «C-v»‹Move›A  N
+Change in selected lines «C-v»‹Move›c  N
+Delete in selected lines «C-v»‹Move›x  N
+Reselect                 gv            N
+Select all               ggVG          N
+Delete previous word     «C-w»        IC
+Erase line before cursor «C-u»        IC
+Repeat last Ex command   @:            N
+Run cmd in all buffers   :bufdo ‹Cmd›  N
+Macro {{{2
+Start recording macro    q‹r›          N
+# Press q to stop recording
+Run recorded macro       @‹r›          N
+Repeat last macro        @@            N
+}}}
+
+Text {{{1
+Objects {{{2
+Around word              aw            T
+Inside word              iw            T
+Around WORD              aW            T
+Inside WORD              iW            T
+Around sentence          as            T
+Inside sentence          is            T
+Around paragraph         ap            T
+Inside paragraph         ip            T
+Around parentheses       a(            T
+Ditto                    ab            T
+Inside parentheses       i(            T
+Ditto                    ib            T
+Around brackets          a[            T
+Inside brackets          i[            T
+Around braces            a{            T
+Ditto                    aB            T
+Inside braces            i{            T
+Ditto                    iB            T
+Around tags              at            T
+Inside tags              it            T
+Around < and >           a<            T
+Inside < and >           i<            T
+Around double quotes     a"            T
+Inside double quotes     i"            T
+Around simple quotes     a'            T
+Inside simple quotes     i'            T
+Around backticks         a`            T
+Inside backticks         i`            T
+}}}
+Change to uppercase      gU            O
+Change to lowercase      gu            O
+Uppercase line           gUU           N
+Lowercase line           guu           N
+Change to uppercase      U             V
+Change to lowercase      u             V
+Toggle case              ~            *N
+Toggle case              ~             V
+Indentation {{{2
+Indent   (. to repeat)   >             O
+# Use with Block Visual mode
+Unindent (. to repeat)   <             O
+Reindent                 =             O
+Indent line (. repeats)  >>            N
+Unindent    (. repeats)  <<            N
+Reindent line            ==            N
+Indent line              «C-t»         I
+Unindent line            «C-d»         I
+# Example:
+# >iB  Indent contents of this Block
+}}}
+Join with next line      J             N
+Break line before cursor «CR»          N
+Ditto, preserve spaces   gJ            N
+Run macro for each line  :norm @‹r›    V
+Increment number         ‹n›«C-a»     *N
+Decrement number         ‹n›«C-x»     *N
+
+
+Navigation {{{1
+Basic movement {{{2
+Left                     h             M
+Right                    l             M
+Up                       k             M
+Down                     j             M
+Start of next word       w             M
+Start of prev word       b             M
+End of next word         e             M
+End of prev word         ge            M
+Start of next WORD       W             M
+Start of prev WORD       B             M
+End of next WORD         E             M
+End of prev WORD         gE            M
+Start of line            0             M
+End of line              $             M
+First line               gg            M
+Last line                G             M
+}}}
+Scrolling {{{2
+Go down a page           «C-f»         N
+Go up a page             «C-b»         N
+Go down half a page      «C-d»         N
+Go up half a page        «C-u»         N
+Scroll down a bit        «C-e»         N
+Scroll up a bit          «C-y»         N
+Scroll to the top        zt            N
+Scroll to the top        z«CR»         N
+putting the cursor
+at First non-blank
+Scroll to the center     zz            N
+Scroll to the center     z.            N
+putting the cursor
+at First non-blank
+Scroll to the bottom     zb            N
+Scroll to the bottom     z-            N
+putting the cursor
+at First non-blank
+}}}
+Buffer {{{2
+Next buffer              «C-l»         N
+Prev buffer              «C-h»         N
+Edit buffer              ‹n›buffer     O
+Ditto                    ‹n›b          O
+Ditto                    ‹n›bu         O
+List buffers             :ls           N
+Ditto                    :buffers      N
+}}}
+Fold {{{2
+Fold                     zc           *N
+Unfold                   zv           *N
+Toggle fold              za           *N
+Fold all                 zM            N
+Unfold all               zR            N
+}}}
+Next ‹c› in this line    f‹c›          M
+Just before next ‹c›     t‹c›          M
+Prev ‹c› in this line    F‹c›          M
+Just after prev ‹c›      T‹c›          M
+Repeat f/t/F/T »         ;             M
+Repeat f/t/F/T «         ,             M
+Prev pos in change list  g;            N
+Next pos in change list  g,            N
+Go to line ‹n›           :‹n›          M
+Go to column ‹n›         ‹n›|          M
+#Does not count as jump
+Jump to line ‹n›         ‹n›G          M
+Jump to next blank line  }             M
+Jump to prev blank line  {             M
+Jump to begin of block   [{            M
+Jump to end of block     ]}            M
+Jump to end of sentence  )             M
+Jump to beg. of sentence (             M
+Jump to end of section   ]]            M
+Jump to beg. of section  [[            M
+Jump to last char of     `]            M
+the previously changed
+or yanked text
+Jump to first char of    `[            M
+the previously changed
+or yanked text
+Jump to top of window    H             M
+Jump to middle           M             M
+Jump to bottom           L             M
+Jump to matching delim   %             M
+# Match delim can be ([{}])
+Tags {{{2
+Jump to older tag        «C-t»         N
+Ditto                    :pop          N
+Jump to tag definition   «C-]»        *N
+Ditto, but show choices  g]           *N
+Jump or show choices     g«C-]»       *N
+To next matching tag     :tn           N
+To prev matching tag     :tp           N
+View matching tags       :ts           N
+}}}
+To prev jump position    «C-o»         N
+To next jump position    «C-i»         N
+Start of sentence        «C-b»         C
+End of sentence          «C-e»         C
+Execute comand           «CR»          C
+Ditto                    «C-m»         C
+Mark {{{2
+Set mark                 m‹c›          N
+# ‹c› for local marks
+# ‹C› for global marks
+Jump to mark             `‹c›          M
+View all marks           :marks        N
+Remove marks             :delmarks …   N
+# Notes: Marks leaves across sections
+(open and close Neovim and the marks
+remains)
+}}}
+Display all lines on     [I            N
+current file that
+contains this keyword
+Window {{{2
+New horizontal window    :new          N
+Ditto                    «C-w»«C-n»    N
+New vertical window      :vnew         N
+Close window             «C-w»c        N
+Close all windows but    «C-w»«C-o»    N
+current
+Ditto                    «C-w»o        N
+Open Quickfix window     :cwindow      N
+Close Quickfix window    :cclose       N
+Open Location window     :lwindow      N
+Close Location window    :lclose       N
+Close preview window     :pclose       N
+Ditto                    «C-w»z        N
+Rotate windows »         «C-w»«C-r»    N
+Rotate windows «         «C-w»«C-R»    N
+Split horizontally       «C-w»«C-s»    N
+Ditto                    :sp           N
+Split bottom horizontall :bo sp        N
+y with full width
+Split bottom horizontall :to sp        N
+y with full height
+Split vertically         «C-w»«C-v»    N
+Ditto                    :vs           N
+Split left vertically    :to vs        N
+with full height
+Split right vertically   :bo vs        N
+with full height
+Exchange windows         «C-w»«C-x»    N
+Cycle through windows    «C-w»«C-w»    N
+Back to previous window  «C-w»«C-p»    N
+Move to the left         «C-w»«C-h»    N
+Move to the bottom       «C-w»«C-j»    N
+Move to the top          «C-w»«C-k»    N
+Move to the right        «C-w»«C-l»    N
+Move to the very top     «C-w»«C-t»    N
+Move to the very bottom  «C-w»«C-b»    N
+All windows same size    «C-w»=        N
+Maximize height          «C-w»_        N
+Maximize width           «C-w»|        N
+Decrease height          «C-w»-        N
+Increase height          «C-w»+        N
+Decrease width           «C-w»<        N
+Increase width           «C-w»>        N
+Exec. Cmd in all windows :windo ‹Cmd›  N
+}}}
+
+Tab {{{2
+New untitled tab         :tabnew       N
+New/open in tab          :tabe …       N
+Next tab                 gt            N
+Previous tab             gT            N
+Go to tab n              ‹n›gt         N
+Close tab                :tabc         N
+Ditto                    :tabclose     N
+Close tab without saving :tabc!        N
+Close all other tabs     :tabo         N
+List tabs                :tabs         N
+Move window to new tab   «C-w»T        N
+Open one tab per buffer  :tab ball     N
+Execute Cmd in all tabs  :tabdo ‹Cmd›  N
+# Closing the last window of a tab
+# page closes the tab page too
+}}}
+
+Search {{{1
+Search forward           /‹P›          M
+Search backward          ?‹P›          M
+Jump » to match          n             M
+Jump « to match          N             M
+Select up to next match  gn            M
+Select up to prev match  gN            M
+Search » for this word   *            *M
+Search « for this word   #            *M
+Find and replace         :s/‹P›/‹P›/g  N
+(on current line)
+Find and replace         :s/‹P›/‹P›/g  V
+Ditto, ask to confirm    :s/‹P›/‹P›/gc V
+Find and replace         :s/‹P›/‹P›   VN
+the first ocurrence
+(per line)
+Find and replace all     :%s/‹P›/‹P›/g N
+Toggle search highlight  :setl hls!    N
+Ditto                    «Ldr»«Spc»    N
+Next command             «C-n»         C
+#(same as «up»)
+Prev command             «C-p»         C
+#(same as «down»)
+Browse command history   q:            N
+Browse command history   «C-f»         C
+# Use «C-c» to return to command prompt
+
+Terminal {{{1
+Exec. cmd in a new       :terminal «F1»N
+terminal buffer
+Split window (horizontal):sp +term     N
+with a terminal buffer
+Split window (vertical)  :sv +term     N
+Repeat last terminal     :!!           N
+command
+Enter on terminal shell  i             N
+
+
+Help {{{1
+Help about …             :h …          N
+Help search              :helpgrep …   N
+# Use quickfix commands # to move
+# between results
+Detect Neovim problems   :CheckHealth  N
+Plugin Help Menu         «F1»          N
+Help on highlight test   :h hitest.vim N
+View mappings            :map …        N
+View normal mappings     :Maps         N
+(from fzf.vim)
+View Insert mode mappings:imap …       N
+List of sourced files    :scr          N
+List of digraphs         :digraphs     N
+List all syntax items    :syn          N
+
+
+Misc {{{1
+Current directory        :pwd          N
+Change directory         :cd …         N
+Show the value of        :echo ‹Var›   N
+variable
+Set value of option      :set ‹Var›=…  N
+Show value of option     :set ‹Var›?   N
+Set the current file     :set syntax=… N
+syntax type for
+highlighting
+List modes where given   :map …        N
+key maps applies given
+map keys
+Ditto in a verbose       :verbose map …N
+manner
+# :verbose map <C-W>*
+
+Set filetype of current  :setf …       N
+Ditto                    :Filetypes …  N
+(from fzf.vim)
+buffer
+# setf php
+# setf javascript
+
+
+Plugins {{{1
+Vim Easy Align {{{2
+About {{{3
+  A simple, easy-to-use Vim alignment
+  plugin.
+  Though easy-align can align lines of
+  text around any delimiter, it provides
+  shortcuts for the most common use
+  cases with the concept of
+  "alignment rule".
+
+  `Delimiter keys`: a single keystroke;
+  <Space>, `=`, `:`, `.`, `|`, `&`,
+  `#`, `,`
+}}}
+Align Around             ag            O
+# Example:
+#  gaip=   Align inner paragraph
+#          around =
+}}}
+
+Vinager File Explorer (Netrw) {{{2
+About {{{3
+  Wrapper for Netrw, enhancing it
+
+  Note: all commands here is actually
+  from Netrw
+}}}
+Open Vinager (Netrw)     -             N
+Open file/directory      «CR»         *N
+Preview file             p            *N
+Open in horizontal split o            *N
+Open in vertical split   v            *N
+Open in a new tab        t            *N
+Open with external app   x            *N
+New file in current      %             N
+directory
+New directory in current d             N
+directory
+Pre polulate the file    .             N
+at the end of a :
+command line
+Pre polulate the file    .             N
+at the end of a :!
+command line
+Mark file                mf           *N
+Mark using shell glob    mr            N
+Unmark all               mu            N
+Edit marked files        me            N
+Rename file/directory    R            *N
+Delete file/directory    D            *N
+Refresh file list        «C-l»         N
+File info                qf           *N
+Toggle files display     a             N
+Toogle last buffer       «Ldr».        N
+Ditto                    «C-^»         N
+# - normal
+# - hidden
+# - normal and hidden
+# (hidden files are
+# defined by
+# g:netrw_list_hide)
+Toggle dot-files         gh            N
+Switch file list format  i             N
+# thin, long, wide
+}}}
+
+Tagbar {{{2
+About {{{3
+  Provides an easy way to browse the
+  tags of the current file and get an
+  overview of its structure.
+}}}
+Open Tagbar              «C-\»         N
+Preview the tag          p            *N
+#(with autoclose)
+Select tab               «CR»         *N
+#(and close Tabbar)
+Close Tagbar             q             N
+}}}
+
+NERDTree {{{2
+About {{{3
+  A Tree filesystem explorer.
+}}}
+Toggle NERDTree          «C-n»         N
+Open current file into   «M-n»         N
+NERDTree
+}}}
+
+Fzf {{{2
+About {{{3
+  Full fuzzy finder (file/buffer/mru
+  /tag/git/maps/marks/history/
+  commands/windows)
+}}}
+Open file finder         «C-p»         N
+considering .gitignore
+Open file finder         «Ldr»g        N
+considering .gitignore
+Open buffer list         «Ldr»b        N
+Open MRU buffer list     «Ldr»m        N
+Open text finder (Ag)    «Ldr»A        N
+ignoring .gitignore
+" «C-a» to select all
+" «C-d» to deselect all
+Open text finder (Ag)    «Ldr»a        N
+considering .gitignore
+" «C-a» to select all
+" «C-d» to deselect all
+Close Fzf                «C-c»         X
+Move up on list          «C-k»         X
+Move down on list        «C-j»         X
+Scroll up preview        «M-k»         X
+Scroll down preview      «M-j»         X
+Page up preview          «M-k»         X
+Page down preview        «M-j»         X
+Open file in new tab     «C-t»        *X
+Open file in new         «C-v»        *X
+vertical window
+Open file in new         «C-x»        *X
+horizontal window
+}}}
+
+GV {{{2
+About {{{3
+    A git commit browser
+}}}
+Open commit browser      :GV          VN
+Open commit browser of   :GV!          N
+current file
+Open location list with  :GV?         VN
+current file/selection
+revision
+Display commit content   o            *N
+Ditto                    «CR»         *N
+Display commits diff     o             V
+Ditto                    «CR»          V
+
+Rename {{{2
+About {{{3
+  Rename a buffer and the disk
+  automatically.
+  Note: NERDTree needs to be refreshed
+  manually
+}}}
+Rename a buffer and the :Rename        N
+disk
+}}}
+
+Vim-Move {{{2
+About {{{3
+    Quickly move line/s up and down
+    in a visual manner
+}}}
+Move line/s down         «C-j»        VN
+Move line/s up           «C-k»        VN
+}}}
+
+Neomake {{{2
+About {{{3
+  Runs code lints asynchronously.
+  Puts the result into the a location
+  windows.
+  Configured to run on buffer write
+  event.
+
+  PHP: php -l, phpcs, phpmd
+}}}
+Open lint errors         «Ldr»wl       N
+# (shortcut using VimQf pluggin)
+}}}
+
+Better Whitespace {{{2
+About {{{3
+  Highlight all trailing whitspaces
+  as well provides a helper function
+  to clear the trailing whitespaces.
+}}}
+Remove extra whitespaces :StripWhit... N
+# :StripeWhitspace
+}}}
+
+Surrouding {{{2
+About {{{3
+    Helping editing surrounding texts
+}}}
+Add text surrounding      ys           O
+yanked {motion}
+# Do not work for visual mode
+# ysiw[  changed
+# somefoo
+# to
+# [somefoo]
+# ysiw«Spc»[  changed
+# somefoo
+# to
+# [ somefoo ]
+# ysiw<a class="foo">  changed
+# somefoo
+# to
+# <a class="foo">somefoo</a>
+Add {} surrounding         ys‹Move›}    N
+yanked {motion}
+Add {} surrounding         ys‹Move›{    N
+yanked {motion} with
+space
+Add [] surrounding         ys‹Move›]    N
+yanked {motion}
+Add [] surrounding         ys‹Move›[    N
+yanked {motion} with
+space
+Add "" surrounding         ys‹Move›"    N
+yanked {motion}
+Add "" surrounding         ys‹Move›     N
+yanked {motion} with       «Spc»"
+space
+Add text surrounding       S            V
+selection
+Change ‹c› surrounding    cs‹c›        N
+Change tag surrounding    cst          N
+
+Delete ‹c› surrounding    ds‹c›        N
+Change tag surrounding    dst          N
+}}}
+
+Vim PHP Namespace {{{2
+About {{{3
+  Inserting "use" statements
+  automatically.
+}}}
+Add use statement to the  «Ldr»uu     IN
+top of the file
+Sort use statement        «Ldr»su    IN
+Expand full qualified     «Ldr»ec     IN
+class name
+}}}
+
+Vim PHP CS Fixer {{{2
+About {{{3
+  Integrates php-cs-fixer
+}}}
+Run php-cs-fixer into the «F8»         N
+current file
+Run php-cs-fixer into the «F9»         N
+current directory
+}}}
+
+Vim Test {{{2
+About {{{3
+  Make run your tests a very fast task
+}}}
+Run the current test      «Ldr»tf      N
+function
+# If not in a test function, repeat the
+# last test function, even if a suite
+# test or a file test was the last test
+# command
+Run the current test      «Ldr»t%      N
+file
+Run all tests suite       «Ldr»ta      N
+Run last test comman      «Ldr»tl      N
+Go to the last test       «Ldr»tg      N
+function runned
+# Even if a suite test or a file test
+# was the last test command
+}}}
+
+Commentary {{{2
+About {{{3
+  Helper to comment lines
+}}}
+Comment/Uncomment lines   gc           O
+that {motion} moves over
+Comment/Uncomment current gcc          N
+line
+Uncomment adjacent        gcgc         N
+commented lines
+Ditto                     gcu          N
+}}}
+
+PDV -PHP Documentor VIM {{{2
+About {{{3
+  Generates PHP Doc Blocks
+}}}
+Generate Doc Blocks       «Ldr»«Ldr»d  N
+#(uses UtilSnips templates)
+}}}
+
+Abolish {{{2
+About {{{3
+  Improves Subistitution and help coerce
+  words to to multiple variants of them
+}}}
+Find and Replace          :S/‹P›/‹P›/g N
+considering case variants
+(on current line)
+# variants: UPPERCASE, Titlecase
+Find and Replace          :S/‹P›/‹P›/g V
+considering case variants
+# variants: UPPERCASE, Titlecase
+Find and Replace          :S/‹P›{…,…}  N
+considering case variants /‹P›{…,…}/g
+and using placeholders
+for plural cases
+(on current line)
+# example:
+# :S/facilit{y,ies}/building{,s}/g
+# is the same as run all following
+# commands:
+# :s/facility/building/g
+# :s/Facility/Building/g
+# :s/FACILITY/BUILDING/g
+# :s/facilities/buildings/g
+# :s/Facilties/Buildings/g
+# :s/FACILITIES/BUILDINGS/g
+#
+# variants: UPPERCASE, Titlecase
+Find and Replace          :S/‹P›{…,…}/ V
+considering case variants ‹P›{…,…}/g
+and using placeholders
+for plural cases
+Find and Replace all      :%S/‹P›/‹P›  N
+considering case variants /g
+in current file
+# variants: UPPERCASE, Titlecase
+Ditto for all :S          :%Subvert   VN
+command variations        ‹P›{…,…}/
+                          ‹P›{…,…}/g
+Coerse to snake_case      crs         *N
+Coerse to MixedCase       crm         *N
+Coerse to camelCase       crc         *N
+Coerse to UPPER_CASE      cru         *N
+}}}
+
+Qf {{{2
+About {{{3
+  Collection of commands for quickfix
+  location windows
+}}}
+Toogle quickfix window   «Ldr»wq       N
+Toogle location window   «Ldr»wl       N
+}}}
+
+Bbye {{{2
+About {{{3
+  Close buffers without close windows
+}}}
+Close buffer             :Bdelete      N
+without close windows
+Ditto                    «Ldr»c        N
+Close all buffer         :bufdo        N
+without close windows    :Bdelete
+}}}
+
+
+Fugitive {{{2
+About {{{3
+  A Git wrapper to interacts with Git
+}}}
+Open git status windows  «C-g»         N
+Open help file           g?            N
+}}}
+
+About Dictionary {{{2
+  Layout:
+  * A `buffer` is the in-memory text of
+    a file.
+  * A `window` is a viewport on a buffer.
+  * A `tab` page is a collection of
+    windows.
+}}}
