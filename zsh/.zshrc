@@ -87,7 +87,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:~/bin:/usr/local/sbin:~/usr/local/bin
 
 source ~/.aliases
 source ~/.iterm_user_vars
-source ~/.bookmark-functions
+source ~/.bookmarks-functions
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
