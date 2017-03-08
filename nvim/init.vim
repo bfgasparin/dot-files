@@ -374,13 +374,7 @@ nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>b :Buffers<CR>
 " Open most recently used files
 nnoremap <leader>h :History<CR>
-" Add preview file to fzf MRU result
-let fzf_filemru_options =
-            \ '--preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"' .
-            \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'
-" Open most recently used filesk
-nnoremap <leader>m :FilesMru --tiebreak=index <C-r>=fzf_filemru_options<CR><CR><CR>
-let g:fzf_filemru_colors =  {}  " disable mru color to MRU Fzf files (it is not working)
+
 " Open list fo file into contents of files of the project using Ag
 nnoremap <leader>a :Ag<CR>
 " Open list fo file into contents of files of the project using Ag ignoring VCS dotfiles
@@ -388,6 +382,20 @@ nnoremap <leader>A :AgIgnoreVCS<CR>
 
 " Find in current buffer
 nnoremap <leader>/ :BLines<cr>
+
+"/
+"/ Fzf File MRU
+"/
+" Add saved files to the MRU list
+let g:fzf_filemru_bufwrite = 1
+" disable mru color to MRU Fzf files (it is not working)
+let g:fzf_filemru_colors =  {}
+" Add preview file to fzf MRU result
+let fzf_filemru_options =
+            \ '--preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"' .
+            \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'
+" Open most recently used files
+nnoremap <leader>m :FilesMru --tiebreak=index <C-r>=fzf_filemru_options<CR><CR><CR>
 
 
 "/
