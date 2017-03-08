@@ -97,11 +97,6 @@ New untitled document    :enew         N
 New/open file or dir     :e …          N
 Split window (horizontal):sp …         N
 Ditto
-Split window (horizontal):sp +term     N
-with a terminal buffer
-Split window (vertical)  :vs …         N
-Split window (vertical)  :sv +term     N
-with a terminal buffer
 Delete buffer            :bd           N
 Ditto                    «Ldr»d        N
 Delete all buffer        :%bd          N
@@ -220,14 +215,20 @@ Ditto                    :registers    N
 #
 # Ten types of registers:
 # 1. The unnamed register ""
+# >  text deleted with the "d", "c",
+# >  "s", "x" or yanked with "y"
 # 2. 10 numbered registers "0 to "9
 # >    :0  Last yank.
-# >    :1  Last deletion.
-# >    :2  Second last deletion.
+# >    :1  Last deletion or changed.
+# >      (only for one line or more)
+# >    :2  Second last deletion or chan
+# >      ged (only for one line or more)j
 # >    And so on. Think of registers 1-9
 # >    as a read-only queue with 9
 #    elements.
 # 3. The small delete register "-
+# >    last deletion/changed
+# >    like "0 for yank
 # 4. 26 named registers "a to "z or
 #    "A to "Z
 # 5. three read-only registers
@@ -467,8 +468,12 @@ Split bottom horizontall :bo sp        N
 y with full width
 Split bottom horizontall :to sp        N
 y with full height
+Split window (horizontal):sp +term     N
+with a terminal buffer
+Split window (vertical)  :sv +term     N
+with a terminal buffer
 Split vertically         «C-w»«C-v»    N
-Ditto                    :vs           N
+Ditto                    :vs …         N
 Split left vertically    :to vs        N
 with full height
 Split right vertically   :bo vs        N
@@ -495,6 +500,8 @@ Exec. Cmd in all windows :windo ‹Cmd›  N
 Tab {{{2
 New untitled tab         :tabnew       N
 New/open in tab          :tabe …       N
+New/open with a terminal :tabe +term   N
+buffer
 Next tab                 gt            N
 Previous tab             gT            N
 Go to tab n              ‹n›gt         N
@@ -540,9 +547,6 @@ Browse command history   «C-f»         C
 Terminal {{{1
 Exec. cmd in a new       :terminal «F1»N
 terminal buffer
-Split window (horizontal):sp +term     N
-with a terminal buffer
-Split window (vertical)  :sv +term     N
 Repeat last terminal     :!!           N
 command
 Enter on terminal shell  i             N
@@ -687,11 +691,23 @@ About {{{3
   commands/windows)
 }}}
 Open file finder         «C-p»         N
-considering .gitignore
+considering .gitiinore
+Ditto                    :Files        N
 Open file finder         «Ldr»g        N
 considering .gitignore
+Ditto                    :GFiles       N
+Open file finder for     :GFiles?      N
+git status
 Open buffer list         «Ldr»b        N
+Ditto                    :Buffers      N
+Open history list        «Ldr»h        N
+Ditto                    :History      N
 Open MRU buffer list     «Ldr»m        N
+Open line search in      «Ldr»/        N
+current buffer
+Ditto                    :Blines       N
+Open line search in      :Lines        N
+loaded buffers
 Open text finder (Ag)    «Ldr»A        N
 ignoring .gitignore
 " «C-a» to select all
@@ -700,6 +716,18 @@ Open text finder (Ag)    «Ldr»a        N
 considering .gitignore
 " «C-a» to select all
 " «C-d» to deselect all
+Ditto                    :Ag           N
+Open command history     :History:     N
+Open search history      :History/     N
+Open normal mappings     :Maps         N
+list
+Open vim command list    :Commands     N
+Open commits list        :Commits      N
+Open commits list of     :BCommits     N
+current buffer
+Set filetype of current  :Filetypes …  N
+Open snippets list for   :Snippets     N
+current buffer
 Close Fzf                «C-c»         X
 Move up on list          «C-k»         X
 Move down on list        «C-j»         X
