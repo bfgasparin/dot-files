@@ -361,18 +361,20 @@ let g:fzf_colors =
 
 " Customize Ag to run the Raw Ag
 command! -bang -nargs=+ -complete=dir Ag call fzf#vim#ag_raw(<q-args>,
-\                     fzf#vim#with_preview('right:50%:hidden', '?'),
-\                     <bang>0)
+\ fzf#vim#with_preview('right:50%:hidden', '?'),
+\ <bang>0)
 
 " Customize Buffer command to show preview windows
 command! -bar -bang -nargs=? -complete=buffer Buffers
-  \ call fzf#vim#buffers(<q-args>, {'options': '--preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"'}, <bang>0)
+  \ call fzf#vim#buffers(<q-args>, {'options':
+  \ ' --preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"' .
+  \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'},
+  \ <bang>0)
 
 " Customize History command to show preview windows
-command! -bang -nargs=* History
-  \ call fzf#vim#history(
-  \                 extend({},
-  \                 fzf#vim#with_preview('right:50%')))
+command! -bang -nargs=* History call fzf#vim#history(extend({},
+  \ fzf#vim#with_preview('right:50%')),
+  \ <bang>0)
 
 " Open list of project files - By default, ignores dotfiles
 nnoremap <C-p> :Files<CR>
