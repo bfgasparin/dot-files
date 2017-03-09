@@ -370,8 +370,14 @@ putting the cursor
 at First non-blank
 }}}
 Buffer {{{2
-Next buffer              «C-l»         N
-Prev buffer              «C-h»         N
+Next buffer              ]b            N
+Ditto                    :bnext        N
+Prev buffer              [b            N
+Ditto                    :bprevious    N
+Las buffer               ]B            N
+Ditto                    :blast        N
+First buffer             [B            N
+Ditto                    :bfirst       N
 Edit buffer              ‹n›buffer     O
 Ditto                    ‹n›b          O
 Ditto                    ‹n›bu         O
@@ -490,10 +496,14 @@ Move to the very bottom  «C-w»«C-b»    N
 All windows same size    «C-w»=        N
 Maximize height          «C-w»_        N
 Maximize width           «C-w»|        N
-Decrease height          «C-w»-        N
-Increase height          «C-w»+        N
-Decrease width           «C-w»<        N
-Increase width           «C-w»>        N
+Decrease height          «down»        N
+Ditto                    «C-w»-        N
+Increase height          «up»          N
+Ditto                    «C-w»+        N
+Decrease width           «left»        N
+Ditto                    «C-w»<        N
+Increase width           «right»       N
+Ditto                    «C-w»>        N
 Exec. Cmd in all windows :windo ‹Cmd›  N
 }}}
 
@@ -502,8 +512,14 @@ New untitled tab         :tabnew       N
 New/open in tab          :tabe …       N
 New/open with a terminal :tabe +term   N
 buffer
-Next tab                 gt            N
-Previous tab             gT            N
+Next tab                 ]t            N
+Ditto                    gt            N
+Prev tab                 [t            N
+Ditto                    gT            N
+Las tuffer               ]T            N
+Ditto                    :tablast      N
+First tuffer             [T            N
+Ditto                    :tabfirst     N
 Go to tab n              ‹n›gt         N
 Close tab                :tabc         N
 Ditto                    :tabclose     N
@@ -698,21 +714,24 @@ considering .gitignore
 Ditto                    :GFiles       N
 Open file finder for     :GFiles?      N
 git status
-Open buffer list         «Ldr»b        N
+Open buffer list         «Ldr»l        N
 Ditto                    :Buffers      N
 Open history list        «Ldr»h        N
 Ditto                    :History      N
 Open MRU buffer list     «Ldr»m        N
-Open line search in      «Ldr»/        N
-current buffer
+Search in current        «Ldr»%        N
+buffer
 Ditto                    :Blines       N
 Open line search in      :Lines        N
 loaded buffers
-Open text finder (Ag)    «Ldr»A        N
+Search text      (Ag)    «Ldr»F …      N
 ignoring .gitignore
+" Optional arguments:
+" a:1  path fo filter
+" a:2  pre text search
 " «C-a» to select all
 " «C-d» to deselect all
-Open text finder (Ag)    «Ldr»a        N
+Search text      (Ag)    «Ldr»f …      N
 considering .gitignore
 " «C-a» to select all
 " «C-d» to deselect all

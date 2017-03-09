@@ -150,32 +150,34 @@ nnoremap <leader>d :bd<cr>
 " switch between current and last buffer
 nnoremap <leader>. <c-^>
 
+
 " Quickly go forward or backward to buffer
-" Quick note: for <C-h> to work into Iterm, I need adjust my terminal's "kbs" terminfo entry
-"     Source : https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
-nnoremap <C-h> :bprevious<cr>
-nnoremap <C-l> :bnext<cr>
-" Quick note: for Meta key mapping into Iterm, I need configure into User
-" Profile to map left option act as +Esc
-" Preferences > Profiles > Keys > Left option acts as +Esc
-" nnoremap <M-h> :bprevious<cr>
-" nnoremap <M-l> :bnext<cr>
+nnoremap [b  :bprevious<cr>
+nnoremap ]b  :bnext<cr>
+nnoremap [B  :bfirst<cr>
+nnoremap ]B  :blast<cr>
+
+" Quickly go forward or backward to tabs
+nnoremap [t  :tabprevious<cr>
+nnoremap ]t  :tabnext<cr>
+nnoremap [T  :tabfirst<cr>
+nnoremap ]T  :tablast<cr>
+
+" Quickly add empty lines
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+
+" Quickly change windows size
+nnoremap <left>   <c-w><
+nnoremap <right>  <c-w>>
+nnoremap <up>     <c-w>+
+nnoremap <down>   <c-w>-
 
 " Quick access to neovim config file
 nnoremap <leader>ev :e! $MYVIMRC <cr>
 
 " Removes simple highlight
 nnoremap <Leader><space> :nohlsearch<cr>
-
-" Quickly move current line
-" nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
-" nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
-" xnoremap [e  :<c-u>execute 'move -1-'.i v:count1<cr>
-" xnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
-
-" Quickly add empty lines
-nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 
 " Don't lose selection when shifting sidewards
 xnoremap <  <gv
@@ -302,15 +304,21 @@ let g:gitgutter_map_keys = 0  " Set up Gitgutter to not map any key
 "/
 
 let g:airline#extensions#tabline#enabled = 1                " Enable tabline
-let g:airline#extensions#tabline#fnamemod = ':t'            " Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':'            " Show just the filename
+let g:airline#extensions#tabline#tab_nr_type = 1            " configure how numbers are displayed in tab mode. > tab number
+let g:airline#extensions#tabline#show_buffers = 0           " disable displaying buffers when there is one tab
 let g:airline#extensions#tabline#show_tabs = 0              " disable displaying tabs
-let g:airline#extensions#tabline#show_buffers = 1           " enable displaying tabs
-" let g:airline#extensions#tabline#exclude_preview = 1        " disable display preview window buffer in the tabline
+let g:airline#extensions#tabline#tab_min_count = 30         " configure the minimum number of tabs needed to show the tabline.
+let g:airline#extensions#tabline#show_tab_type = 0          " disable displaying tab type
+let airline#extensions#tabline#show_splits = 0              " Disable shoing open splits per tab
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#right_alt_sep = '|'
-let g:airline#extensions#tabline#buffer_nr_show = 1         " Show the buffer number
+let g:airline#extensions#tabline#buffer_nr_show = 0         " Show the buffer number
+let g:airline#extensions#tabline#show_tab_nr = 0            " Show tab number
+let g:airline#extensions#tabline#buffers_label = ''
+let g:airline#extensions#tabline#tabs_label = ''
 let g:airline_powerline_fonts= 1
 let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
@@ -332,8 +340,8 @@ let g:fzf_files_options =
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " Enable per command history > <C-n> <C-p>
 
 let g:fzf_tags_command = 'ctags-update'                " [Tags] Command to generate tags file
-" let g:fzf_layout = { 'down': '~40%' }                  " Fzf layout
-let g:fzf_layout = { 'window': 'enew' }                " Full screen Fzf layout
+" let g:fzf_layout = { 'down': '~40%' }                " Fzf layout
+let g:fzf_layout = { 'window': '-tabnew' }             " Full screen Fzf layout
 
 " Customize the fzf colors to match the color scheme
 let g:fzf_colors =
@@ -351,37 +359,35 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'],
   \ 'border':  ['bg', 'VertSplit']}
 
-" Ag command using fzf#vim#with_preview
-"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
-"   :Ag! - Start fzf in fullscreen and display the preview window above
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+" Customize Ag to run the Raw Ag
+command! -bang -nargs=+ -complete=dir Ag call fzf#vim#ag_raw(<q-args>,
+\                     fzf#vim#with_preview('right:50%:hidden', '?'),
+\                     <bang>0)
 
-command! -bang -nargs=* AgIgnoreVCS
-  \ call fzf#vim#ag(<q-args>, '-U',
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+" Customize Buffer command to show preview windows
+command! -bar -bang -nargs=? -complete=buffer Buffers
+  \ call fzf#vim#buffers(<q-args>, {'options': '--preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"'}, <bang>0)
+
+" Customize History command to show preview windows
+command! -bang -nargs=* History
+  \ call fzf#vim#history(
+  \                 extend({},
+  \                 fzf#vim#with_preview('right:50%')))
 
 " Open list of project files - By default, ignores dotfiles
 nnoremap <C-p> :Files<CR>
 " Open list of git project files  ( uses git ls-files )
 nnoremap <leader>g :GFiles<CR>
 " Open list of opened buffers
-nnoremap <leader>b :Buffers<CR>
-" Open most recently used files
+nnoremap <leader>l :Buffers<CR>
+" Open history opened files
 nnoremap <leader>h :History<CR>
-
 " Open list fo file into contents of files of the project using Ag
-nnoremap <leader>a :Ag<CR>
+nnoremap <leader>f :Ag<space>
 " Open list fo file into contents of files of the project using Ag ignoring VCS dotfiles
-nnoremap <leader>A :AgIgnoreVCS<CR>
-
+nnoremap <leader>F :Ag<space>-U<space>
 " Find in current buffer
-nnoremap <leader>/ :BLines<cr>
+nnoremap <leader>% :BLines<space>
 
 "/
 "/ Fzf File MRU
@@ -391,11 +397,19 @@ let g:fzf_filemru_bufwrite = 1
 " disable mru color to MRU Fzf files (it is not working)
 let g:fzf_filemru_colors =  {}
 " Add preview file to fzf MRU result
-let fzf_filemru_options =
-            \ '--preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"' .
+
+function! s:files_mru_preview()
+    let fzf_filemru_options =
+            \ ' --tiebreak=index' .
+            \ ' --preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"' .
             \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'
+    execute ':FilesMru '. fzf_filemru_options
+endfunction
+
+command! -nargs=* FilesMruPreview call s:files_mru_preview()
+
 " Open most recently used files
-nnoremap <leader>m :FilesMru --tiebreak=index <C-r>=fzf_filemru_options<CR><CR><CR>
+nnoremap <leader>m :FilesMruPreview<CR>
 
 
 "/
@@ -431,32 +445,6 @@ augroup clear_trailing_whitespace
     autocmd!
     autocmd BufEnter * EnableStripWhitespaceOnSave
 augroup END
-
-"/
-"/ Grepper
-"
-" Configure tools from grepper. By default grepper will use the first tool of the list
-"    ['ag', 'ack', 'grep', 'findstr', 'rg', 'pt', 'sift, 'git']
-"    Configured ag to use smartcase. By default, ag uses VCS ignore files (.gitignore and .hgignore)
-"    But it still uses .ignore files to ignore files on search
-let g:grepper = {
-    \ 'next_tool': '<leader>f',
-    \ 'ag': {
-    \   'grepprg':    'ag --vimgrep -i -S',
-    \ }}
-let g:grepper.highlight = 1          " Highlight found matches.
-let g:grepper.simple_prompt = 1    " Only show the tool name in the prompt, without any of its arguments.
-let g:grepper.dir = 'repo,cwd'       " Grep on repository, and current working directory if repo fails
-
-" Shortcuts for Grepper
-nnoremap <leader>f :Grepper<cr>
-" A map to ignore VCS ignore files (.gitignore, .hgignore) on search
-nnoremap <leader>F :Grepper -tool ag -grepprg ag --vimgrep -i -S -U<cr>
-nnoremap <leader>% :Grepper -buffer<cr>
-nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-
 
 "/
 "/ Vim Qf ( Searching / Search and Replate )
@@ -687,37 +675,6 @@ set tags+=tags       " set the ctag files
 " Use :Git checkout % to revert current file to last checked in version (equivalent to :Gread, but does not update the buffer)
 " Use :Git rm %	to delete the current file (equivalent to :Gremove, but does not update the buffer)
 " Use :Git mv % <source> to rename the current file (equivalent to :Gmove, but does not update the buffer)
-
-"/
-"/ Grepper (Searching)
-"/
-" Press <leader>f to execute :Grepper and enter in prompt to find for an expression
-"    Type <c-c> to cancel and exit prompt
-"    Type <c-p> <c-n> to go back and forward search expression history
-"    Type <tab> to switch to next grepper search tool (see g:grepper.tools)
-"    Type <c-f> to open |cmdline-window|. Use <c-c> to quit
-" Press <leader>* to search for the word in cursor without prompt
-" Press <leader>% to execute :Grepper -buffer and enter in prompt to find for an expression in the current buffer
-" Press <leader>F to make grepper ignores VCS ignore files
-" Press gs<motion> to search for the result of the motion
-"      gsi(
-" For search on command mode, use:
-"     :Grepper <flags>
-" Without any flags, this opens the prompt with the default tool. The default
-" tool is the first tool in |g:grepper.tools|.
-" Or the custom commands:
-"     :Grepper-query something
-"
-" AG tool:
-" Use the argument -Q to search for literal string instead
-" regular expression
-" ag --vimgrep -Q  PATTERN
-" Use the argunment -G to search only on files that whose name matches PATTERN
-" ag --vimgrep -G PATTERN  <SEARCH-PATTERN>
-" Use -- to signify that the remaining arguments should not be treated as options
-" ag -- --foo              - Find for '--foo'
-
-
 "/
 "/ Vim Qf ( Searching / Search and Replate )
 "/
