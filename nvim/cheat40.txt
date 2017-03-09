@@ -979,6 +979,14 @@ About {{{3
 }}}
 Toogle quickfix window   «Ldr»wq       N
 Toogle location window   «Ldr»wl       N
+Next quickfix item       ]q            N
+wrapping around content
+Prev quickfix item       [q            N
+wrapping around content
+Next location item       ]l            N
+wrapping around content
+Prev location item       [l            N
+wrapping around content
 }}}
 
 Bbye {{{2

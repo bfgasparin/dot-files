@@ -457,6 +457,13 @@ nmap <leader>wq <Plug>QfCtoggle
 " Toggle the current window's location window
 nmap <leader>wl <Plug>QfLtoggle
 
+" Quickly go forward and backward quickfix list and wrap around
+nmap [q <Plug>(qf_qf_previous)
+nmap ]q  <Plug>(qf_qf_next)
+
+" Quickly go forward and backward location list and wrap around
+nmap [l <Plug>(qf_loc_previous)
+nmap ]l  <Plug>(qf_loc_next)
 
 "/
 "/ Vim Bbye (Buffer Bye)
@@ -466,10 +473,20 @@ nmap <leader>wl <Plug>QfLtoggle
 "/
 "/ Deoplete (autocomplete)
 "/
- let g:deoplete#enable_at_startup = 1                " Enable it at startup
+let g:deoplete#enable_at_startup = 1                " Enable it at startup
 let g:deoplete#enable_smart_case = 0                 " Use smartcase
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.php = '->\|::'          " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen)
+" run phpcd as deoplete source
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+" let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:deoplete#omni#input_patterns.php = '->\|::'
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
+let g:deoplete#tag#cache_limit_size = 600000
+call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
+
+" runs phpcd as omnifunc
+" let g:deoplete#omni_patterns = {}
+" let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen)
                                                      " lvht/phpcd omnifunc is used in these cases
 let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
 
