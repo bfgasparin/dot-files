@@ -235,6 +235,8 @@ nnoremap <Leader><Leader>ls :e app/Http/Services<cr>
 " laravel artisan
 nnoremap <Leader><Leader>lmm :!php artisan make:model<space>
 nnoremap <Leader><Leader>lmc :!php artisan make:controller<space>
+nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
+nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
 nnoremap <Leader><Leader>lt :terminal php artisan tinker<cr>
 "/
