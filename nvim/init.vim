@@ -492,6 +492,7 @@ call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in t
                                                      " lvht/phpcd omnifunc is used in these cases
 let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
 
+
 "/
 "/ Vim Move
 "/
@@ -581,6 +582,11 @@ augroup php_mappings
     autocmd FileType php nnoremap <buffer> <silent> <F8> :call PhpCsFixerFixDirectory()<CR> :Neomake<CR>
     autocmd FileType php nnoremap <buffer> <silent> <F9> :call PhpCsFixerFixFile()<CR> :Neomake<CR>
 augroup END
+
+"/
+"/ Vim PHP Manual
+"/
+let g:php_manual_online_search_shortcut = '<leader><leader>m'
 
 "/
 "/ Neomake (assyn lint framework)

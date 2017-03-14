@@ -885,6 +885,15 @@ Run php-cs-fixer into the «F9»         N
 current directory
 }}}
 
+Vim PHP Manual {{{2
+About {{{3
+  Integrates php manual to vim
+}}}
+Help php about …         :h …          N
+Help php online about …  «Ldr»«Ldr»m  *N
+Help php online about …  «Ldr»«Ldr»m   V
+}}}
+
 Vim Test {{{2
 About {{{3
   Make run your tests a very fast task

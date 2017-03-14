@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
  Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
  Plug 'stephpy/vim-php-cs-fixer'                               " Integrates php-cs-fixer
  Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
+ Plug 'alvan/vim-php-manual'                                   " PHP Manual
 
  " Languages (General)
  Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast
