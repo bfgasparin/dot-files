@@ -624,11 +624,21 @@ About {{{3
   `Delimiter keys`: a single keystroke;
   <Space>, `=`, `:`, `.`, `|`, `&`,
   `#`, `,`
+  `Flags`:
+   `<none>`: Around the 1st occurrences
+    `2`: Around the 2nd occurrences
+    `*`: Around all occurrences
+    `**`: Left/Right alternating
+    alignment around all occurrences
+    `<Enter>`: Switching between
+    left/right/center alignment modes
 }}}
-Align Around             ag            O
+Align Around             ga            O
 # Example:
 #  gaip=   Align inner paragraph
-#          around =
+#          around = (first ocurrence)
+#  gaip*=   Align inner paragraph
+#          around = (all ocurrence)
 }}}
 
 Vinager File Explorer (Netrw) {{{2
@@ -825,6 +835,9 @@ About {{{3
     Helping editing surrounding texts
 }}}
 Add text surrounding      ys           O
+Add text surrounding      yss          O
+the current line (
+ignores leading spaces)
 yanked {motion}
 # Do not work for visual mode
 # ysiw[  changed
@@ -988,14 +1001,28 @@ About {{{3
 }}}
 Toogle quickfix window   «Ldr»wq       N
 Toogle location window   «Ldr»wl       N
-Next quickfix item       ]q            N
+Next quickfix entry      ]q            N
 wrapping around content
-Prev quickfix item       [q            N
+Prev quickfix entry      [q            N
 wrapping around content
-Next location item       ]l            N
+Prev quickfix entry      [q            N
 wrapping around content
-Prev location item       [l            N
+Next location entry      ]l            N
 wrapping around content
+Prev location entry      [l            N
+wrapping around content
+Next flie group entry    }             N
+Prev file group entry    {             N
+Open entry and comeback  o            *N
+to quickfix/location
+Open entry and close     O            *N
+to quickfix/location
+Open entry in new        v            *N
+vertical split
+Open entry in vertical   s            *N
+horizontal split
+Open entry in new tab    t            *N
+to quickfix/location
 }}}
 
 Bbye {{{2
