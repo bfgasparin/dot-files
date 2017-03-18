@@ -2,7 +2,6 @@
 .git
 # PHP
 .phpmd-rulesets.xml
-.padawan
 .ignore
 .php_cs.cache
 .phpcd
