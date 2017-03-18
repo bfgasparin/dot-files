@@ -20,13 +20,11 @@ call plug#begin('~/.config/nvim/plugged')
  Plug 'tpope/vim-abolish'                                      " easily search for, substitute, and abbreviate multiple variants of a word (snakeCase, camelCase, ...)
  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
  Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
- " @todo Configure padawan-php to work without bug https://github.com/padawan-php/padawan.php/issues/71#issuecomment-270927679
- " Plug 'padawan-php/deoplete-padawan'                         " asynchronous completion of PHP code using padawan project
  Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
  Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
  Plug 'matze/vim-move'                                         " Quickly move line up and down
-" " PHP
- Plug 'StanAngeloff/php.vim'                                   " A PHP 5.6 syntax file
+
+ " PHP
  Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
  Plug 'stephpy/vim-php-cs-fixer'                               " Integrates php-cs-fixer
  Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer

@@ -112,7 +112,7 @@ set incsearch               " set incremental search, like modern browsers
 " ignored when expanding wildcards, completing file or
 " directory names, and influences the result of expand(), glob() and
 " globpath()
-set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.neovimsession.vim,.php_cs.cache,.padawan/*
+set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.neovimsession.vim,.php_cs.cache
 
 "------------Netrw-----------------------"
 let g:netrw_hide = 1                  " Hide files from g:netrw_list_hide by default
@@ -558,20 +558,6 @@ augroup END
 
 
 "/
-"/ Deoplete Padawan
-"/
-" Register custom neovim commands to start Padawan server
-" command! PadawanStart call deoplete#sources#padawan#StartServer()
-" command! PadawanStop call deoplete#sources#padawan#StopServer()
-" command! PadawanRestart call deoplete#sources#padawan#RestartServer()
-
-" Note : (php igbinary extenion was installed for better padawan
-"performance)
-" Note 2: Plugin was commented, because there is some bugs at the time I wrote this:
-"      https://github.com/padawan-php/padawan.php/issues/71#issuecomment-26402568
-
-
-"/
 "/ Vim PHP CS Fixer
 "/
 let g:php_cs_fixer_rules = "@PSR2"        " set PSR2 rules to be used on cs fixer
@@ -652,7 +638,6 @@ augroup END
 "-------------Ctags----------------------"
 
 set tags+=tags       " set the ctag files
-
 
 " ---------Notes and Tips---------------"
 
