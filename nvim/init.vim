@@ -590,7 +590,7 @@ augroup neomake_lints
 augroup END
 
 " Note : For PHP, Neomake, by default, will run php -l, phpcs and phpmd, if available.
-let g:neomake_php_phpcs_args_standard="phpcs_ruleset.xml"    " set a custom ruleset to be used by phpcs when neomake runs.
+let g:neomake_php_phpcs_args_standard="phpcs-ruleset.xml"    " set a custom ruleset to be used by phpcs when neomake runs.
 
 " ignore phpcs lint for test classes (cause some patterns, like test function name does not follow the PS2 standard)
 let g:neomake_php_phpcs_maker = {
