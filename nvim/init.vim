@@ -561,7 +561,7 @@ augroup END
 "/ Vim PHP CS Fixer
 "/
 let g:php_cs_fixer_rules = "@PSR2"        " set PSR2 rules to be used on cs fixer
-let g:php_cs_fixer_default_mapping = 0    " Disable the default mapping (<leader>pcd)
+let g:php_cs_fixer_enable_default_mapping = 0 " Disable the default mapping
 " Shortcuts to apply php-cs-fixer, and after update lint with Neomake
 augroup php_mappings
     autocmd!
