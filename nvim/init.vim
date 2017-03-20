@@ -223,15 +223,15 @@ vmap <Leader>sl ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr
 " Open specific laravel directories
 nnoremap <Leader><Leader>lrw :e routes/web.php<cr>
 nnoremap <Leader><Leader>lra :e routes/api.php<cr>
-nnoremap <Leader><Leader>lc :e app/Http/Controllers<cr>
-nnoremap <Leader><Leader>lp :e app/Providers<cr>
-nnoremap <Leader><Leader>lt :e tests/<cr>
-nnoremap <Leader><Leader>lcf :e config<cr>
-nnoremap <Leader><Leader>ldm :e database/migrations<cr>
-nnoremap <Leader><Leader>lds :e database/seeds<cr>
-nnoremap <Leader><Leader>ldf :e database/factories/ModelFactory.php<cr>
+nnoremap <Leader><Leader>lc :Files app/Http/Controllers<cr>
+nnoremap <Leader><Leader>lp :Files app/Policies<cr>
+nnoremap <Leader><Leader>lt :Files tests/<cr>
+nnoremap <Leader><Leader>l, :Files config<cr>
+nnoremap <Leader><Leader>ldm :Files database/migrations<cr>
+nnoremap <Leader><Leader>lds :Files database/seeds<cr>
+nnoremap <Leader><Leader>ldf :Files database/factories<cr>
 " Salao VIP
-nnoremap <Leader><Leader>ls :e app/Http/Services<cr>
+nnoremap <Leader><Leader>lss :e app/Http/Services<cr>
 " laravel artisan
 nnoremap <Leader><Leader>lmm :!php artisan make:model<space>
 nnoremap <Leader><Leader>lmc :!php artisan make:controller<space>
@@ -579,7 +579,7 @@ let g:php_manual_online_search_shortcut = '<leader><leader>m'
 "/
 " let g:neomake_open_list = 2       " open the location windows with the lin errors without move the cursor
 let g:neomake_php_phpmd_maker = {
-    \ 'args': ['%:p', 'text', 'phpmd-rulesets.xml'],
+    \ 'args': ['%:p', 'text', 'phpmd-ruleset.xml'],
     \ 'errorformat': '%E%f:%l%\s%m'
     \ }
 "
@@ -590,7 +590,7 @@ augroup neomake_lints
 augroup END
 
 " Note : For PHP, Neomake, by default, will run php -l, phpcs and phpmd, if available.
-let g:neomake_php_phpcs_args_standard="PSR2"        " set PSR2 rules to be used by phpcs when new make runs.
+let g:neomake_php_phpcs_args_standard="phpcs_ruleset.xml"    " set a custom ruleset to be used by phpcs when neomake runs.
 
 " ignore phpcs lint for test classes (cause some patterns, like test function name does not follow the PS2 standard)
 let g:neomake_php_phpcs_maker = {
@@ -758,7 +758,8 @@ set tags+=tags       " set the ctag files
 "/ Helper scripts
 "/
 " ~/bin/ctags-update.sh
-" phpmd-rulesets.xml
+" phpmd-ruleset.xml
+" phpcs-ruleset.xml
 " .ctagsignore
 " .ignore
 
