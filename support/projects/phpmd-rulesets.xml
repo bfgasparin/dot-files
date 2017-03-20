@@ -19,13 +19,29 @@
     <!-- Import the entire unusedcode rule set -->
     <rule ref="rulesets/unusedcode.xml" />
 
-     <!-- Import the  naming rule set and configure ShortVariable rule-->
+     <!-- Import the naming rule set and configure some rules-->
     <rule ref="rulesets/naming.xml">
         <exclude name="ShortVariable" />
+        <exclude name="ShortMethodName" />
     </rule>
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
             <property name="exceptions" value="id" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortMethodName">
+        <properties>
+            <property name="exceptions" value="up" />
+        </properties>
+    </rule>
+
+    <!-- Import the codezise rule set and configure some rules-->
+    <rule ref="rulesets/codesize.xml">
+        <exclude name="TooManyPublicMethods" />
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
+        <properties>
+            <property name="ignorepattern" description="Ignore methods matching this regex" value="(^(set|get|it\_))i"/>
         </properties>
     </rule>
 </ruleset>
