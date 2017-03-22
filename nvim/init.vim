@@ -492,12 +492,6 @@ call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in t
                                                      " lvht/phpcd omnifunc is used in these cases
 let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
 
-
-"/
-"/ Vim Move
-"/
-let g:move_key_modifier = 'M'  " Change de move key to Meta
-
 " Trigger Deoplete with <TAB>
 inoremap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :
@@ -507,6 +501,12 @@ function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+
+
+"/
+"/ Vim Move
+"/
+let g:move_key_modifier = 'M'  " Change de move key to Meta
 
 
 "/
