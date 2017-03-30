@@ -79,7 +79,7 @@ set shiftwidth=4                  " number of spaces to use for indent and unind
 set expandtab                     " insert spaces rather then tabs <Tab>
 
 " auto completions
-set completeopt+=longest          " append the longest option to the completeopt.
+set completeopt+=noinsert         " Do not insert any text for a match until the I selected
 set completeopt-=preview          " remove the preview option to the completeopt. (Do not show preview information)
 set pumheight=0                   " maximum number of items to show in the popup menu for completion. 0 to max size
 
@@ -147,6 +147,9 @@ inoremap <C-s> <esc>:w<cr>
 " shortcut to delete buffer
 nnoremap <leader>d :bd<cr>
 
+" custom command to delete all buffer but the current one
+command! Bdo execute 'w | %bd | e#'
+
 " switch between current and last buffer
 nnoremap <leader>. <c-^>
 
@@ -168,10 +171,10 @@ nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 
 " Quickly change windows size
-nnoremap <left>   <c-w><
-nnoremap <right>  <c-w>>
-nnoremap <up>     <c-w>+
-nnoremap <down>   <c-w>-
+nnoremap <left>   <c-w>3<
+nnoremap <right>  <c-w>3>
+nnoremap <up>     <c-w>3+
+nnoremap <down>   <c-w>3-
 
 " Quick access to neovim config file
 nnoremap <leader>ev :e! $MYVIMRC <cr>
@@ -239,6 +242,7 @@ nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
 nnoremap <Leader><Leader>lt :terminal php artisan tinker<cr>
+
 "/
 "/ Custom macros
 "/
@@ -280,7 +284,7 @@ let g:cheat40_use_default = 0     " disable default cheat40. Uses the cheat at ~
 " Toogle NerdTree
 nnoremap <silent> <C-n> :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
-nnoremap <silent> <M-n> :NERDTreeFind<cr>
+nnoremap <silent> <leader>n :NERDTreeFind<cr>
 
 " Customize Arrow fonts
 let NERDTreeDirArrowExpandable = '▷'
@@ -483,7 +487,6 @@ let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 let g:deoplete#omni#input_patterns.php = '->\|::'
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
-let g:deoplete#tag#cache_limit_size = 600000
 call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
 
 " runs phpcd as omnifunc
@@ -509,6 +512,13 @@ endfunction"}}}
 let g:move_key_modifier = 'M'  " Change de move key to Meta
 
 
+"/
+"/ Auto-Pairs
+"/
+let g:AutoPairsShortcutToggle = ''         " Disable AutoPairs toogle Shortcut
+let g:AutoPairsShortcutFastWrap = ''       " Disable FastWrap Shortcut
+let g:AutoPairsShortcutBackInsert = ''     " Disable BackInsert Shortcut
+let g:AutoPairsFlyMode = 0                 " Disable Fly Mode
 "/
 "/ UltiSnips
 "/

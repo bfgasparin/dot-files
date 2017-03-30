@@ -524,7 +524,8 @@ Go to tab n              ‹n›gt         N
 Close tab                :tabc         N
 Ditto                    :tabclose     N
 Close tab without saving :tabc!        N
-Close all other tabs     :tabo         N
+Close all tabs but       :tabo         N
+current
 List tabs                :tabs         N
 Move window to new tab   «C-w»T        N
 Open one tab per buffer  :tab ball     N
@@ -706,7 +707,7 @@ About {{{3
   A Tree filesystem explorer.
 }}}
 Toggle NERDTree          «C-n»         N
-Open current file into   «M-n»         N
+Open current file into   «Ldr»n        N
 NERDTree
 }}}
 
@@ -804,6 +805,17 @@ About {{{3
 }}}
 Move line/s down         «C-j»        VN
 Move line/s up           «C-k»        VN
+}}}
+
+Auto-Pairs {{{2
+About {{{3
+    Insert or delete brackets, parens,
+    quotes in pair
+}}}
+Jump to next closed pair «M-n»        NIVC
+# Pairs:
+# ( and ), [ and ], { and }, ' and ',
+# " and ", ` and `
 }}}
 
 Neomake {{{2

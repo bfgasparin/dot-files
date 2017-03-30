@@ -23,7 +23,7 @@ call plug#begin('~/.config/nvim/plugged')
  Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
  Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
  Plug 'matze/vim-move'                                         " Quickly move line up and down
-
+ Plug 'jiangmiao/auto-pairs'                                   " Insert, delete brackets, parens, quotes in pair
  " PHP
  Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
  Plug 'stephpy/vim-php-cs-fixer'                               " Integrates php-cs-fixer
