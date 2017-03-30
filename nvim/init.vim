@@ -519,6 +519,7 @@ let g:AutoPairsShortcutToggle = ''         " Disable AutoPairs toogle Shortcut
 let g:AutoPairsShortcutFastWrap = ''       " Disable FastWrap Shortcut
 let g:AutoPairsShortcutBackInsert = ''     " Disable BackInsert Shortcut
 let g:AutoPairsFlyMode = 0                 " Disable Fly Mode
+let g:AutoPairsCenterLine = 0              " Disable auto center line alter return from inserting pairs
 "/
 "/ UltiSnips
 "/
