@@ -864,22 +864,22 @@ yanked {motion}
 # somefoo
 # to
 # <a class="foo">somefoo</a>
-Add {} surrounding         ys‹Move›}    N
+Add {} surrounding        ys‹Move›}    N
 yanked {motion}
-Add {} surrounding         ys‹Move›{    N
+Add {} surrounding        ys‹Move›{    N
 yanked {motion} with
 space
-Add [] surrounding         ys‹Move›]    N
+Add [] surrounding        ys‹Move›]    N
 yanked {motion}
-Add [] surrounding         ys‹Move›[    N
+Add [] surrounding        ys‹Move›[    N
 yanked {motion} with
 space
-Add "" surrounding         ys‹Move›"    N
+Add "" surrounding        ys‹Move›"    N
 yanked {motion}
-Add "" surrounding         ys‹Move›     N
-yanked {motion} with       «Spc»"
+Add "" surrounding        ys‹Move›     N
+yanked {motion} with      «Spc»"
 space
-Add text surrounding       S            V
+Add text surrounding      S            V
 selection
 Change ‹c› surrounding    cs‹c›        N
 Change tag surrounding    cst          N

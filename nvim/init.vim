@@ -4,7 +4,6 @@ if has('vim_starting')
     set nocompatible               " Be iMproved
 endif
 
-
 "-------------visual-------------"
 
 syntax enable
@@ -473,7 +472,7 @@ nmap ]l  <Plug>(qf_loc_next)
 
 "/
 "/ Vim Bbye (Buffer Bye)
-"
+"/
 :nnoremap <Leader>c :Bdelete<CR>
 
 "/
