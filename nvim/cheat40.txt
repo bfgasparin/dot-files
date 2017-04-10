@@ -95,6 +95,9 @@ range
 File {{{1
 New untitled document    :enew         N
 New/open file or dir     :e …          N
+Open files in the arg    :args …       N
+list
+# :args database/*.php
 Split window (horizontal):sp …         N
 Ditto
 Delete buffer            :bd           N
@@ -803,8 +806,8 @@ About {{{3
     Quickly move line/s up and down
     in a visual manner
 }}}
-Move line/s down         «C-j»        VN
-Move line/s up           «C-k»        VN
+Move line/s down         «M-j»        VN
+Move line/s up           «M-k»        VN
 }}}
 
 Auto-Pairs {{{2
@@ -812,10 +815,22 @@ About {{{3
     Insert or delete brackets, parens,
     quotes in pair
 }}}
-Jump to next closed pair «M-n»        NIVC
+Jump to next closed pair «M-n»         I
+Jump back and insert
+closed pair              «M-b»         I
 # Pairs:
 # ( and ), [ and ], { and }, ' and ',
 # " and ", ` and `
+}}}
+
+UltiSnipts {{{2
+About {{{3
+    An Snippet pluggin
+}}}
+Expand snippet           «M-l»         I
+Jump foward snippet jump «M-j»         I
+Jump backward snippet    «M-k»         I
+jump
 }}}
 
 Neomake {{{2

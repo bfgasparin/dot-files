@@ -63,3 +63,30 @@ foreach ($${1:variable} as $${2:key}) {
     ${3:// code...}
 }
 endsnippet
+
+snippet try "Try {} catch() {}" b
+try {
+    ${VISUAL}${1}
+} catch (${2:name} $e) {
+{
+	${3:// code...}
+}
+$0
+endsnippet
+
+snippet ifc "if { condition } {}" b
+if ( ${VISUAL}${1} ) {
+{
+	${2:// code...}
+}
+$0
+
+endsnippet
+
+snippet if "if { condition } {}" b
+if ( ${1} ) {
+{
+    ${VISUAL}${2:// code...}
+}
+$0
+endsnippet

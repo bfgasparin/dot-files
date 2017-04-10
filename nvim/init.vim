@@ -28,7 +28,7 @@ highlight htmlArg cterm=italic gui=italic
 " Resource : https://github.com/neovim/neovim/issues/3461#issuecomment-268876998
 
 set number                  " show line numbers
-" set relativenumber        " show relative line numbers
+set relativenumber        " show relative line numbers
 
 
 set wrap                    " turn on line wrapping
@@ -42,8 +42,11 @@ set laststatus=2            " Set statusline to appear all the time (default to 
 
 
 " Highlight cursorline unless, but not in insert mode
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
+augroup customize_cursorline
+    autocmd!
+    autocmd InsertLeave,WinEnter * set cursorline
+    autocmd InsertEnter,WinLeave * set nocursorline
+augroup END
 
 "
 " Customize colors for better visual with airline themes
@@ -111,7 +114,7 @@ set incsearch               " set incremental search, like modern browsers
 " ignored when expanding wildcards, completing file or
 " directory names, and influences the result of expand(), glob() and
 " globpath()
-set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.neovimsession.vim,.php_cs.cache
+set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.neovimsession.vim,.php_cs.cache,.phpcd/*
 
 "------------Netrw-----------------------"
 let g:netrw_hide = 1                  " Hide files from g:netrw_list_hide by default
@@ -479,11 +482,14 @@ nmap ]l  <Plug>(qf_loc_next)
 "/ Deoplete (autocomplete)
 "/
 let g:deoplete#enable_at_startup = 1                " Enable it at startup
-let g:deoplete#enable_smart_case = 0                 " Use smartcase
+let g:deoplete#enable_smart_case = 0                " Use smartcase
+let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
 " run phpcd as deoplete source
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-" let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:deoplete#omni#input_patterns.php = '->\|::'
+" let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+" let g:deoplete#omni#input_patterns.php = '->\|::'
+let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
+" let g:deoplete#omni_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:deoplete#omni_patterns.php = '->\|::'
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
 call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
@@ -516,14 +522,16 @@ let g:move_key_modifier = 'M'  " Change de move key to Meta
 "/
 let g:AutoPairsShortcutToggle = ''         " Disable AutoPairs toogle Shortcut
 let g:AutoPairsShortcutFastWrap = ''       " Disable FastWrap Shortcut
-let g:AutoPairsShortcutBackInsert = ''     " Disable BackInsert Shortcut
-let g:AutoPairsFlyMode = 0                 " Disable Fly Mode
+let g:AutoPairsFlyMode = 1                 " Disable Fly Mode
 let g:AutoPairsCenterLine = 0              " Disable auto center line alter return from inserting pairs
+
 "/
-"/ UltiSnips
+"/ UltiSnipts
 "/
-let g:UltiSnipsExpandTrigger="<c-space>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut for deoplete
-let g:UltiSnipsJumpForwardTrigger="<c-space>"    " Map forward jump trigger for ultisnips jumps
+let g:UltiSnipsExpandTrigger="<M-l>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
+let g:UltiSnipsJumpForwardTrigger="<M-j>"    " Map forward jump trigger for ultisnips jumps
+let g:UltiSnipsJumpBackwardTrigger="<M-k>"   " Map forward jump trigger for ultisnips jumps
+
 
 
 "/
@@ -614,7 +622,7 @@ let g:neomake_php_phpcs_maker = {
 "/ Vim Test
 "/
 let test#strategy = "neovim"                      " Runs test commands with :terminal
-let g:test#php#phpunit#file_pattern = '.php$'     " Accept test classes with no filename pattern
+let g:test#php#phpunit#file_pattern = 'Test.php$'     " Accept test classes with no filename pattern
 nnoremap <silent> <leader>tf :TestNearest<CR>
 nnoremap <silent> <leader>t% :TestFile<CR>
 nnoremap <silent> <leader>ta :TestSuite<CR>
@@ -751,9 +759,9 @@ set tags+=tags       " set the ctag files
 "/ UltiSnips ( integrated to Deoplete )
 "/
 " On Deoplete pop, select the snippet and type <c-space> to trigger
-" or just type the snippet name and type <c-space>
-"   type <c-space> again to go forward snippets jumps
-"   type <c-k> to go backward snippts jumpts
+" or just type the snippet name and type <m-j>
+"   type <m-j> again to go forward snippets jumps
+"   type <m-k> to go backward snippts jumpts
 " Type :UltiSnipsEdit to open the snippets file for the current filetype
 
 " --------- Helpers ---------------"
@@ -772,7 +780,7 @@ set tags+=tags       " set the ctag files
 " phpcs-ruleset.xml
 " .ctagsignore
 " .ignore
-
+" For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
 
 "/
 "/ External libs
