@@ -4,6 +4,9 @@ if has('vim_starting')
     set nocompatible               " Be iMproved
 endif
 
+"-------------supports------------
+let g:loaded_python_provider = 1  " Disable python 2 support
+
 "-------------visual-------------"
 
 syntax enable

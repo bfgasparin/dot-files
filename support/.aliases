@@ -1,2 +1,10 @@
 alias nah="git reset --hard && git clean -df"
 alias fzfp="fzf --preview \"(highlight -O xterm256 {})\""
+
+# git flow avh (https://github.com/petervanderdoes/gitflow-avh)
+alias gffs='git flow feature start'
+alias gffc='git flow feature checkout'
+alias gfff='git flow feature finish --push --no-ff'
+alias gfhs='git flow hotfix start'
+alias gfhc='git flow hotfix checkout'
+alias gfhf='git flow hotfix finish -p'
