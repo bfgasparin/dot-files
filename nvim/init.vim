@@ -4,10 +4,11 @@ if has('vim_starting')
     set nocompatible               " Be iMproved
 endif
 
-"-------------supports------------
-let g:loaded_python_provider = 1  " Disable python 2 support
+let g:loaded_python_provider = 1    " Disable python 2 support
 
 "-------------visual-------------"
+
+
 
 syntax enable
 set encoding=utf8
@@ -487,20 +488,13 @@ nmap ]l  <Plug>(qf_loc_next)
 let g:deoplete#enable_at_startup = 1                " Enable it at startup
 let g:deoplete#enable_smart_case = 0                " Use smartcase
 let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
-" run phpcd as deoplete source
-" let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-" let g:deoplete#omni#input_patterns.php = '->\|::'
+" run phpcd as deoplete omni source
 let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
 " let g:deoplete#omni_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:deoplete#omni_patterns.php = '->\|::'
+let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
+let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " disable omni source for php
 call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
-
-" runs phpcd as omnifunc
-" let g:deoplete#omni_patterns = {}
-" let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen)
-                                                     " lvht/phpcd omnifunc is used in these cases
 let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
 
 " Trigger Deoplete with <TAB>
