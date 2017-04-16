@@ -10,9 +10,6 @@
         Custom rule set that customize rules for Laravel projects
     </description>
 
-    <!-- Import the entire codesize rule set -->
-    <rule ref="rulesets/codesize.xml" />
-
     <!-- Import the entire desing rule set -->
     <rule ref="rulesets/design.xml" />
 
@@ -41,7 +38,7 @@
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
         <properties>
-            <property name="ignorepattern" description="Ignore methods matching this regex" value="(^(set|get|it\_))i"/>
+            <property name="ignorepattern" description="Ignore methods matching this regex" value="(^(set|get||([[:alpha:]])+\_))i"/>
         </properties>
     </rule>
 </ruleset>
