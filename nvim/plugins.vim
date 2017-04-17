@@ -19,12 +19,12 @@ call plug#begin('~/.config/nvim/plugged')
  Plug 'tpope/vim-commentary'                                   " comment stuff out
  Plug 'tpope/vim-abolish'                                      " easily search for, substitute, and abbreviate multiple variants of a word (snakeCase, camelCase, ...)
  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
- Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
  Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
  Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
  Plug 'matze/vim-move'                                         " Quickly move line up and down
  Plug 'jiangmiao/auto-pairs'                                   " Insert, delete brackets, parens, quotes in pair
  " PHP
+ Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
  Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
  Plug 'stephpy/vim-php-cs-fixer'                               " Integrates php-cs-fixer
  Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer

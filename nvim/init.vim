@@ -10,7 +10,6 @@ let g:loaded_python_provider = 1    " Disable python 2 support
 "-------------visual-------------"
 
 
-
 syntax enable
 set encoding=utf8
 colorscheme atom-dark-256        " Set the colorscheme
@@ -73,6 +72,10 @@ hi Cursorline ctermfg=none guifg=none
 " disable foreground for Cursorline
 " hi Cursorline ctermbg=252 guibg=#d9d9d9
 " hi Cursor guifg=black guibg=black
+
+"-----------Performance----------"
+
+set lazyredraw                    " Postponed buffer redraw
 
 "-------------Coding-------------"
 
@@ -447,7 +450,7 @@ let g:indentLine_color_term = 237      " for dark theme
 " let g:indentLine_color_gui = '#e5e5e5' " for light theme
 " let g:indentLine_color_term = 7      " for light theme
 let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
+let g:indentLine_faster = 1          " Better performance to draw indentLines
 
 
 "/
