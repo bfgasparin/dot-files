@@ -777,3 +777,4 @@ set tags+=tags       " set the ctag files
 "   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install)
 "   its own fzf binary installed by the 'junegunn/fzf' plugin
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
+"   gawk - needed for fzf MRU (tweekmonster/fzf-filemru)
