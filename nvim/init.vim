@@ -502,14 +502,14 @@ call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in t
 let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
 
 " Trigger Deoplete with <TAB>
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+" inoremap <silent><expr> <TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ <SID>check_back_space() ? "\<TAB>" :
+" \ deoplete#mappings#manual_complete()
+" function! s:check_back_space() abort "{{{
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
 
 
 "/
@@ -523,15 +523,14 @@ let g:move_key_modifier = 'M'  " Change de move key to Meta
 "/
 let g:AutoPairsShortcutToggle = ''         " Disable AutoPairs toogle Shortcut
 let g:AutoPairsShortcutFastWrap = ''       " Disable FastWrap Shortcut
-let g:AutoPairsFlyMode = 1                 " Disable Fly Mode
 let g:AutoPairsCenterLine = 0              " Disable auto center line alter return from inserting pairs
 
 "/
 "/ UltiSnipts
 "/
-let g:UltiSnipsExpandTrigger="<M-l>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
-let g:UltiSnipsJumpForwardTrigger="<M-j>"    " Map forward jump trigger for ultisnips jumps
-let g:UltiSnipsJumpBackwardTrigger="<M-k>"   " Map forward jump trigger for ultisnips jumps
+let g:UltiSnipsExpandTrigger="<tab>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
+let g:UltiSnipsJumpForwardTrigger="<tab>"    " Map forward jump trigger for ultisnips jumps
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   " Map forward jump trigger for ultisnips jumps
 
 
 
@@ -748,22 +747,6 @@ set tags+=tags       " set the ctag files
 "
 " Note : Vim-Qf quit NeoVim if the last window is a location/quickfix window
 
-
-"/
-"/ Deoplete (auto complete)
-"/
-" Press <TAB> to navigate through popup options
-" or <C-n> and <C-p> to go foward and backward through popup options
-" Press <C-h> to close popup and delete backword char
-
-"/
-"/ UltiSnips ( integrated to Deoplete )
-"/
-" On Deoplete pop, select the snippet and type <c-space> to trigger
-" or just type the snippet name and type <m-j>
-"   type <m-j> again to go forward snippets jumps
-"   type <m-k> to go backward snippts jumpts
-" Type :UltiSnipsEdit to open the snippets file for the current filetype
 
 " --------- Helpers ---------------"
 

@@ -30,6 +30,7 @@ About {{{2
   ‹c›       A single character
   …         Any text
   «C-…»     Press ctrl and … together
+  «S-…»     Press shift and … together
   «M-…»     Press option or Meta and … together
   «Spc»     Press space bar
   «CR»      Press Enter
@@ -816,21 +817,37 @@ About {{{3
     quotes in pair
 }}}
 Jump to next closed pair «M-n»         I
-Jump back and insert
-closed pair              «M-b»         I
 # Pairs:
 # ( and ), [ and ], { and }, ' and ',
 # " and ", ` and `
+}}}
+
+Deoplete {{{2
+About {{{3
+    Asynchronous completion
+}}}
+Go foward popup          «C-n»         I
+Go backward popup        «C-p»         I
+close popup and delete   «C-h»         I
+backword char
+Select the match and     «CR»          I
+close popup
 }}}
 
 UltiSnipts {{{2
 About {{{3
     An Snippet pluggin
 }}}
-Expand snippet           «M-l»         I
-Jump foward snippet jump «M-j»         I
-Jump backward snippet    «M-k»         I
-jump
+Expand snippet           «tab»         I
+Expand with text         «tab»         V
+selected
+Jump foward snippet jump «tab»         I
+Jump backward snippet    «S-tab»       I
+Open snippet for current :UltiSnips    N
+file                     Edit
+Open snippet for current :UltiSnips    N
+file considering public  Edit!
+snippets
 }}}
 
 Neomake {{{2
