@@ -490,7 +490,6 @@ nmap ]l  <Plug>(qf_loc_next)
 "/ Deoplete (autocomplete)
 "/
 let g:deoplete#enable_at_startup = 1                " Enable it at startup
-let g:deoplete#enable_smart_case = 0                " Use smartcase
 let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
 " run phpcd as deoplete omni source
 let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
