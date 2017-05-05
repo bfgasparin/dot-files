@@ -9,7 +9,6 @@ let g:loaded_python_provider = 1    " Disable python 2 support
 
 "-------------visual-------------"
 
-
 syntax enable
 set encoding=utf8
 colorscheme atom-dark-256        " Set the colorscheme
@@ -251,7 +250,7 @@ nnoremap <Leader><Leader>lmc :!php artisan make:controller<space>
 nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
-nnoremap <Leader><Leader>lt :terminal php artisan tinker<cr>
+nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
 
 "/
 "/ Custom macros
