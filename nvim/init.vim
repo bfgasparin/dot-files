@@ -25,6 +25,15 @@ endif
 " make comments and HTML attributes italic
 highlight Comment cterm=italic gui=italic
 highlight htmlArg cterm=italic gui=italic
+highlight TODO cterm=italic gui=italic
+highlight Statement cterm=italic gui=italic
+highlight PreProc cterm=italic gui=italic
+highlight Conditional cterm=italic gui=italic
+highlight Exception cterm=italic gui=italic
+highlight Define cterm=italic gui=italic
+highlight Structure cterm=italic gui=italic
+highlight Repeat cterm=italic gui=italic
+
 " Quick Note : for italic comments to work on Neovim, I need to update my terminfo
 " adding the following line:
 "     sitm=\E[3m, ritm=\E[23m,
