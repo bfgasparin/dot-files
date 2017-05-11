@@ -43,7 +43,7 @@ call plug#begin('~/.config/nvim/plugged')
  Plug 'tweekmonster/fzf-filemru'                                   " Add MRU feature to fzf
  Plug 'tpope/vim-vinegar'                                          " alternative and minimalist file finder
  Plug 'majutsushi/tagbar'                                          " show current file ctags in a diferent view
- Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
+ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer
  Plug 'romainl/vim-qf'                                             " Collections of settings, commands and mappings to easily work with quickfix/location windows
  Plug 'moll/vim-bbye'                                              " Delete buffers and close files in NeoVim without closing windows
 " helper
