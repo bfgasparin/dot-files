@@ -97,7 +97,7 @@ set shiftwidth=4                  " number of spaces to use for indent and unind
 set expandtab                     " insert spaces rather then tabs <Tab>
 
 " auto completions
-set completeopt+=noinsert         " Do not insert any text for a match until the I selected
+set completeopt+=noinsert         " Do not insert any text for a match until I selected
 set completeopt-=preview          " remove the preview option to the completeopt. (Do not show preview information)
 set pumheight=0                   " maximum number of items to show in the popup menu for completion. 0 to max size
 
@@ -260,6 +260,7 @@ nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
 nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
+" nnoremap <Leader><Leader>lt :terminal php artisan tinker<cr>
 
 "/
 "/ Custom macros
@@ -309,6 +310,11 @@ let NERDTreeDirArrowExpandable = '▷'
 let NERDTreeDirArrowCollapsible = '▼'
 " Open Netrw instead NERDTree when use :e <dir> command
 let NERDTreeHijackNetrw = 0
+
+"/
+"/ NerdTree Syntax Highlight
+"/
+let g:NERDTreeLimitedSyntax = 1
 
 "/
 "/ Tagbar
