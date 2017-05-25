@@ -15,7 +15,6 @@ colorscheme atom-dark-256        " Set the colorscheme
 " colorscheme github                 " Set the colorscheme
 set cursorline                     " Highlight the cursor line
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " makes the cursor a pipe in insert-mode, and a block in normal-mode
 "
 " enable 24 bit color support if supported
 if (has("termguicolors"))
