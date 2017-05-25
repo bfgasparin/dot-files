@@ -227,7 +227,8 @@ cnoremap <c-p>  <up>
 "/
 " remap esc in terminal mode
 tnoremap <Esc> <C-\><C-n>
-
+" simulate the i_CTRL-R (insert register content) in terminal
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
 " remap to undo paste command into insert mode. In fact, it undo the changes since last <C-R> command.
 " See i_CTRL-G_u
