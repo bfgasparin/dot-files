@@ -226,7 +226,7 @@ Ditto                    :registers    N
 # >    :1  Last deletion or changed.
 # >      (only for one line or more)
 # >    :2  Second last deletion or chan
-# >      ged (only for one line or more)j
+# >      ged (only for one line or more)
 # >    And so on. Think of registers 1-9
 # >    as a read-only queue with 9
 #    elements.
@@ -241,6 +241,7 @@ Ditto                    :registers    N
 #    commands and «C-r»
 # >    ". Contains last insert text
 # >    "% Contains current file name
+# >    "# Contains alternative file name
 # >    ": Contains most recent executed
 # >       ‹Cmd›
 # 6. alternate buffer register "#

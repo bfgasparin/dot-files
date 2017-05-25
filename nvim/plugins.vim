@@ -1,8 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
-  " colorschemes
+ " colorschemes
   Plug 'gosukiwi/vim-atom-dark'           " dark colorscheme
-  " Plug 'albertorestifo/github.vim'         " light colorscheme
+ " Plug 'albertorestifo/github.vim'         " light colorscheme
 
   "visual
   Plug 'vim-airline/vim-airline'        " fancy statusline
@@ -11,7 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces and enable commands to fix it
   Plug 'airblade/vim-gitgutter'         " Shows a git diff in the 'gutter'
 
-  " utilities
+ " utilities
   Plug 'junegunn/vim-easy-align'                                " mappings for aligment content
   Plug 'tpope/vim-surround'                                     " mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
   Plug 'tpope/vim-fugitive'                                     " awesome Git wrapper
@@ -30,14 +30,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
   Plug 'alvan/vim-php-manual'                                   " PHP Manual
 
-  " Languages (General)
+ " Languages (General)
   Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast
   Plug 'SirVer/ultisnips'                                       " Add snippet support
   Plug 'tobyS/vmustache'                                        " Template system engine (required by tobyS/pdv)
   Plug 'tobyS/pdv'                                              " to generate PHP docblock
   Plug 'neomake/neomake'                                        " Add lint support using async Neovim job control
 
-  " navigation
+ " navigation
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
   Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
   Plug 'tweekmonster/fzf-filemru'                                   " Add MRU feature to fzf
@@ -46,7 +46,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer
   Plug 'romainl/vim-qf'                                             " Collections of settings, commands and mappings to easily work with quickfix/location windows
   Plug 'moll/vim-bbye'                                              " Delete buffers and close files in NeoVim without closing windows
-
-  " helper
+" " helper
   Plug 'lifepillar/vim-cheat40'                                     " Helper cheat
 call plug#end()

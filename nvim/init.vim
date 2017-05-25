@@ -205,14 +205,14 @@ xnoremap <  <gv
 xnoremap >  >gv
 
 " shortcut for copy/paste to system clipboard
-nnoremap <M-y> "*y
-nnoremap <M-Y> "*Y
-nnoremap <M-p> "*p
-nnoremap <M-P> "*P
-xnoremap <M-y> "*y
-xnoremap <M-Y> "*Y
-xnoremap <M-p> "*p
-xnoremap <M-P> "*P
+nnoremap <M-y> "+y
+nnoremap <M-Y> "+Y
+nnoremap <M-p> "+p
+nnoremap <M-P> "+P
+xnoremap <M-y> "+y
+xnoremap <M-Y> "+Y
+xnoremap <M-p> "+p
+xnoremap <M-P> "+P
 
 
 "/
@@ -408,16 +408,16 @@ command! -bang -nargs=* History call fzf#vim#history(extend({},
 
 " Open list of project files - By default, ignores dotfiles
 nnoremap <C-p> :Files<CR>
-" Open list of git project files  ( uses git ls-files )
-nnoremap <leader>g :GFiles<CR>
+" Open list of git status files  ( uses git status )
+nnoremap <leader>g :GFiles?<CR>
 " Open list of opened buffers
 nnoremap <leader>l :Buffers<CR>
 " Open history opened files
 nnoremap <leader>h :History<CR>
 " Open list fo file into contents of files of the project using Ag
-nnoremap <leader>f :Ag<space>
+nnoremap <leader>f :Ag -Q<space>
 " Open list fo file into contents of files of the project using Ag ignoring VCS dotfiles
-nnoremap <leader>F :Ag<space>-U<space>
+nnoremap <leader>F :Ag<space>-U<space>-Q<space>
 " Find in current buffer
 nnoremap <leader>% :BLines<space>
 
