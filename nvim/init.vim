@@ -369,7 +369,7 @@ let g:fzf_files_options =
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " Enable per command history > <C-n> <C-p>
 
-let g:fzf_tags_command = 'ctags-update'                " [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags-update.sh'             " [Tags] Command to generate tags file
 " let g:fzf_layout = { 'down': '~40%' }                " Fzf layout
 let g:fzf_layout = { 'window': '-tabnew' }             " Full screen Fzf layout
 
