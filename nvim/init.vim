@@ -42,10 +42,10 @@ set number                  " show line numbers
 set relativenumber        " show relative line numbers
 
 
-set wrap                    " turn on line wrapping
-set wrapmargin=4            " wrap lines when coming within n characters from side
-set linebreak               " set soft wrapping
-set showbreak=…             " show ellipsis at breaking
+" set wrap                    " turn on line wrapping
+" set wrapmargin=4            " wrap lines when coming within n characters from side
+" set linebreak               " set soft wrapping
+" set showbreak=…             " show ellipsis at breaking
 set noerrorbells            " No beeps.
 set nojoinspaces            " Prevents inserting two spaces after punctuation on a join (J)
 
