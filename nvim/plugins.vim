@@ -37,6 +37,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tobyS/pdv'                                              " to generate PHP docblock
   Plug 'neomake/neomake'                                        " Add lint support using async Neovim job control
 
+ " Markdown
+  Plug 'kannokanno/previm'                                      " Preview markdown and reStructuredText into browser
+
  " navigation
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
   Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
@@ -46,6 +49,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer
   Plug 'romainl/vim-qf'                                             " Collections of settings, commands and mappings to easily work with quickfix/location windows
   Plug 'moll/vim-bbye'                                              " Delete buffers and close files in NeoVim without closing windows
-" " helper
+ " helper
   Plug 'lifepillar/vim-cheat40'                                     " Helper cheat
 call plug#end()

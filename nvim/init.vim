@@ -632,6 +632,12 @@ let g:neomake_php_phpcs_maker = {
     \ }
 
 "/
+"/ Previm (preview markdown and reStructuredText on browser)
+"/
+let g:previm_open_cmd = 'firefox'
+
+
+"/
 "/ Vim Test
 "/
 let test#strategy = "neovim"                      " Runs test commands with :terminal
