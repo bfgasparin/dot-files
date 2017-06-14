@@ -625,7 +625,7 @@ let g:neomake_php_phpcs_args_standard="phpcs-ruleset.xml"    " set a custom rule
 
 " ignore phpcs lint for test classes (cause some patterns, like test function name does not follow the PS2 standard)
 let g:neomake_php_phpcs_maker = {
-    \ 'args': ['--standard='. expand(g:neomake_php_phpcs_args_standard), '--ignore=*/tests/*,*/database/*', '--report=csv'],
+    \ 'args': ['--standard='. expand(g:neomake_php_phpcs_args_standard), '--report=csv'],
     \ 'errorformat':
             \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity%.%#,'.
             \ '"%f"\,%l\,%c\,%t%*[a-zA-Z]\,"%m"\,%*[a-zA-Z0-9_.-]\,%*[0-9]%.%#'
