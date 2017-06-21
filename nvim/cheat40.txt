@@ -373,6 +373,8 @@ Scroll to the bottom     zb            N
 Scroll to the bottom     z-            N
 putting the cursor
 at First non-blank
+Bind scroll with other   :set          N
+scrollbinded windows     scrollbind
 }}}
 Buffer {{{2
 Next buffer              ]b            N
