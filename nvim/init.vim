@@ -4,34 +4,44 @@ if has('vim_starting')
     set nocompatible               " Be iMproved
 endif
 
+" ============================================================================
+" BASIC SETTINGS {{{
+" ============================================================================
+
 "-------------support-------------"
 let g:loaded_python_provider = 1    " Disable python 2 support
 
 "-------------visual-------------"
-
 syntax enable
 set encoding=utf8
 colorscheme atom-dark-256        " Set the colorscheme
 " colorscheme github                 " Set the colorscheme
-set cursorline                     " Highlight the cursor line
 
-"
 " enable 24 bit color support if supported
 if (has("termguicolors"))
     set termguicolors
 endif
 
-" make comments and HTML attributes italic
-highlight Comment cterm=italic gui=italic
-highlight htmlArg cterm=italic gui=italic
-highlight TODO cterm=italic gui=italic
-highlight Statement cterm=italic gui=italic
-highlight PreProc cterm=italic gui=italic
-highlight Conditional cterm=italic gui=italic
-highlight Exception cterm=italic gui=italic
-highlight Define cterm=italic gui=italic
-highlight Structure cterm=italic gui=italic
-highlight Repeat cterm=italic gui=italic
+"------------Mapping---------------------"
+
+" set a map leader for more key combos
+let mapleader = ','
+
+"-------------Ctags----------------------"
+set tags+=tags       " set the ctag files
+
+" Automatically source the vim config file on save.
+augroup autosourcing
+    autocmd!
+    autocmd BufWritePost init.vim  source %
+augroup END
+
+"-------------Vimrc----------------------"
+" Regerate all ctags, asynchronously, when every buffer is saved
+augroup ctags_management
+    autocmd!
+    autocmd BufWritePost * call jobstart("ctags-update.sh")
+augroup END
 
 " Quick Note : for italic comments to work on Neovim, I need to update my terminfo
 " adding the following line:
@@ -41,44 +51,12 @@ highlight Repeat cterm=italic gui=italic
 set number                  " show line numbers
 set relativenumber        " show relative line numbers
 
-
-" set wrap                    " turn on line wrapping
-" set wrapmargin=4            " wrap lines when coming within n characters from side
-" set linebreak               " set soft wrapping
-" set showbreak=…             " show ellipsis at breaking
 set noerrorbells            " No beeps.
 set nojoinspaces            " Prevents inserting two spaces after punctuation on a join (J)
 
 set laststatus=2            " Set statusline to appear all the time (default to appear only when split windows)
 
-
-" Highlight cursorline unless, but not in insert mode
-augroup customize_cursorline
-    autocmd!
-    autocmd InsertLeave,WinEnter * set cursorline
-    autocmd InsertEnter,WinLeave * set nocursorline
-augroup END
-
-"
-" Customize colors for better visual with airline themes
-"
-" theme: gasparin (change the iTerm Profile to Dark Gasparin Theme )
-" customize the vertical split line
-hi vertsplit ctermfg=234 ctermbg=127 guibg=#A55989 guifg=bg
-" customize the Visual and Search mode highlights colors (better with dark theme)
-hi Visual ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
-hi Search ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
-" disable foreground for Cursorline
-hi Cursorline ctermfg=none guifg=none
-"
-"
-"
-" theme: papercolor (change the iTerm Profile to Light Gasparin Theme )
-" customize the vertical split line
-" hi vertsplit ctermbg=183 ctermfg=234 guibg=#dbbdd0 guifg=bg
-" disable foreground for Cursorline
-" hi Cursorline ctermbg=252 guibg=#d9d9d9
-" hi Cursor guifg=black guibg=black
+set cursorline                     " Highlight the cursor line
 
 "-----------Performance----------"
 
@@ -101,10 +79,10 @@ set completeopt-=preview          " remove the preview option to the completeopt
 set pumheight=0                   " maximum number of items to show in the popup menu for completion. 0 to max size
 
 " code folding settings
-set foldmethod=syntax       " fold based on syntax language file
-set foldnestmax=10          " deepest fold is 10 levels
-set nofoldenable          " don't fold by default
-set foldlevel=1             " close folders with level 2 or greater by default
+set foldmethod=syntax             " fold based on syntax language file
+set foldnestmax=10                " deepest fold is 10 levels
+set nofoldenable                  " don't fold by default
+set foldlevel=1                   " close folders with level 2 or greater by default
 
 set cpoptions+=y                  " Add yank command can be redone with "."
 
@@ -129,20 +107,63 @@ set incsearch               " set incremental search, like modern browsers
 " ignored when expanding wildcards, completing file or
 " directory names, and influences the result of expand(), glob() and
 " globpath()
-set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.neovimsession.vim,.php_cs.cache,.phpcd/*
+set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.vimsession.vim,.php_cs.cache,.phpcd/*
 
-"------------Netrw-----------------------"
-let g:netrw_hide = 1                  " Hide files from g:netrw_list_hide by default
 
-"------------Mapping---------------------"
+" }}}
+" ============================================================================
+" HIGHLIGHTS SETTINGS {{{
+" ============================================================================
 
-" set a map leader for more key combos
-let mapleader = ','
+" Highlights
+highlight Comment cterm=italic gui=italic
+highlight htmlArg cterm=italic gui=italic
+highlight TODO cterm=italic gui=italic
+highlight Statement cterm=italic gui=italic
+highlight PreProc cterm=italic gui=italic
+highlight Conditional cterm=italic gui=italic
+highlight Exception cterm=italic gui=italic
+highlight Define cterm=italic gui=italic
+highlight Structure cterm=italic gui=italic
+highlight Repeat cterm=italic gui=italic
 
-" Quick write NeoVim session for the project to be restored later
-nnoremap <F2> :mksession! .neovimsession.vim <cr>
-" Restore NeoVim session for the project
-nnoremap <F3> :source .neovimsession.vim <cr>
+" Highlights For Theme: gasparin (change the iTerm Profile to Dark Gasparin Theme )
+" -----------------------------------------------------------------------------------
+" customize the vertical split line
+highlight vertsplit ctermfg=234 ctermbg=127 guibg=#A55989 guifg=bg
+" customize the Visual and Search mode highlights colors (better with dark theme)
+highlight Visual ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
+highlight Search ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
+" disable foreground for Cursorline
+highlight Cursorline ctermfg=none guifg=none
+" -----------------------------------------------------------------------------------
+
+" Highlights For Theme: papercolor (change the iTerm Profile to Light Gasparin Theme )
+" -----------------------------------------------------------------------------------
+" customize the vertical split line
+" hi vertsplit ctermbg=183 ctermfg=234 guibg=#dbbdd0 guifg=bg
+" disable foreground for Cursorline
+" hi Cursorline ctermbg=252 guibg=#d9d9d9
+" hi Cursor guifg=black guibg=black
+" -----------------------------------------------------------------------------------
+
+" Highlight cursorline unless, but not in insert mode
+augroup customize_cursorline
+    autocmd!
+    autocmd InsertLeave,WinEnter * set cursorline
+    autocmd InsertEnter,WinLeave * set nocursorline
+augroup END
+
+
+" }}}
+" ============================================================================
+" MAPPING SETTINGS {{{
+" ============================================================================
+
+" Quick write vim session for the project to be restored later
+nnoremap <F2> :mksession! .vimsession.vim <cr>
+" Restore vim session for the project
+nnoremap <F3> :source .vimsession.vim <cr>
 
 " shortcut for esc in insert mode
 inoremap jj <esc>
@@ -164,12 +185,8 @@ inoremap <C-s> <esc>:w<cr>
 " shortcut to delete buffer
 nnoremap <leader>d :bd<cr>
 
-" custom command to delete all buffer but the current one
-command! Bdo execute 'w | %bd | e#'
-
 " switch between current and last buffer
 nnoremap <leader>. <c-^>
-
 
 " Quickly go forward or backward to buffer
 nnoremap [b  :bprevious<cr>
@@ -183,6 +200,16 @@ nnoremap ]t  :tabnext<cr>
 nnoremap [T  :tabfirst<cr>
 nnoremap ]T  :tablast<cr>
 
+
+" Quickly go forward and backward quickfix list and wrap around
+nmap [q  :cprevious<cr>zz
+nmap ]q  :cnext<cr>zz
+
+" Quickly go forward and backward location list and wrap around
+nmap [l  :lprevious<cr>zz
+nmap ]l  :lnext<cr>zz
+
+
 " Quickly add empty lines
 nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
@@ -193,11 +220,11 @@ nnoremap <right>  <c-w>3>
 nnoremap <up>     <c-w>3+
 nnoremap <down>   <c-w>3-
 
-" Quick access to neovim config file
+" Quick access to vim config file
 nnoremap <leader>ev :e! $MYVIMRC <cr>
 
-" Removes simple highlight
-nnoremap <Leader><space> :nohlsearch<cr>
+" Removes simple highlight (removed while tring vim-slash)
+" nnoremap <Leader><space> :nohlsearch<cr>
 
 " Don't lose selection when shifting sidewards
 xnoremap <  <gv
@@ -225,10 +252,12 @@ cnoremap <c-p>  <up>
 "/
 "/ Terminal
 "/
-" remap esc in terminal mode
-tnoremap <Esc> <C-\><C-n>
-" simulate the i_CTRL-R (insert register content) in terminal
-tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+if has('nvim')
+    " remap esc in terminal mode
+    tnoremap <Esc> <C-\><C-n>
+    " simulate the i_CTRL-R (insert register content) in terminal
+    tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+endif
 
 " remap to undo paste command into insert mode. In fact, it undo the changes since last <C-R> command.
 " See i_CTRL-G_u
@@ -267,7 +296,10 @@ nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
 "/
 " let @<index>=""
 
-"-------------Commands--------------------"
+" }}}
+" ============================================================================
+" COMMAND SETTINGS {{{
+" ============================================================================
 
 " command to refresh ctags file
 function! CtagsRefresh()
@@ -289,8 +321,15 @@ endfunction
 
 command! RegistersClear call RegistersClear()
 
+" custom command to delete all buffer but the current one
+command! Bdo execute 'w | %bd | e#'
 
-"-------------Plugins--------------------"
+
+
+" }}}
+" ============================================================================
+" PLUGIN SETTINGS {{{
+" ============================================================================
 
 "/
 "/ Vim Cheat40
@@ -300,21 +339,32 @@ let g:cheat40_use_default = 0     " disable default cheat40. Uses the cheat at ~
 "/
 "/ NerdTree
 "/
-" Toogle NerdTree
 nnoremap <silent> <C-n> :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
+" Open current dir (Configured to open NERDTree instead of Netrw)
+nnoremap <silent> - :e %:p:h<cr>
 nnoremap <silent> <leader>n :NERDTreeFind<cr>
 
 " Customize Arrow fonts
 let NERDTreeDirArrowExpandable = '▷'
 let NERDTreeDirArrowCollapsible = '▼'
-" Open Netrw instead NERDTree when use :e <dir> command
-let NERDTreeHijackNetrw = 0
+" Open NERDTree instead Netrw when use :e <dir> command
+let NERDTreeHijackNetrw = 1
 
 "/
 "/ NerdTree Syntax Highlight
 "/
 let g:NERDTreeLimitedSyntax = 1
+
+augroup nerd_loader
+  autocmd!
+  autocmd VimEnter * silent! autocmd! FileExplorer
+  autocmd BufEnter,BufNew *
+        \  if isdirectory(expand('<amatch>'))
+        \|   call plug#load('nerdtree')
+        \|   execute 'autocmd! nerd_loader'
+        \| endif
+augroup END
+
 
 "/
 "/ Tagbar
@@ -332,7 +382,6 @@ let g:gitgutter_map_keys = 0  " Set up Gitgutter to not map any key
 "/
 "/ Airlines
 "/
-
 let g:airline#extensions#tabline#enabled = 1                " Enable tabline
 let g:airline#extensions#tabline#fnamemod = ':'            " Show just the filename
 let g:airline#extensions#tabline#tab_nr_type = 1            " configure how numbers are displayed in tab mode. > tab number
@@ -350,9 +399,9 @@ let g:airline#extensions#tabline#show_tab_nr = 0            " Show tab number
 let g:airline#extensions#tabline#buffers_label = ''
 let g:airline#extensions#tabline#tabs_label = ''
 let g:airline_powerline_fonts= 1
-let g:airline_left_sep = ' '
+let g:airline_left_sep = ''
 let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ' '
+let g:airline_right_sep = ''
 let g:airline_right_alt_sep = '|'
 let g:airline_theme='gasparin'  " dark theme
 " let g:airline_theme='papercolor'  " light theme
@@ -363,6 +412,7 @@ let g:airline_theme='gasparin'  " dark theme
 "/
 " Add preview content of the file
 set rtp+=/usr/local/opt/fzf                       " set fzf file to runtimepath
+
 let g:fzf_files_options =
             \ '--preview "(highlight -s denim -O xterm256 {} || cat {}) 2> /dev/null | head -'.2*&lines.'"' .
             \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'
@@ -421,27 +471,17 @@ nnoremap <leader>F :Ag<space>-U<space>-Q<space>
 " Find in current buffer
 nnoremap <leader>% :BLines<space>
 
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'  " put info inline into fzf finder
+endif
+
+
 "/
-"/ Fzf File MRU
+"/ vim-tooglelist
 "/
-" Add saved files to the MRU list
-let g:fzf_filemru_bufwrite = 1
-" disable mru color to MRU Fzf files (it is not working)
-let g:fzf_filemru_colors =  {}
-" Add preview file to fzf MRU result
-
-function! s:files_mru_preview()
-    let fzf_filemru_options =
-            \ ' --tiebreak=index' .
-            \ ' --preview "(highlight -s denim -O xterm256 {2..} || cat {2..}) 2> /dev/null | head -'.2*&lines.'"' .
-            \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'
-    execute ':FilesMru '. fzf_filemru_options
-endfunction
-
-command! -nargs=* FilesMruPreview call s:files_mru_preview()
-
-" Open most recently used files
-nnoremap <leader>m :FilesMruPreview<CR>
+let g:toggle_list_no_mappings = 1
+nmap <script> <silent> <leader>wl :call ToggleLocationList()<CR>
+nmap <script> <silent> <leader>wq :call ToggleQuickfixList()<CR>
 
 
 "/
@@ -478,52 +518,27 @@ augroup clear_trailing_whitespace
     autocmd BufEnter * EnableStripWhitespaceOnSave
 augroup END
 
-"/
-"/ Vim Qf ( Searching / Search and Replate )
-"
-let g:qf_mapping_ack_style = 1           " Enable Ack.vim-inspired mappings in location/quickfix windows:
-" Toggle the quickfix window.
-nmap <leader>wq <Plug>QfCtoggle
-" Toggle the current window's location window
-nmap <leader>wl <Plug>QfLtoggle
-
-" Quickly go forward and backward quickfix list and wrap around
-nmap [q <Plug>(qf_qf_previous)
-nmap ]q  <Plug>(qf_qf_next)
-
-" Quickly go forward and backward location list and wrap around
-nmap [l <Plug>(qf_loc_previous)
-nmap ]l  <Plug>(qf_loc_next)
 
 "/
 "/ Vim Bbye (Buffer Bye)
 "/
 :nnoremap <Leader>c :Bdelete<CR>
 
-"/
-"/ Deoplete (autocomplete)
-"/
-let g:deoplete#enable_at_startup = 1                " Enable it at startup
-let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
-" run phpcd as deoplete omni source
-let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
-" let g:deoplete#omni_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " disable omni source for php
-call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
-let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
-
-" Trigger Deoplete with <TAB>
-" inoremap <silent><expr> <TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ <SID>check_back_space() ? "\<TAB>" :
-" \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-
+if has('nvim')
+    "/
+    "/ Deoplete (autocomplete)
+    "/
+    let g:deoplete#enable_at_startup = 1                " Enable it at startup
+    let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
+    " run phpcd as deoplete omni source
+    let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
+    " let g:deoplete#omni_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+    let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
+    let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+    let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " disable omni source for php
+    call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
+    let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
+endif
 
 "/
 "/ Vim Move
@@ -593,11 +608,11 @@ augroup END
 "/
 let g:php_cs_fixer_rules = "@PSR2"        " set PSR2 rules to be used on cs fixer
 let g:php_cs_fixer_enable_default_mapping = 0 " Disable the default mapping
-" Shortcuts to apply php-cs-fixer, and after update lint with Neomake
+" Shortcuts to apply php-cs-fixer
 augroup php_mappings
     autocmd!
-    autocmd FileType php nnoremap <buffer> <silent> <F8> :call PhpCsFixerFixDirectory()<CR> :Neomake<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <F9> :call PhpCsFixerFixFile()<CR> :Neomake<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <F8> :call PhpCsFixerFixDirectory()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <F9> :call PhpCsFixerFixFile()<CR>
 augroup END
 
 "/
@@ -606,30 +621,24 @@ augroup END
 let g:php_manual_online_search_shortcut = '<leader><leader>m'
 
 "/
-"/ Neomake (assyn lint framework)
+"/ Ale (assynchronous lint engine)
 "/
-" let g:neomake_open_list = 2       " open the location windows with the lin errors without move the cursor
-let g:neomake_php_phpmd_maker = {
-    \ 'args': ['%:p', 'text', 'phpmd-ruleset.xml'],
-    \ 'errorformat': '%E%f:%l%\s%m'
-    \ }
-"
-" Run Neomake on the current file on every write:
-augroup neomake_lints
-    autocmd!
-    autocmd BufWritePost * Neomake
-augroup END
+let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
+let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
 
-" Note : For PHP, Neomake, by default, will run php -l, phpcs and phpmd, if available.
-let g:neomake_php_phpcs_args_standard="phpcs-ruleset.xml"    " set a custom ruleset to be used by phpcs when neomake runs.
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
 
-" ignore phpcs lint for test classes (cause some patterns, like test function name does not follow the PS2 standard)
-let g:neomake_php_phpcs_maker = {
-    \ 'args': ['--standard='. expand(g:neomake_php_phpcs_args_standard), '--report=csv'],
-    \ 'errorformat':
-            \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity%.%#,'.
-            \ '"%f"\,%l\,%c\,%t%*[a-zA-Z]\,"%m"\,%*[a-zA-Z0-9_.-]\,%*[0-9]%.%#'
-    \ }
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+set statusline=%{LinterStatus()}
 
 "/
 "/ Previm (preview markdown and reStructuredText on browser)
@@ -640,7 +649,9 @@ let g:previm_open_cmd = 'firefox'
 "/
 "/ Vim Test
 "/
-let test#strategy = "neovim"                      " Runs test commands with :terminal
+if has('nvim')
+    let test#strategy = "neovim"                      " Runs test commands with :terminal
+endif
 let g:test#php#phpunit#file_pattern = 'Test.php$'     " Accept test classes with no filename pattern
 nnoremap <silent> <leader>tf :TestNearest<CR>
 nnoremap <silent> <leader>t% :TestFile<CR>
@@ -659,22 +670,8 @@ nmap <M-?> <plug>Cheat40Open
 " Shortcut to open Git status windows
 nmap <C-g> :Gstatus<cr>
 
+" }}}
 "-------------Auto-Commands--------------"
-
-" Automatically source the Neovim config file on save.
-augroup autosourcing
-    autocmd!
-    autocmd BufWritePost init.vim  source %
-augroup END
-
-" Regerate all ctags, asynchronously, when every buffer is saved
-augroup ctags_management
-    autocmd!
-    autocmd BufWritePost * call jobstart("ctags-update.sh")
-augroup END
-"-------------Ctags----------------------"
-
-set tags+=tags       " set the ctag files
 
 " ---------Notes and Tips---------------"
 
@@ -724,48 +721,6 @@ set tags+=tags       " set the ctag files
 " Use :Git checkout % to revert current file to last checked in version (equivalent to :Gread, but does not update the buffer)
 " Use :Git rm %	to delete the current file (equivalent to :Gremove, but does not update the buffer)
 " Use :Git mv % <source> to rename the current file (equivalent to :Gmove, but does not update the buffer)
-"/
-"/ Vim Qf ( Searching / Search and Replate )
-"/
-" Type <leader>wq to toggle quickfix window
-" Type <leader>wl to toggle location window
-" In quickfix/location windows, type:
-"    s - open entry in a new horizontal window
-"    v - open entry in a new vertical window
-"    t - open entry in a new tab
-"    o - open entry and come back
-"    O - open entry and close the location/quickfix window
-"    p - open entry in a preview window
-"
-"    Search and Replate:
-"
-"    :Keep       to keep only entries that containing the given argument (filename or in the description).
-"                Argument is not a regular expression pattern.
-"    :Reject     to reject all entries that containing the given argument (filename or in the description).
-"                Argument is not a regular expression pattern.
-"    :Restore    Restore the list to its original state
-"    :Doline    Execute an Ex command on every line in the current list.
-"                Aliased to the built-in `:cdo` and `:ldo` when applicable.
-"                Note : with subtitute command, do not use g flag or % range (for
-"                all file) because the search list already has a item on list
-"                for ocurrences on a file). If you use % or g, subistitution
-"                will fail on next list item executions because will not find
-"                the pattern, already changed by last command.
-"                    :Doline s/foo/bar
-"   :Doline     Execute an Ex command on every file in the current list.
-"                Aliased to the built-in `:cfdo` and `:lfdo` when applicable.
-"                Note :with subistitution command, note that the command will
-"                execute only once per file, so you must consider use % range
-"                or g flag to apply to all ocurrences.
-"                    :Dofile %s/foo/bar/g
-"                    :Dofile norm @q
-"    Hints :
-"        :Reject <c-r><c-w> to reject all ocurrences containing  the <cword> (word under the cursor)
-"        :Reject <c-r><c-a> with the cursor under the file path to reject the current item on quicklist
-"        :Keep <c-r><c-f> with the cursor under the file path to keep all ocurrences the file
-"
-" Note : Vim-Qf quit NeoVim if the last window is a location/quickfix window
-
 
 " --------- Helpers ---------------"
 

@@ -439,6 +439,23 @@ To next matching tag     :tn           N
 To prev matching tag     :tp           N
 View matching tags       :ts           N
 }}}
+Quickfix/Location Windows {{{2
+Toogle quickfix window   «Ldr»wq       N
+Toogle location window   «Ldr»wl       N
+Next quickfix entry      ]q            N
+wrapping around content
+Prev quickfix entry      [q            N
+wrapping around content
+Prev quickfix entry      [q            N
+wrapping around content
+Next location entry      ]l            N
+wrapping around content
+Prev location entry      [l            N
+wrapping around content
+Execute cmd in each file :cfdo <Cmd>   N
+Execute cmd in each      :cdo <Cmd>    N
+entry
+}}}
 To prev jump position    «C-o»         N
 To next jump position    «C-i»         N
 Start of sentence        «C-b»         C
@@ -649,52 +666,6 @@ Align Around             ga            O
 #          around = (all ocurrence)
 }}}
 
-Vinager File Explorer (Netrw) {{{2
-About {{{3
-  Wrapper for Netrw, enhancing it
-
-  Note: all commands here is actually
-  from Netrw
-}}}
-Open Vinager (Netrw)     -             N
-Open file/directory      «CR»         *N
-Preview file             p            *N
-Open in horizontal split o            *N
-Open in vertical split   v            *N
-Open in a new tab        t            *N
-Open with external app   x            *N
-New file in current      %             N
-directory
-New directory in current d             N
-directory
-Pre polulate the file    .             N
-at the end of a :
-command line
-Pre polulate the file    .             N
-at the end of a :!
-command line
-Mark file                mf           *N
-Mark using shell glob    mr            N
-Unmark all               mu            N
-Edit marked files        me            N
-Rename file/directory    R            *N
-Delete file/directory    D            *N
-Refresh file list        «C-l»         N
-File info                qf           *N
-Toggle files display     a             N
-Toogle last buffer       «Ldr».        N
-Ditto                    «C-^»         N
-# - normal
-# - hidden
-# - normal and hidden
-# (hidden files are
-# defined by
-# g:netrw_list_hide)
-Toggle dot-files         gh            N
-Switch file list format  i             N
-# thin, long, wide
-}}}
-
 Tagbar {{{2
 About {{{3
   Provides an easy way to browse the
@@ -716,6 +687,8 @@ About {{{3
 Toggle NERDTree          «C-n»         N
 Open current file into   «Ldr»n        N
 NERDTree
+Open NERDTree on current -             N
+dir
 }}}
 
 Fzf {{{2
@@ -772,6 +745,11 @@ Scroll up preview        «M-k»         X
 Scroll down preview      «M-j»         X
 Page up preview          «M-k»         X
 Page down preview        «M-j»         X
+Select and go down       <Tab>         X
+Select and go up         <S-Tab>       X
+Select all               «M-a»         X
+Deselect all             «M-d»         X
+Scroll down preview      «M-j»         X
 Open file in new tab     «C-t»        *X
 Open file in new         «C-v»        *X
 vertical window
@@ -853,18 +831,16 @@ file considering public  Edit!
 snippets
 }}}
 
-Neomake {{{2
+Ale {{{2
 About {{{3
   Runs code lints asynchronously.
   Puts the result into the a location
   windows.
-  Configured to run on buffer write
-  event.
+  Configured to run on buffer edit
 
-  PHP: php -l, phpcs, phpmd
+  PHP: hack, php -l, phpcs, phpmd
 }}}
 Open lint errors         «Ldr»wl       N
-# (shortcut using VimQf pluggin)
 }}}
 
 Better Whitespace {{{2
@@ -1039,37 +1015,6 @@ Coerse to snake_case      crs         *N
 Coerse to MixedCase       crm         *N
 Coerse to camelCase       crc         *N
 Coerse to UPPER_CASE      cru         *N
-}}}
-
-Qf {{{2
-About {{{3
-  Collection of commands for quickfix
-  location windows
-}}}
-Toogle quickfix window   «Ldr»wq       N
-Toogle location window   «Ldr»wl       N
-Next quickfix entry      ]q            N
-wrapping around content
-Prev quickfix entry      [q            N
-wrapping around content
-Prev quickfix entry      [q            N
-wrapping around content
-Next location entry      ]l            N
-wrapping around content
-Prev location entry      [l            N
-wrapping around content
-Next flie group entry    }             N
-Prev file group entry    {             N
-Open entry and comeback  o            *N
-to quickfix/location
-Open entry and close     O            *N
-to quickfix/location
-Open entry in new        v            *N
-vertical split
-Open entry in vertical   s            *N
-horizontal split
-Open entry in new tab    t            *N
-to quickfix/location
 }}}
 
 Bbye {{{2
