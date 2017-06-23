@@ -247,6 +247,14 @@ xnoremap <M-P> "+P
 " Remap input history to the smart arrow keys
 cnoremap <c-n>  <down>
 cnoremap <c-p>  <up>
+" Readline-style editing keys
+cnoremap        <C-A> <Home>
+cnoremap        <C-B> <Left>
+cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+cnoremap        <M-b> <S-Left>
+cnoremap        <M-f> <S-Right>
+
 
 
 "/
