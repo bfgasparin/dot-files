@@ -803,6 +803,22 @@ Jump to next closed pair «M-n»         I
 # " and ", ` and `
 }}}
 
+PHPCD {{{2
+About {{{3
+    Auto completion Daemon for PHP
+    Used as omnifunc with deoplete
+}}}
+Jump to definition         «C-]»      *N
+Jump to definition using   «C-w»«C-]» *N
+split
+Jump to definition using   «C-w»«C-\» *N
+vsplit
+Jump back                  «C-t»       N
+vsplit
+List method implementa     K          *N
+tions
+}}}
+
 Deoplete {{{2
 About {{{3
     Asynchronous completion
@@ -813,6 +829,18 @@ close popup and delete   «C-h»         I
 backword char
 Select the match and     «CR»          I
 close popup
+}}}
+
+UltiSnipts {{{2
+About {{{3
+    Fast PHP Completion Deamon
+}}}
+Jump to definition       «C-]»        *N
+Jump to definition       «C-w»«C-]»   *N
+using split
+Jump to definition       «C-w»«C-\»   *N
+using vsplit
+Jump back                «C-t»        *N
 }}}
 
 UltiSnipts {{{2
