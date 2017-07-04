@@ -197,7 +197,7 @@ filename
 Insert the current       %:h           C
 file path
 # see :h filename-modifiers
-Sort lines by length     «Ldr»sl       V
+Order lines by length     «Ldr»ol      V
 Registers {{{2
 Clear all registers      :ClearRegist  N
                          ers
@@ -480,8 +480,11 @@ Window {{{2
 New horizontal window    :new          N
 Ditto                    «C-w»«C-n»    N
 New vertical window      :vnew         N
+Quit window              «C-w»q        N
+Ditto                    :q            N
 Close window             «C-w»c        N
-Close all windows but    «C-w»«C-o»    N
+Ditto                    :c            N
+Close all windows but    «C-w»o        N
 current
 Ditto                    «C-w»o        N
 Open Quickfix window     :cwindow      N
@@ -490,33 +493,44 @@ Open Location window     :lwindow      N
 Close Location window    :lclose       N
 Close preview window     :pclose       N
 Ditto                    «C-w»z        N
-Rotate windows »         «C-w»«C-r»    N
-Rotate windows «         «C-w»«C-R»    N
-Split horizontally       «C-w»«C-s»    N
-Ditto                    :sp           N
-Split bottom horizontall :bo sp        N
+Rotate windows »         «C-w»r        N
+Rotate windows «         «C-w»R        N
+Split horizontally       «C-w»s        N
+Ditto                    :sp …         N
+Split horizontally with  «C-w»^        N
+alternative file
+Split bottom horizontall :bo sp …      N
 y with full width
-Split bottom horizontall :to sp        N
+Split bottom horizontall :to sp …      N
 y with full height
 Split window (horizontal):sp +term     N
 with a terminal buffer
 Split window (vertical)  :sv +term     N
 with a terminal buffer
-Split vertically         «C-w»«C-v»    N
+Split vertically         «C-w»v        N
 Ditto                    :vs …         N
-Split left vertically    :to vs        N
+split new windows        :vne          N
+vertically
+split left vertically    :to vs …      N
 with full height
-Split right vertically   :bo vs        N
+Split right vertically   :bo vs …      N
 with full height
-Exchange windows         «C-w»«C-x»    N
-Cycle through windows    «C-w»«C-w»    N
-Back to previous window  «C-w»«C-p»    N
-Move to the left         «C-w»«C-h»    N
-Move to the bottom       «C-w»«C-j»    N
-Move to the top          «C-w»«C-k»    N
-Move to the right        «C-w»«C-l»    N
-Move to the very top     «C-w»«C-t»    N
-Move to the very bottom  «C-w»«C-b»    N
+Create new vertital      «C-w»n        N
+window
+Exchange windows         «C-w»x        N
+Cycle through windows    «C-w»w        N
+Back to previous window  «C-w»p        N
+Go to the left           «C-w»h        N
+Go to the bottom         «C-w»j        N
+Go to the top            «C-w»k        N
+Go to the right          «C-w»l        N
+Go to the very top       «C-w»t        N
+Go to the very bottom    «C-w»b        N
+Move to the far left     «C-w»H        N
+Move to the far bottom   «C-w»J        N
+Move to the far top      «C-w»K        N
+Move to the far right    «C-w»L        N
+Move to new tab          «C-w»T        N
 All windows same size    «C-w»=        N
 Maximize height          «C-w»_        N
 Maximize width           «C-w»|        N
@@ -528,6 +542,15 @@ Decrease width           «left»        N
 Ditto                    «C-w»<        N
 Increase width           «right»       N
 Ditto                    «C-w»>        N
+Split horizontally with  «C-w»]        N
+tag under cursor
+Split horizontally       «C-w»g]       N
+selecting tag under
+cursor
+Split horizontally with  «C-w»f        N
+file under cursor
+Open new tab  with file  «C-w»f        N
+under cursor
 Exec. Cmd in all windows :windo ‹Cmd›  N
 }}}
 
@@ -540,9 +563,9 @@ Next tab                 ]t            N
 Ditto                    gt            N
 Prev tab                 [t            N
 Ditto                    gT            N
-Las tuffer               ]T            N
+Last tab                 ]T            N
 Ditto                    :tablast      N
-First tuffer             [T            N
+First tab                [T            N
 Ditto                    :tabfirst     N
 Go to tab n              ‹n›gt         N
 Close tab                :tabc         N
@@ -870,6 +893,51 @@ About {{{3
 }}}
 Open lint errors         «Ldr»wl       N
 }}}
+
+Dbext {{{2
+About {{{3
+  Enable vim to access databases
+}}}
+Execute this SQL         «Ldr»se     *VN
+Execute this SQL         «Ldr»sE     *VN
+prompting number of rows
+Describe this table      «Ldr»sdt    *VN
+Display columns of       «Ldr»slc    *VN
+this table
+Describe asked table     «Ldr»sdta …   N
+table
+List tables with prefix  «Ldr»slt …    N
+Select all fhis table    «Ldr»st      *N
+Select all from asked    «Ldr»sta …    N
+table
+Select all from table    «Ldr»sT      *N
+prompting number of rows
+Select all from table    «Ldr»stw     *N
+prompting where clause
+Display DB history       «Ldr»sh       N
+Change DB orientation    «Ldr»so       N
+result (only when using  «Ldr»sbp      N
+DBI or BBI:ODBC
+Prompt for buffer
+parameters (show
+connection profiles) when
+available
+}}}
+# Inside result buffer
+Refresh result           R             N
+Close result buffer      q             N
+Toggle autoclose         a             N
+Change orientation       O             N
+(only with DBI and ODBC)
+Toggle width (only for   «Spc»         N
+vertical window )
+# Inside history buffer
+Execute the statement    «CR»          N
+Close history buffer     q             N
+Toggle autoclose         a             N
+Delete statement         dd            N
+Toggle width (only for   «Spc»         N
+vertical window )
 
 Better Whitespace {{{2
 About {{{3

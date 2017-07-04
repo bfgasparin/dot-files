@@ -9,16 +9,14 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
    Plug 'Yggdroot/indentLine'            " Display the indention levels with thin vertical lines
    Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces and enable commands to fix it
-   Plug 'airblade/vim-gitgutter'         " Shows a git diff in the 'gutter'
    Plug 'junegunn/vim-slash'             " Enhance buffer saarch experience
 
   " utilities
    Plug 'junegunn/vim-easy-align'                                " mappings for aligment content
    Plug 'tpope/vim-surround'                                     " mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
-   Plug 'tpope/vim-fugitive'                                     " awesome Git wrapper
-   Plug 'junegunn/gv.vim'                                        " A git commit browser
    Plug 'tpope/vim-commentary'                                   " comment stuff out
    Plug 'tpope/vim-abolish'                                      " easily search for, substitute, and abbreviate multiple variants of a word (snakeCase, camelCase, ...)
+   Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
    if has('nvim')
        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
@@ -27,6 +25,13 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
    Plug 'matze/vim-move'                                         " Quickly move line up and down
    Plug 'jiangmiao/auto-pairs'                                   " Insert, delete brackets, parens, quotes in pair
+
+  " Git
+  Plug 'tpope/vim-fugitive'                                     " awesome Git wrapper
+  Plug 'junegunn/gv.vim'                                        " A git commit browser
+  Plug 'tpope/vim-rhubarb'                                      " GitHub extension for fugitive.vim
+  Plug 'airblade/vim-gitgutter'                                 " Shows a git diff in the 'gutter'
+
   " PHP
    Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
    Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
@@ -41,10 +46,15 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'tobyS/pdv'                                              " to generate PHP docblock
    Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
 
+  " Database
+   Plug 'bfgasparin/vim-dbext'                                " Database access support
+
+
+
   " Markdown
    Plug 'kannokanno/previm'                                      " Preview markdown and reStructuredText into browser
 
-  " navigation
+  " " navigation
    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
    Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
    Plug 'majutsushi/tagbar'                                          " show current file ctags in a diferent view

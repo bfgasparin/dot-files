@@ -11,6 +11,9 @@ endif
 "-------------support-------------"
 let g:loaded_python_provider = 1    " Disable python 2 support
 
+"-------------mouse-------------"
+set mouse=a  " Add mouse support for all vim modes
+
 "-------------visual-------------"
 syntax enable
 set encoding=utf8
@@ -147,7 +150,7 @@ highlight Cursorline ctermfg=none guifg=none
 " hi Cursor guifg=black guibg=black
 " -----------------------------------------------------------------------------------
 
-" Highlight cursorline unless, but not in insert mode
+" Highlight cursorline, but not in insert mode
 augroup customize_cursorline
     autocmd!
     autocmd InsertLeave,WinEnter * set cursorline
@@ -221,7 +224,7 @@ nnoremap <up>     <c-w>3+
 nnoremap <down>   <c-w>3-
 
 " Quick access to vim config file
-nnoremap <leader>ev :e! $MYVIMRC <cr>
+nnoremap <leader>ev :e $MYVIMRC <cr>
 
 " Removes simple highlight (removed while tring vim-slash)
 " nnoremap <Leader><space> :nohlsearch<cr>
@@ -271,8 +274,8 @@ endif
 " See i_CTRL-G_u
 inoremap <C-R> <C-G>u<C-R>
 
-"Sort PHP use statements
-vmap <Leader>sl ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
+"Order lines by lenght statements
+vmap <Leader>ol ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
 
 
 "/
@@ -330,7 +333,7 @@ endfunction
 command! RegistersClear call RegistersClear()
 
 " custom command to delete all buffer but the current one
-command! Bdo execute 'w | %bd | e#'
+command! Bdo call DeleteHiddenBuffers()
 
 
 
@@ -349,7 +352,7 @@ let g:cheat40_use_default = 0     " disable default cheat40. Uses the cheat at ~
 "/
 nnoremap <silent> <C-n> :NERDTreeToggle<cr>
 " Open current dir (Configured to open NERDTree instead of Netrw)
-nnoremap <silent> - :e %:p:h<cr>
+nnoremap <silent> - :edit %:p:h<cr>
 nnoremap <silent> <leader>n :NERDTreeFind<cr>
 
 " Customize Arrow fonts
@@ -372,7 +375,6 @@ augroup nerd_loader
         \|   execute 'autocmd! nerd_loader'
         \| endif
 augroup END
-
 
 "/
 "/ Tagbar
@@ -649,6 +651,27 @@ endfunction
 set statusline=%{LinterStatus()}
 
 "/
+"/ DBext (Database access)
+"/
+" Projects dbext profiles
+if has('perl')
+    let g:dbext_default_profile_mysql_salaovip = 'type=DBI:user=salaovip:passwd=Deployer:driver=mysql:conn_parms=database=salaovip;host=127.0.0.1;port=3309'
+else
+    let g:dbext_default_profile_mysql_salaovip = "type=MYSQL:user=salaovip:dbname=salaovip:passwd=Deployer:extra=--host=127.0.0.1 --port='3309' "
+endif
+
+let g:dbext_default_history_file=".dbext_sql_history"
+
+nnoremap <Leader>ss :DBExecSQL<space>
+
+" Especific project settings
+augroup salaovip
+    au!
+    " Automatically choose the correct dbext profile
+    autocmd BufRead */api_sistema/* DBSetOption profile=mysql_salaovip
+augroup end
+
+"/
 "/ Previm (preview markdown and reStructuredText on browser)
 "/
 let g:previm_open_cmd = 'firefox'
@@ -678,7 +701,6 @@ nmap <M-?> <plug>Cheat40Open
 " Shortcut to open Git status windows
 nmap <C-g> :Gstatus<cr>
 
-" }}}
 "-------------Auto-Commands--------------"
 
 " ---------Notes and Tips---------------"
@@ -747,6 +769,8 @@ nmap <C-g> :Gstatus<cr>
 " .ctagsignore
 " .ignore
 " For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
+" ntpope/vim-rhubarb needs to configure the authentication on github api. Used the following command:
+"    echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
 
 "/
 "/ External libs
