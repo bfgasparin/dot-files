@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
 
    if has('nvim')
        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
+       Plug 'fntlnz/atags.vim'                                   " Simplified ctags generation for neovim
    endif
    Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
    Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .

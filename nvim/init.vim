@@ -39,13 +39,6 @@ augroup autosourcing
     autocmd BufWritePost init.vim  source %
 augroup END
 
-"-------------Vimrc----------------------"
-" Regerate all ctags, asynchronously, when every buffer is saved
-augroup ctags_management
-    autocmd!
-    autocmd BufWritePost * call jobstart("ctags-update.sh")
-augroup END
-
 " Quick Note : for italic comments to work on Neovim, I need to update my terminfo
 " adding the following line:
 "     sitm=\E[3m, ritm=\E[23m,
@@ -312,14 +305,6 @@ nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
 " COMMAND SETTINGS {{{
 " ============================================================================
 
-" command to refresh ctags file
-function! CtagsRefresh()
-    execute "!rm tags"
-    execute "!ctags-update.sh"
-endfunction
-
-command! CtagsRefresh call CtagsRefresh()
-
 " command to clear registers
 function! RegistersClear()
     let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
@@ -429,7 +414,7 @@ let g:fzf_files_options =
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " Enable per command history > <C-n> <C-p>
 
-let g:fzf_tags_command = 'ctags-update.sh'             " [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R --exclude=@.ctagsignore --kinds-PHP=dcfit -f tags' " [Tags] Command to generate tags file
 " let g:fzf_layout = { 'down': '~40%' }                " Fzf layout
 let g:fzf_layout = { 'window': '-tabnew' }             " Full screen Fzf layout
 
@@ -534,10 +519,10 @@ augroup END
 "/
 :nnoremap <Leader>c :Bdelete<CR>
 
+"/
+"/ Deoplete (autocomplete)
+"/
 if has('nvim')
-    "/
-    "/ Deoplete (autocomplete)
-    "/
     let g:deoplete#enable_at_startup = 1                " Enable it at startup
     let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
     " run phpcd as deoplete omni source
@@ -548,6 +533,19 @@ if has('nvim')
     let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " disable omni source for php
     call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
     let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
+endif
+
+"/
+"/ atags (tags generation)
+"/
+if has('nvim')
+    let g:atags_build_commands_list = [
+                \"ctags -R --exclude=@.ctagsignore --kinds-PHP=dcfit -f tags.tmp",
+                \"awk 'length($0) < 400' tags.tmp > tags",
+                \"rm tags.tmp"
+                \]
+    command! CtagsGenerate call atags#generate()
+    autocmd BufWritePost * call atags#generate()
 endif
 
 "/
@@ -635,7 +633,8 @@ let g:php_manual_online_search_shortcut = '<leader><leader>m'
 "/
 let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
 let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
-
+let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
+let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
@@ -680,9 +679,6 @@ let g:previm_open_cmd = 'firefox'
 "/
 "/ Vim Test
 "/
-if has('nvim')
-    let test#strategy = "neovim"                      " Runs test commands with :terminal
-endif
 let g:test#php#phpunit#file_pattern = 'Test.php$'     " Accept test classes with no filename pattern
 nnoremap <silent> <leader>tf :TestNearest<CR>
 nnoremap <silent> <leader>t% :TestFile<CR>
@@ -701,7 +697,7 @@ nmap <M-?> <plug>Cheat40Open
 " Shortcut to open Git status windows
 nmap <C-g> :Gstatus<cr>
 
-"-------------Auto-Commands--------------"
+" }}}
 
 " ---------Notes and Tips---------------"
 
@@ -763,7 +759,6 @@ nmap <C-g> :Gstatus<cr>
 "/
 "/ Helper scripts
 "/
-" ~/bin/ctags-update.sh
 " phpmd-ruleset.xml
 " phpcs-ruleset.xml
 " .ctagsignore
