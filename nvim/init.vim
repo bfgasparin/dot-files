@@ -237,6 +237,9 @@ xnoremap <M-p> "+p
 xnoremap <M-P> "+P
 
 
+" C-c to copy content on visual mode
+vnoremap <C-c> <M-y>
+
 "/
 "/ Command line mapping
 "/
@@ -545,7 +548,7 @@ if has('nvim')
                 \"rm tags.tmp"
                 \]
     command! CtagsGenerate call atags#generate()
-    autocmd BufWritePost * call atags#generate()
+    autocmd BufWritePost *.php call atags#generate()
 endif
 
 "/

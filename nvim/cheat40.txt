@@ -394,9 +394,11 @@ Ditto                    :buffers      N
 Fold {{{2
 Fold                     zc           *N
 Unfold                   zv           *N
+Go to next Fold          zj           *N
+Go to previous Fold      zk           *N
 Toggle fold              za           *N
-Fold all                 zM            N
-Unfold all               zR            N
+Close all Fold           zM            N
+Open all Fold all        zR            N
 }}}
 Next ‹c› in this line    f‹c›          M
 Just before next ‹c›     t‹c›          M
@@ -696,11 +698,20 @@ About {{{3
   overview of its structure.
 }}}
 Open Tagbar              «C-\»         N
+Open Help Menu           «F1»          N
 Preview the tag          p            *N
-#(with autoclose)
+#(but stay on tagbar window)
 Select tab               «CR»         *N
-#(and close Tabbar)
+#(and close Tagbar)
+Go to next top-level tag «C-N»         N
+Go to previous top-level «C-N»         N
+tag
 Close Tagbar             q             N
+Zoom window              x             N
+# Obs: each type of tag are defined as
+# fold regions. So its possivel to
+# interact and navigate through tag
+# types using fold commands
 }}}
 
 NERDTree {{{2
