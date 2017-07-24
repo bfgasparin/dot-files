@@ -916,7 +916,6 @@ Describe this table      «Ldr»sdt    *VN
 Display columns of       «Ldr»slc    *VN
 this table
 Describe asked table     «Ldr»sdta …   N
-table
 List tables with prefix  «Ldr»slt …    N
 Select all fhis table    «Ldr»st      *N
 Select all from asked    «Ldr»sta …    N
