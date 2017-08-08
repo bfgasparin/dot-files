@@ -323,7 +323,34 @@ command! RegistersClear call RegistersClear()
 " custom command to delete all buffer but the current one
 command! Bdo call DeleteHiddenBuffers()
 
-
+function! DoXmlPretty()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! XMLPretty call DoXmlPretty()
 
 " }}}
 " ============================================================================
@@ -403,7 +430,6 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = '|'
 let g:airline_theme='gasparin'  " dark theme
 " let g:airline_theme='papercolor'  " light theme
-
 
 "/
 "/ Fzf (Fuzzy File Finder)
@@ -657,9 +683,9 @@ set statusline=%{LinterStatus()}
 "/
 " Projects dbext profiles
 if has('perl')
-    let g:dbext_default_profile_mysql_salaovip = 'type=DBI:user=salaovip:passwd=Deployer:driver=mysql:conn_parms=database=salaovip;host=127.0.0.1;port=3309'
+    let g:dbext_default_profile_mysql_avec = 'type=DBI:user=avec:passwd=secret:driver=mysql:conn_parms=database=salaovip;host=127.0.0.1;port=3306'
 else
-    let g:dbext_default_profile_mysql_salaovip = "type=MYSQL:user=salaovip:dbname=salaovip:passwd=Deployer:extra=--host=127.0.0.1 --port='3309' "
+    let g:dbext_default_profile_mysql_avec = "type=MYSQL:user=avec:dbname=salaovip:passwd=secret:extra=--host=127.0.0.1 --port='3306' "
 endif
 
 let g:dbext_default_history_file=".dbext_sql_history"
@@ -667,10 +693,10 @@ let g:dbext_default_history_file=".dbext_sql_history"
 nnoremap <Leader>ss :DBExecSQL<space>
 
 " Especific project settings
-augroup salaovip
+augroup avec
     au!
     " Automatically choose the correct dbext profile
-    autocmd BufRead */api_sistema/* DBSetOption profile=mysql_salaovip
+    autocmd BufRead */api_sistema/* DBSetOption profile=mysql_avec
 augroup end
 
 "/

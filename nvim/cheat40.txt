@@ -1079,8 +1079,21 @@ Generate Doc Blocks       «Ldr»«Ldr»d  N
 
 Abolish {{{2
 About {{{3
-  Improves Subistitution and help coerce
-  words to to multiple variants of them
+  Improves Substitution, seatch and
+  coerce words with multiple variants
+  of them
+  `Flags`:
+    `I`: Disable case variations
+         (box, Box, BOX)
+    `v`: Match inside variable names
+         (match my_box, myBox, but not
+         mybox when :S/box/v)
+    `w`: Match whole words (like
+         surrounding with \< and \>)
+  The "c", "e", "g", and "n" flags can
+  be used from the substitute command
+  |:s_flags|, along with the "I", "v",
+  and "w" flags from searching.
 }}}
 Find and Replace          :S/‹P›/‹P›/g N
 considering case variants
@@ -1118,9 +1131,21 @@ Ditto for all :S          :%Subvert   VN
 command variations        ‹P›{…,…}/
                           ‹P›{…,…}/g
 Coerse to snake_case      crs         *N
+Ditto                     cr_         *N
 Coerse to MixedCase       crm         *N
 Coerse to camelCase       crc         *N
 Coerse to UPPER_CASE      cru         *N
+Ditto                     crU         *N
+Coerse to dash-case       cr-         *N
+(not usually reversible)
+Coerse to kebab-case      crk         *N
+(not usually reversible)
+Coerse to dot.case        cr.         *N
+(not usually reversible)
+Coerse to space case      cr«Spc»     *N
+(not usually reversible)
+Coerse to Title case      crt         *N
+(not usually reversible)
 }}}
 
 Bbye {{{2

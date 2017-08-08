@@ -48,12 +48,12 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
 
   " Database
-   Plug 'bfgasparin/vim-dbext'                                " Database access support
+   Plug 'bfgasparin/vim-dbext'                                   " Database access support
 
 
 
   " Markdown
-   Plug 'kannokanno/previm'                                      " Preview markdown and reStructuredText into browser
+   Plug 'kannokanno/previm'                                          " Preview markdown and reStructuredText into browser
 
   " " navigation
    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
