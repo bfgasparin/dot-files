@@ -795,6 +795,8 @@ nmap <C-g> :Gstatus<cr>
 " For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
 " ntpope/vim-rhubarb needs to configure the authentication on github api. Used the following command:
 "    echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
+" For nvim works well with Alacritty terminal (https://github.com/jwilm/alacritty), I needed to set
+" the background color of Alacritty same as the current background colorscheme of nvim.
 
 "/
 "/ External libs
