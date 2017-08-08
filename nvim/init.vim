@@ -379,7 +379,7 @@ let NERDTreeHijackNetrw = 1
 "/
 "/ NerdTree Syntax Highlight
 "/
-let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeLimitedSyntax = 1  " For better performance
 
 augroup nerd_loader
   autocmd!
