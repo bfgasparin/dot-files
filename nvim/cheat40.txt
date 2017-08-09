@@ -926,9 +926,9 @@ Select all from table    «Ldr»stw     *N
 prompting where clause
 Display DB history       «Ldr»sh       N
 Change DB orientation    «Ldr»so       N
-result (only when using  «Ldr»sbp      N
+result (only when using
 DBI or BBI:ODBC
-Prompt for buffer
+Prompt for buffer        «Ldr»sbp      N
 parameters (show
 connection profiles) when
 available
