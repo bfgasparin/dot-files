@@ -806,7 +806,5 @@ nmap <C-g> :Gstatus<cr>
 " - ggreer/the_silver_searcher (ag for code searching) - uses .ignore to ignore files
 "   msgpack php extention (msgpack/msgpack-php) - used by lvht/phpcd omnifunc
 "   PCNTL php extention - used by lvht/phpcd omnifunc
-"   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install)
-"   its own fzf binary installed by the 'junegunn/fzf' plugin
+"   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
-"   gawk - needed for fzf MRU (tweekmonster/fzf-filemru)
