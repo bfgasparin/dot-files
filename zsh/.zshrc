@@ -7,7 +7,7 @@ export ZSH=/Users/brunogasparin/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="cloud"
+ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +51,7 @@ ZSH_THEME="cloud"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose laravel5 git-flow-avh yarn)
+plugins=(git, docker, docker-compose, laravel5, git-flow-avh, yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,11 +83,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH=/opt/local/bin:/opt/local/sbin:~/bin:/usr/local/sbin:~/usr/local/bin:~/.composer/vendor/bin:$PATH
+export PATH=~/.config/composer/vendor/bin:~/.cargo/bin:$PATH
 
-source ~/.aliases
-source ~/.iterm_user_vars
-source ~/.bookmarks-functions
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.bookmarks-functions ] && source ~/.bookmarks-functions
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
