@@ -30,9 +30,6 @@ endif
 " set a map leader for more key combos
 let mapleader = ','
 
-"-------------Ctags----------------------"
-set tags+=.git/tags       " set the ctag files
-
 " Automatically source the vim config file on save.
 augroup autosourcing
     autocmd!
