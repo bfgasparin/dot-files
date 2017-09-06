@@ -725,28 +725,10 @@ nmap <C-g> :Gstatus<cr>
 
 " ---------Notes and Tips---------------"
 
-" Type <leader>? to open a cheat sheet menu
+" Type <M>? to open a cheat sheet menu
 "
+
 " @todo migrate remaining commands to cheat40 plugin.
-
-
-"/
-"/ NERDTree
-"/
-" Press <M-n> to search the current file in NERDTree (custom shortcut)
-" Press <c-n> to toogle NERDTree (custom shortcut)
-"     Press o to open or close a node. If file, opens the file into current buffer
-"     Press s to open vertical split
-"     Press i to open split
-"     Press t to open in new tab
-"     Press q to close NerdTree windows
-"     Press a to toggle zoom NerdTree windows
-"     Press m to open a helpful menu with some helper methods, <ESC> to exit menu
-"           On menu, press a to create a new dir/file recursively
-"           On menu, press d to delete a dir/file recursively
-"           On menu, press m to move a dir/file recursively
-"     Press I to toggle hidden file
-
 
 "/
 "/ Fugitive (Git)
@@ -801,6 +783,7 @@ nmap <C-g> :Gstatus<cr>
 "       Git templates are used to generate ctags. Assuming ~/.git_templates contains the git hooks,
 "       use `git config --global init.templatedir '~/.git_template' ` to configure
 "       git templates on machine and then `git init` on existing repo to copy the hooks
+"       (optionally use `git config --global alias.ctags '!.git/hooks/ctags'` then type `git ctags` to create ctags)
 " - ryanoasis/nerd-fonts for fonts with devicons
 " - ggreer/the_silver_searcher (ag for code searching) - uses .ignore to ignore files
 "   msgpack php extention (msgpack/msgpack-php) - used by lvht/phpcd omnifunc

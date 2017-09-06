@@ -723,6 +723,7 @@ Open current file into   «Ldr»n        N
 NERDTree
 Open NERDTree on current -             N
 dir
+Open Help Menu           ?             N
 }}}
 
 Fzf {{{2
