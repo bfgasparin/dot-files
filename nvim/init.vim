@@ -31,7 +31,7 @@ endif
 let mapleader = ','
 
 "-------------Ctags----------------------"
-set tags+=tags       " set the ctag files
+set tags+=.git/tags       " set the ctag files
 
 " Automatically source the vim config file on save.
 augroup autosourcing
@@ -443,7 +443,7 @@ let g:fzf_files_options =
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " Enable per command history > <C-n> <C-p>
 
-let g:fzf_tags_command = 'ctags -R --exclude=@.ctagsignore --kinds-PHP=dcfit -f tags' " [Tags] Command to generate tags file
+let g:fzf_tags_command = '.git/hooks/ctags' " [Tags] Command to generate tags file
 " let g:fzf_layout = { 'down': '~40%' }                " Fzf layout
 let g:fzf_layout = { 'window': '-tabnew' }             " Full screen Fzf layout
 
@@ -568,13 +568,8 @@ endif
 "/ atags (tags generation)
 "/
 if has('nvim')
-    let g:atags_build_commands_list = [
-                \"ctags -R --exclude=@.ctagsignore --kinds-PHP=dcfit -f tags.tmp",
-                \"awk 'length($0) < 400' tags.tmp > tags",
-                \"rm tags.tmp"
-                \]
+    let g:atags_build_commands_list = [".git/hooks/ctags"]
     command! CtagsGenerate call atags#generate()
-    autocmd BufWritePost *.php call atags#generate()
 endif
 
 "/
@@ -791,6 +786,7 @@ nmap <C-g> :Gstatus<cr>
 " phpmd-ruleset.xml
 " phpcs-ruleset.xml
 " .ctagsignore
+" .git_templates              for git repositories (contains ctag executable to generate ctags)
 " .ignore
 " For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
 " ntpope/vim-rhubarb needs to configure the authentication on github api. Used the following command:
@@ -801,7 +797,10 @@ nmap <C-g> :Gstatus<cr>
 "/
 "/ External libs
 "/
-" - universal-ctags (for tagging files) - uses .ctagsignore to ignore files
+" - universal-ctags (for tagging files) - uses .ctagsignore to ignore files .
+"       Git templates are used to generate ctags. Assuming ~/.git_templates contains the git hooks,
+"       use `git config --global init.templatedir '~/.git_template' ` to configure
+"       git templates on machine and then `git init` on existing repo to copy the hooks
 " - ryanoasis/nerd-fonts for fonts with devicons
 " - ggreer/the_silver_searcher (ag for code searching) - uses .ignore to ignore files
 "   msgpack php extention (msgpack/msgpack-php) - used by lvht/phpcd omnifunc
