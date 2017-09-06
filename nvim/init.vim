@@ -670,26 +670,6 @@ function! LinterStatus() abort
 endfunction
 set statusline=%{LinterStatus()}
 
-"/
-"/ DBext (Database access)
-"/
-" Projects dbext profiles
-if has('perl')
-    let g:dbext_default_profile_mysql_avec = 'type=DBI:user=avec:passwd=secret:driver=mysql:conn_parms=database=salaovip;host=127.0.0.1;port=3306'
-else
-    let g:dbext_default_profile_mysql_avec = "type=MYSQL:user=avec:dbname=salaovip:passwd=secret:extra=--host=127.0.0.1 --port='3306' "
-endif
-
-let g:dbext_default_history_file=".dbext_sql_history"
-
-nnoremap <Leader>ss :DBExecSQL<space>
-
-" Especific project settings
-augroup avec
-    au!
-    " Automatically choose the correct dbext profile
-    autocmd BufRead */api_sistema/* DBSetOption profile=mysql_avec
-augroup end
 
 "/
 "/ Previm (preview markdown and reStructuredText on browser)
