@@ -601,7 +601,7 @@ the first ocurrence
 (per line)
 Find and replace all     :%s/‹P›/‹P›/g N
 Toggle search highlight  :setl hls!    N
-Ditto                    «Ldr»«Spc»    N
+Ditto                    «C»«Spc»      N
 Next command             «C-n»         C
 #(same as «up»)
 Prev command             «C-p»         C

@@ -9,7 +9,6 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
    Plug 'Yggdroot/indentLine'            " Display the indention levels with thin vertical lines
    Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces and enable commands to fix it
-   Plug 'junegunn/vim-slash'             " Enhance buffer saarch experience
 
   " utilities
    Plug 'junegunn/vim-easy-align'                                " mappings for aligment content

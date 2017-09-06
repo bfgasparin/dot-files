@@ -219,8 +219,8 @@ nnoremap <down>   <c-w>3-
 " Quick access to vim config file
 nnoremap <leader>ev :e $MYVIMRC <cr>
 
-" Removes simple highlight (removed while tring vim-slash)
-" nnoremap <Leader><space> :nohlsearch<cr>
+" Toggle search highlight
+nnoremap <C-space> :set hlsearch!<CR>
 
 " Don't lose selection when shifting sidewards
 xnoremap <  <gv
@@ -504,8 +504,8 @@ endif
 "/ vim-tooglelist
 "/
 let g:toggle_list_no_mappings = 1
-nmap <script> <silent> <leader>wl :call ToggleLocationList()<CR>
-nmap <script> <silent> <leader>wq :call ToggleQuickfixList()<CR>
+nnoremap <script> <silent> <leader>wl :call ToggleLocationList()<CR>
+nnoremap <script> <silent> <leader>wq :call ToggleQuickfixList()<CR>
 
 
 "/
