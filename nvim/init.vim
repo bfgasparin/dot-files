@@ -42,7 +42,7 @@ augroup END
 " Resource : https://github.com/neovim/neovim/issues/3461#issuecomment-268876998
 
 set number                  " show line numbers
-set relativenumber        " show relative line numbers
+" set relativenumber        " show relative line numbers
 
 set noerrorbells            " No beeps.
 set nojoinspaces            " Prevents inserting two spaces after punctuation on a join (J)
