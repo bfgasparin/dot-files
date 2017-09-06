@@ -216,8 +216,8 @@ nnoremap <down>   <c-w>3-
 " Quick access to vim config file
 nnoremap <leader>ev :e $MYVIMRC <cr>
 
-" Toggle search highlight
-nnoremap <C-space> :set hlsearch!<CR>
+" Remove search highlight
+nnoremap <C-space> :nohlsearch<cr>
 
 " Don't lose selection when shifting sidewards
 xnoremap <  <gv
