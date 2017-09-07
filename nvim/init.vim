@@ -49,8 +49,6 @@ set nojoinspaces            " Prevents inserting two spaces after punctuation on
 
 set laststatus=2            " Set statusline to appear all the time (default to appear only when split windows)
 
-set cursorline                     " Highlight the cursor line
-
 "-----------Performance----------"
 
 set lazyredraw                    " Postponed buffer redraw
