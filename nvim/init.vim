@@ -156,9 +156,6 @@ nnoremap <F2> :mksession! .vimsession.vim <cr>
 " Restore vim session for the project
 nnoremap <F3> :source .vimsession.vim <cr>
 
-" shortcut for esc in insert mode
-inoremap jj <esc>
-
 " Improved match list command
 noremap [I [I:let nr = input("Type the number and \<Enter\>: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
@@ -215,7 +212,7 @@ nnoremap <down>   <c-w>3-
 nnoremap <leader>ev :e $MYVIMRC <cr>
 
 " Remove search highlight
-nnoremap <C-space> :nohlsearch<cr>
+nnoremap <leader><space> :nohlsearch<cr>
 
 " Don't lose selection when shifting sidewards
 xnoremap <  <gv

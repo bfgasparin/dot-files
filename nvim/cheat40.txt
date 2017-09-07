@@ -125,9 +125,10 @@ Restore Session          «F3»          N
 Edit {{{1
 Basics {{{2
 Back to normal mode      «Esc»      NIVC
-Back to normal mode      «C-c»      VC
 Ditto                    «C-[»      NIVC
-Ditto                    jj         I
+Back to normal mode      «C-c»      VC
+(do not trigger InsertLeave autocmd
+event)
 (not enable in terminal buffers)
 Cancel command/operation «C-c»      NIVC
 Insert at cursor pos.    i             N
@@ -600,8 +601,9 @@ Find and replace         :s/‹P›/‹P›   VN
 the first ocurrence
 (per line)
 Find and replace all     :%s/‹P›/‹P›/g N
+Disable search highlight :nohlsearch   N
+Ditto                    ‹Ldr›«Spc»    N
 Toggle search highlight  :setl hls!    N
-Ditto                    «C»«Spc»      N
 Next command             «C-n»         C
 #(same as «up»)
 Prev command             «C-p»         C
