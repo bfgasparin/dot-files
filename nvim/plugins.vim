@@ -46,9 +46,6 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'tobyS/pdv'                                              " to generate PHP docblock
    Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
 
-  " Database
-   Plug 'bfgasparin/vim-dbext'                                   " Database access support
-
   " Markdown
    Plug 'kannokanno/previm'                                          " Preview markdown and reStructuredText into browser
 
