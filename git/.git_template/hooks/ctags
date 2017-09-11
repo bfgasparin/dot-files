@@ -2,5 +2,5 @@
 set -e
 dir="`git rev-parse --git-dir`"
 trap 'rm -f "$dir/$$.tags"' EXIT
-ctags -R --exclude=@.ctagsignore -f"$dir/$$.tags" --kinds-PHP=dcfit
+ctags --tag-relative=true -R --exclude=@.ctagsignore -f"$dir/$$.tags" --kinds-PHP=dcfit
 mv "$dir/$$.tags" "$dir/tags"
