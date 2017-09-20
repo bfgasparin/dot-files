@@ -279,9 +279,7 @@ nnoremap <Leader><Leader>l, :Files config<cr>
 nnoremap <Leader><Leader>ldm :Files database/migrations<cr>
 nnoremap <Leader><Leader>lds :Files database/seeds<cr>
 nnoremap <Leader><Leader>ldf :Files database/factories<cr>
-" Salao VIP
-nnoremap <Leader><Leader>lss :e app/Http/Services<cr>
-" laravel artisan
+" Laravel artisan
 nnoremap <Leader><Leader>lmm :!php artisan make:model<space>
 nnoremap <Leader><Leader>lmc :!php artisan make:controller<space>
 nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
