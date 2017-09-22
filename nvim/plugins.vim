@@ -38,6 +38,12 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'stephpy/vim-php-cs-fixer'                               " Integrates php-cs-fixer
    Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
    Plug 'alvan/vim-php-manual'                                   " PHP Manual
+   Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
+
+   " HTML/CSS
+   Plug 'mattn/emmet-vim'                                        " Emmet for vim
+
+   " Javascript
 
   " Languages (General)
    Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast

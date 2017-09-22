@@ -637,10 +637,23 @@ augroup php_mappings
     autocmd FileType php nnoremap <buffer> <silent> <F9> :call PhpCsFixerFixFile()<CR>
 augroup END
 
+
 "/
 "/ Vim PHP Manual
 "/
 let g:php_manual_online_search_shortcut = '<leader><leader>m'
+
+
+"/
+"/ Emmet Vim
+"/
+let g:user_emmet_mode='i'    "only enable insert mode functions.
+let g:user_emmet_install_global = 0   " disable emmet for all files and enable it only for html and css and scss
+augroup emmet
+    autocmd!
+    autocmd FileType html,css,scss,blade EmmetInstall
+augroup END
+
 
 "/
 "/ Ale (assynchronous lint engine)
