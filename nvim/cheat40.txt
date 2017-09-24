@@ -274,6 +274,16 @@ Start recording macro    q‹r›          N
 # Press q to stop recording
 Run recorded macro       @‹r›          N
 Repeat last macro        @@            N
+Omnifunc {{{2
+Go foward popup          «C-n»         I
+Go backward popup        «C-p»         I
+End popup and go back    «C-e»         I
+to initial state
+End popup and delete     «C-h»         I
+backword char
+Select the match and     «CR»          I
+close popup
+}}}
 }}}
 
 Text {{{1
@@ -856,18 +866,6 @@ List method implementa     K          *N
 tions
 }}}
 
-Deoplete {{{2
-About {{{3
-    Asynchronous completion
-}}}
-Go foward popup          «C-n»         I
-Go backward popup        «C-p»         I
-close popup and delete   «C-h»         I
-backword char
-Select the match and     «CR»          I
-close popup
-}}}
-
 UltiSnipts {{{2
 About {{{3
     Fast PHP Completion Deamon
@@ -1038,6 +1036,20 @@ Help php about …         :h …          N
 Help php online about …  «Ldr»«Ldr»m  *N
 Help php online about …  «Ldr»«Ldr»m   V
 }}}
+
+Emmet Vim {{{2
+About {{{3
+  Emmet for vim
+}}}
+Expand abbreviation       <Tab>       IN
+Update tag                «C-y»u      IN
+Wrap selected with        «C-y»        V
+abbreviation
+Go to next edit point     «C-y»n      IN
+Go to previous edit point «C-y»N      IN
+Split/Join tag            «C-y»j      IN
+Toogle comment            «C-y»/      IN
+
 
 Vim Test {{{2
 About {{{3

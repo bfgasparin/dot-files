@@ -538,6 +538,7 @@ augroup END
 "/
 :nnoremap <Leader>c :Bdelete<CR>
 
+
 "/
 "/ Deoplete (autocomplete)
 "/
@@ -594,6 +595,12 @@ augroup php_docblocks
     autocmd FileType php nnoremap <buffer> <leader><leader>d :call pdv#DocumentWithSnip()<CR>
 augroup END
 
+
+"/
+"/ PHPCD
+"/
+let g:phpcd_disable_modifier = 0
+
 "/
 "/ Vim PHP Namespace
 "/
@@ -647,10 +654,32 @@ let g:php_manual_online_search_shortcut = '<leader><leader>m'
 "/
 "/ Emmet Vim
 "/
-let g:user_emmet_mode='i'    "only enable insert mode functions.
+" Remapping <C-y>, just doesn't cut it.
+function! s:expand_html_tab()
+    " try to determine if we're within quotes or tags.
+    " if so, assume we're in an emmet fill area.
+    let line = getline('.')
+    if col('.') < len(line)
+        let line = matchstr(line, '[">][^<"]*\%'.col('.').'c[^>"]*[<"]')
+        if len(line) >= 2
+            return "\<C-n>"
+        endif
+    endif
+    " expand anything emmet thinks is expandable.
+    if emmet#isExpandable()
+        return emmet#expandAbbrIntelligent("\<tab>")
+        " return "\<C-y>,"
+    endif
+    " return a regular tab character
+    return "\<tab>"
+endfunction
+let g:user_emmet_leader_key = '<C-t>'
+let g:user_emmet_mode='a'    "only enable insert mode functions.
+let g:user_emmet_complete_tag = 0 " disable omnifunc provided by emmet
 let g:user_emmet_install_global = 0   " disable emmet for all files and enable it only for html and css and scss
 augroup emmet
     autocmd!
+    autocmd FileType html,css,scss,blade imap <silent><buffer><expr><tab> <sid>expand_html_tab()
     autocmd FileType html,css,scss,blade EmmetInstall
 augroup END
 
@@ -713,7 +742,7 @@ nmap <C-g> :Gstatus<cr>
 
 " @todo migrate remaining commands to cheat40 plugin.
 
-"/
+    "/
 "/ Fugitive (Git)
 "/
 " Use :Git <command git> to execute raw git command
