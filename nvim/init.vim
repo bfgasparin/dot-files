@@ -692,12 +692,16 @@ let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js fi
 "/
 "/ Ale (assynchronous lint engine)
 "/
-let g:ale_php_phpstan_executable = 'phpstan'   " reminder to not install phpstan globally if valet is installed globally
+
+let g:ale_php_phpstan_executable='phpstan' " reminder to not install phpstan globally if valet is installed globally
 let g:ale_php_phpstan_level = '5'
 let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
 let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
 let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
+let g:ale_linters = {
+\   'php': ['php', 'phpcs', 'phpmd', 'phpstan'],
+\}
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
