@@ -44,6 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
 
    " Javascript
+   Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
 
   " Languages (General)
    Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast

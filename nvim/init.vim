@@ -655,7 +655,7 @@ let g:php_manual_online_search_shortcut = '<leader><leader>m'
 "/ Emmet Vim
 "/
 " Remapping <C-y>, just doesn't cut it.
-function! s:expand_html_tab()
+function! s:expandHtmlTab()
     " try to determine if we're within quotes or tags.
     " if so, assume we're in an emmet fill area.
     let line = getline('.')
@@ -679,14 +679,21 @@ let g:user_emmet_complete_tag = 0 " disable omnifunc provided by emmet
 let g:user_emmet_install_global = 0   " disable emmet for all files and enable it only for html and css and scss
 augroup emmet
     autocmd!
-    autocmd FileType html,css,scss,blade imap <silent><buffer><expr><tab> <sid>expand_html_tab()
-    autocmd FileType html,css,scss,blade EmmetInstall
+    autocmd FileType html,css,scss,blade,javascript.jsx imap <silent><buffer><expr><tab> <sid>expandHtmlTab()
+    autocmd FileType html,css,scss,blade,javascript.jsx EmmetInstall
 augroup END
 
 
 "/
+"/ VIM JSX
+"/
+let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js files along .jsx
+
+"/
 "/ Ale (assynchronous lint engine)
 "/
+let g:ale_php_phpstan_executable = 'phpstan'   " reminder to not install phpstan globally if valet is installed globally
+let g:ale_php_phpstan_level = '5'
 let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
 let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
@@ -779,9 +786,9 @@ nmap <C-g> :Gstatus<cr>
 "/
 " phpmd-ruleset.xml
 " phpcs-ruleset.xml
-" .ctagsignore
+" .ctagsignore               used for ctags
 " .git_templates              for git repositories (contains ctag executable to generate ctags)
-" .ignore
+" .ignore                    used by AG
 " For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
 " ntpope/vim-rhubarb needs to configure the authentication on github api. Used the following command:
 "    echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
@@ -802,3 +809,9 @@ nmap <C-g> :Gstatus<cr>
 "   PCNTL php extention - used by lvht/phpcd omnifunc
 "   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
+"
+"   install globally with composer for phplint
+"     phpmd/phpmd
+"     squizlabs/php_codesniffer
+"     phpstab/phpstan             - needs to be install separately cause causes conflicts when runned with valet installed globally (suggest install into ~/phpstan/vendor/bin)
+"

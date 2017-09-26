@@ -1042,13 +1042,13 @@ About {{{3
   Emmet for vim
 }}}
 Expand abbreviation       <Tab>       IN
-Update tag                «C-y»u      IN
-Wrap selected with        «C-y»        V
+Update tag                «C-t»u      IN
+Wrap selected with        «C-t»        V
 abbreviation
-Go to next edit point     «C-y»n      IN
-Go to previous edit point «C-y»N      IN
-Split/Join tag            «C-y»j      IN
-Toogle comment            «C-y»/      IN
+Go to next edit point     «C-t»n      IN
+Go to previous edit point «C-t»N      IN
+Split/Join tag            «C-t»j      IN
+Toogle comment            «C-t»/      IN
 
 
 Vim Test {{{2
