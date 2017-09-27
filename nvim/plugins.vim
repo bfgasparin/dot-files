@@ -39,12 +39,12 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
    Plug 'alvan/vim-php-manual'                                   " PHP Manual
    Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
-
+   Plug 'lumiliet/vim-twig'                                      " Twig syntax Highlight and indenting
    " HTML/CSS
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
 
    " Javascript
-   Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
+   Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting
 
   " Languages (General)
    Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast

@@ -652,6 +652,11 @@ let g:php_manual_online_search_shortcut = '<leader><leader>m'
 
 
 "/
+"/ Vim Twig
+"/
+let g:vim_twig_filetype_detected = 1
+
+"/
 "/ Emmet Vim
 "/
 " Remapping <C-y>, just doesn't cut it.
@@ -716,12 +721,10 @@ function! LinterStatus() abort
 endfunction
 set statusline=%{LinterStatus()}
 
-
 "/
 "/ Previm (preview markdown and reStructuredText on browser)
 "/
-let g:previm_open_cmd = 'firefox'
-
+let g:previm_open_cmd = 'open -a safari'
 
 "/
 "/ Vim Test
