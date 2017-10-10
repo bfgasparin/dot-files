@@ -835,6 +835,7 @@ nmap <C-g> :Gstatus<cr>
 "       - yarn add mermaid     (used for previm to generate graphs)
 "
 "   install globally with composer
-"     phpcs/phpcs             (for ale)
-"     phpmd/phpmd             (for ale)
-"     squizlabs/php_codesniffer      (for ale)
+"     phpcs/phpcs                   (for ale)
+"     friendsofphp/php-cs-fixer     (for vim php cs fixer)
+"     phpmd/phpmd                   (for ale)
+"     squizlabs/php_codesniffer     (for ale)

@@ -1021,9 +1021,9 @@ About {{{3
   Integrates php-cs-fixer
 }}}
 Run php-cs-fixer into the «F8»         N
-current file
-Run php-cs-fixer into the «F9»         N
 current directory
+Run php-cs-fixer into the «F9»         N
+current file
 }}}
 
 Vim PHP Manual {{{2
