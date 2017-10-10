@@ -547,13 +547,20 @@ if has('nvim')
     let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
     " run phpcd as deoplete omni source
     let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
-    " let g:deoplete#omni_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
     let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
+    " let g:deoplete#keyword_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-    let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " disable omni source for php
-    call deoplete#custom#set('phpcd', 'mark', '') " if you want to hide `[php]` in the popupmenu, set mark as empty.
+    let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
     let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
 endif
+
+"/
+"/ Language Client Neovim  (Language Server Protocol support)
+"/
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsEnable = 0
 
 "/
 "/ atags (tags generation)
@@ -579,11 +586,7 @@ let g:AutoPairsCenterLine = 0              " Disable auto center line alter retu
 "/
 "/ UltiSnipts
 "/
-let g:UltiSnipsExpandTrigger="<tab>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
-let g:UltiSnipsJumpForwardTrigger="<tab>"    " Map forward jump trigger for ultisnips jumps
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   " Map forward jump trigger for ultisnips jumps
-
-
+" let g:UltiSnipsExpandTrigger="<tab>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
 
 "/
 "/ pdv PHP Documenter VIM
@@ -594,12 +597,6 @@ augroup php_docblocks
     autocmd!
     autocmd FileType php nnoremap <buffer> <leader><leader>d :call pdv#DocumentWithSnip()<CR>
 augroup END
-
-
-"/
-"/ PHPCD
-"/
-let g:phpcd_disable_modifier = 0
 
 "/
 "/ Vim PHP Namespace
@@ -656,6 +653,7 @@ let g:php_manual_online_search_shortcut = '<leader><leader>m'
 "/
 let g:vim_twig_filetype_detected = 1
 
+
 "/
 "/ Emmet Vim
 "/
@@ -684,8 +682,8 @@ let g:user_emmet_complete_tag = 0 " disable omnifunc provided by emmet
 let g:user_emmet_install_global = 0   " disable emmet for all files and enable it only for html and css and scss
 augroup emmet
     autocmd!
-    autocmd FileType html,css,scss,blade,javascript.jsx imap <silent><buffer><expr><tab> <sid>expandHtmlTab()
-    autocmd FileType html,css,scss,blade,javascript.jsx EmmetInstall
+    autocmd FileType html,css,scss,blade,html.twig,javascript.jsx imap <silent><buffer><expr><tab> <sid>expandHtmlTab()
+    autocmd FileType html,css,scss,blade,html.twig,javascript.jsx EmmetInstall
 augroup END
 
 
@@ -698,15 +696,16 @@ let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js fi
 "/ Ale (assynchronous lint engine)
 "/
 
-let g:ale_php_phpstan_executable='phpstan' " reminder to not install phpstan globally if valet is installed globally
-let g:ale_php_phpstan_level = '5'
 let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
 let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
 let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
 let g:ale_linters = {
-\   'php': ['php', 'phpcs', 'phpmd', 'phpstan'],
+\   'php': ['php', 'phpcs', 'phpmd'],
 \}
+" Ale completion has support only for Typescript so I disabled. When complete support for language server, consider
+" remove deoplete and use Ale for that
+let g:ale_completion_enabled = 0
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
@@ -721,10 +720,12 @@ function! LinterStatus() abort
 endfunction
 set statusline=%{LinterStatus()}
 
+
 "/
 "/ Previm (preview markdown and reStructuredText on browser)
 "/
-let g:previm_open_cmd = 'open -a safari'
+let g:previm_open_cmd = 'open -a Safari'
+
 
 "/
 "/ Vim Test
@@ -817,8 +818,14 @@ nmap <C-g> :Gstatus<cr>
 "   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
 "
-"   install globally with composer for phplint
-"     phpmd/phpmd
-"     squizlabs/php_codesniffer
-"     phpstab/phpstan             - needs to be install separately cause causes conflicts when runned with valet installed globally (suggest install into ~/phpstan/vendor/bin)
+"   python libs:
+"       - neovim
+"       - docutils (required for previm)
+"       - rst2html (required for previm to preview reStructuredText)
+"   npm deps:
+"       - yarn add mermaid     (used for previm to generate graphs)
 "
+"   install globally with composer
+"     phpcs/phpcs             (for ale)
+"     phpmd/phpmd             (for ale)
+"     squizlabs/php_codesniffer      (for ale)

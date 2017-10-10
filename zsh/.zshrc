@@ -76,7 +76,7 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # path
-export PATH=~/bin:~/.composer/vendor/bin:~/phpstan/vendor/bin:$PATH
+export PATH=~/bin:~/.composer/vendor/bin:$PATH
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

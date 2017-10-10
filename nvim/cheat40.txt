@@ -853,7 +853,7 @@ Jump to next closed pair «M-n»         I
 PHPCD {{{2
 About {{{3
     Auto completion Daemon for PHP
-    Used as omnifunc with deoplete
+    (Used as omnifunc for deoplete)
 }}}
 Jump to definition         «C-]»      *N
 Jump to definition using   «C-w»«C-]» *N
@@ -868,25 +868,13 @@ tions
 
 UltiSnipts {{{2
 About {{{3
-    Fast PHP Completion Deamon
-}}}
-Jump to definition       «C-]»        *N
-Jump to definition       «C-w»«C-]»   *N
-using split
-Jump to definition       «C-w»«C-\»   *N
-using vsplit
-Jump back                «C-t»        *N
-}}}
-
-UltiSnipts {{{2
-About {{{3
     An Snippet pluggin
 }}}
 Expand snippet           «tab»         I
 Expand with text         «tab»         V
 selected
-Jump foward snippet jump «tab»         I
-Jump backward snippet    «S-tab»       I
+Jump foward snippet jump «C-j»         I
+Jump backward snippet    «C-k»         I
 Open snippet for current :UltiSnips    N
 file                     Edit
 Open snippet for current :UltiSnips    N
@@ -949,6 +937,16 @@ Toggle autoclose         a             N
 Delete statement         dd            N
 Toggle width (only for   «Spc»         N
 vertical window )
+
+Previm {{{2
+About {{{3
+  Provides funcionality of displaying
+  file preview on the browser
+
+  (Markdown, textile, reStructuredText
+  (required rst2html.py)
+}}}
+Preview in browser       :PrevimOpen  N
 
 Better Whitespace {{{2
 About {{{3

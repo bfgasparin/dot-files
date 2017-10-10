@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
    if has('nvim')
+       Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language Server Protocol support
        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
        Plug 'fntlnz/atags.vim'                                   " Simplified ctags generation for neovim
    endif
@@ -40,11 +41,15 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'alvan/vim-php-manual'                                   " PHP Manual
    Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
    Plug 'lumiliet/vim-twig'                                      " Twig syntax Highlight and indenting
+   if has('nvim')
+       Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}    " Langhage Server php source for LanguageClient
+   endif
+
    " HTML/CSS
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
 
    " Javascript
-   Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting
+   Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
 
   " Languages (General)
    Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast
