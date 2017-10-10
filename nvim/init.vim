@@ -702,15 +702,19 @@ let g:ale_php_langserver_use_global=1
 let g:ale_php_langserver_executable= $HOME. '/.config/nvim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php'
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
 let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
-" let g:ale_linters = {
-" \   'php': ['langserver'],
-" \}
 let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
 \}
 " Ale completion has support only for Typescript so I disabled. When complete support for language server, consider
 " remove deoplete and use Ale for that
 let g:ale_completion_enabled = 0
+" Disable phpmd and phpcs for tests files cause on test files some code pattern may change
+let g:ale_pattern_options = {
+\    '.*tests/.*\.php$': {
+\        'ale_linters': {'php': ['php', 'langserver']}
+\    }
+\}
+
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
