@@ -2,6 +2,7 @@
 .git
 # PHP
 .phpmd-rulesets.xml
+.phpcs-rulesets.xml
 .ignore
 .php_cs.cache
 .phpcd
@@ -11,11 +12,12 @@ vendor/phpunit/php-code-coverage
 vendor/bin
 composer.phar
 # Laravel
-public/js/app.js
-public/css/app.css
+public
+_ide_helper.php
 # Vim
 .neovimsession.vim
 webpack.mix.js
 # Frontend
 node_modules
 yarn.lock
+package-lock.json

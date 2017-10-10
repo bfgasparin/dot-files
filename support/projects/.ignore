@@ -2,7 +2,7 @@
 # Ag is configured on NVIM to automatically ignores dot-files (default behavior)
 #frontend
 yarn.lock
-node_modules/
+package-lock.json
 #php projects
 vendor/bin/
 vendor/composer/
@@ -14,3 +14,4 @@ deploy.sh
 # laravel
 storage/
 public/
+_ide_helper.php
