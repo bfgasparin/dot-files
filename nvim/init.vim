@@ -453,10 +453,20 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'],
   \ 'border':  ['bg', 'VertSplit']}
 
-" Customize Ag to run the Raw Ag
-command! -bang -nargs=+ -complete=dir Ag call fzf#vim#ag_raw(<q-args>,
+" Customize Rg to run the Raw Rg
+command! -bang -nargs=* -complete=dir Rg call RgRaw(<q-args>,
 \ fzf#vim#with_preview('right:50%:hidden', '?'),
 \ <bang>0)
+
+" rg command suffix, [options]
+function! RgRaw(command_suffix, ...)
+  if !executable('rg')
+    echohl WarningMsg
+    echom a:message
+    echohl None
+  endif
+  return call('fzf#vim#grep', extend(['rg --column --line-number --no-heading --color=always '.a:command_suffix, 1], a:000))
+endfunction
 
 " Customize Buffer command to show preview windows
 command! -bar -bang -nargs=? -complete=buffer Buffers
@@ -478,10 +488,10 @@ nnoremap <leader>g :GFiles?<CR>
 nnoremap <leader>l :Buffers<CR>
 " Open history opened files
 nnoremap <leader>h :History<CR>
-" Open list fo file into contents of files of the project using Ag
-nnoremap <leader>f :Ag -Q<space>
-" Open list fo file into contents of files of the project using Ag ignoring VCS dotfiles
-nnoremap <leader>F :Ag<space>-U<space>-Q<space>
+" Open list fo file into contents of files of the project using ripgrep
+nnoremap <leader>f :Rg<space>-i<space>
+" Open list fo file into contents of files of the project using ripgrep ignoring .gitiggore and .ignore (but including hidden files)
+nnoremap <leader>F :Rg<space>-i<space>-uu<space>
 " Find in current buffer
 nnoremap <leader>% :BLines<space>
 
@@ -805,7 +815,7 @@ nmap <C-g> :Gstatus<cr>
 " phpcs-ruleset.xml
 " .ctagsignore               used for ctags
 " .git_templates              for git repositories (contains ctag executable to generate ctags)
-" .ignore                    used by AG
+" .ignore                    used by ripgrep
 " For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
 " ntpope/vim-rhubarb needs to configure the authentication on github api. Used the following command:
 "    echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
@@ -821,7 +831,7 @@ nmap <C-g> :Gstatus<cr>
 "       git templates on machine and then `git init` on existing repo to copy the hooks
 "       (optionally use `git config --global alias.ctags '!.git/hooks/ctags'` then type `git ctags` to create ctags)
 " - ryanoasis/nerd-fonts for fonts with devicons
-" - ggreer/the_silver_searcher (ag for code searching) - uses .ignore to ignore files
+" - BurntSushi/ripgrep (rg for code searching) - uses .ignore and .gitignore to ignore files
 "   msgpack php extention (msgpack/msgpack-php) - used by lvht/phpcd omnifunc
 "   PCNTL php extention - used by lvht/phpcd omnifunc
 "   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
