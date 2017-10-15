@@ -491,7 +491,7 @@ nnoremap <leader>h :History<CR>
 " Open list fo file into contents of files of the project using ripgrep
 nnoremap <leader>f :Rg<space>-i<space>
 " Open list fo file into contents of files of the project using ripgrep ignoring .gitiggore and .ignore (but including hidden files)
-nnoremap <leader>F :Rg<space>-i<space>-uu<space>
+nnoremap <leader>F :Rg<space>-i<space>-u<space>
 " Find in current buffer
 nnoremap <leader>% :BLines<space>
 

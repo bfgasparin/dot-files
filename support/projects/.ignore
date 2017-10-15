@@ -1,4 +1,4 @@
-# ignored files for Ag (The silver search)
+# ignored files used for Rg (Ripgrep)
 # Ag is configured on NVIM to automatically ignores dot-files (default behavior)
 #frontend
 yarn.lock
