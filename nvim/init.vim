@@ -517,7 +517,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-
 "/
 "/ IndentLine
 "/
@@ -568,9 +567,8 @@ endif
 "/ Language Client Neovim  (Language Server Protocol support)
 "/
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_autoStart = 1 " Automatically start language servers.
+let g:LanguageClient_diagnosticsEnable = 0 " Disable diagnostic/lint information via gutter and quickfix (Ale does this very well)
 
 "/
 "/ atags (tags generation)
@@ -640,19 +638,6 @@ augroup END
 
 
 "/
-"/ Vim PHP CS Fixer
-"/
-let g:php_cs_fixer_rules = "@PSR2"        " set PSR2 rules to be used on cs fixer
-let g:php_cs_fixer_enable_default_mapping = 0 " Disable the default mapping
-" Shortcuts to apply php-cs-fixer
-augroup php_mappings
-    autocmd!
-    autocmd FileType php nnoremap <buffer> <silent> <F8> :call PhpCsFixerFixDirectory()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <F9> :call PhpCsFixerFixFile()<CR>
-augroup END
-
-
-"/
 "/ Vim PHP Manual
 "/
 let g:php_manual_online_search_shortcut = '<leader><leader>m'
@@ -705,7 +690,7 @@ let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js fi
 "/
 "/ Ale (assynchronous lint engine)
 "/
-
+" Linters
 let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
 let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
 let g:ale_php_langserver_use_global=1
@@ -715,15 +700,25 @@ let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live i
 let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
 \}
-" Ale completion has support only for Typescript so I disabled. When complete support for language server, consider
-" remove deoplete and use Ale for that
-let g:ale_completion_enabled = 0
+
+" Fixers
+let g:ale_php_phpcbf_standard='PSR2'
+let g:ale_fixers = {
+  \   'php': ['phpcbf'],
+  \}
+" Bind F9 to fixing problems with ALE
+nmap <F9> <Plug>(ale_fix)
+
 " Disable phpmd and phpcs for tests files cause on test files some code pattern may change
 let g:ale_pattern_options = {
 \    '.*tests/.*\.php$': {
 \        'ale_linters': {'php': ['php', 'langserver']}
 \    }
 \}
+
+" Ale completion has support only for Typescript so I disabled. When complete support for language server, consider
+" remove deoplete and use Ale for that
+let g:ale_completion_enabled = 0
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -846,6 +841,5 @@ nmap <C-g> :Gstatus<cr>
 "
 "   install globally with composer
 "     phpcs/phpcs                   (for ale)
-"     friendsofphp/php-cs-fixer     (for vim php cs fixer)
 "     phpmd/phpmd                   (for ale)
 "     squizlabs/php_codesniffer     (for ale)

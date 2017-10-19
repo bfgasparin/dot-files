@@ -855,14 +855,14 @@ About {{{3
     Auto completion Daemon for PHP
     (Used as omnifunc for deoplete)
 }}}
-Jump to definition         «C-]»      *N
-Jump to definition using   «C-w»«C-]» *N
+Jump to definition       «C-]»        *N
+Jump to definition using «C-w»«C-]»   *N
 split
-Jump to definition using   «C-w»«C-\» *N
+Jump to definition using «C-w»«C-\»   *N
 vsplit
-Jump back                  «C-t»       N
+Jump back                «C-t»         N
 vsplit
-List method implementa     K          *N
+List method implementa   K            *N
 tions
 }}}
 
@@ -889,9 +889,13 @@ About {{{3
   windows.
   Configured to run on buffer edit
 
-  PHP: hack, php -l, phpcs, phpmd
+  PHP: php -l, phpcs, phpmd,
+       languageserver
 }}}
 Open lint errors         «Ldr»wl       N
+Run commands to fix      «F8»          N
+current directory
+
 }}}
 
 Dbext {{{2
@@ -1014,16 +1018,6 @@ top of the file
 Sort use statement        «Ldr»su    IN
 Expand full qualified     «Ldr»ec     IN
 class name
-}}}
-
-Vim PHP CS Fixer {{{2
-About {{{3
-  Integrates php-cs-fixer
-}}}
-Run php-cs-fixer into the «F8»         N
-current directory
-Run php-cs-fixer into the «F9»         N
-current file
 }}}
 
 Vim PHP Manual {{{2
@@ -1170,6 +1164,13 @@ without close windows
 Ditto                    «Ldr»c        N
 Close all buffer         :bufdo        N
 without close windows    :Bdelete
+}}}
+
+Language Client {{{2
+About {{{3
+  Language Server Support
+}}}
+Jump to definition       gd           *N
 }}}
 
 
