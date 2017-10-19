@@ -570,6 +570,7 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 let g:LanguageClient_autoStart = 1 " Automatically start language servers.
 let g:LanguageClient_diagnosticsEnable = 0 " Disable diagnostic/lint information via gutter and quickfix (Ale does this very well)
 
+
 "/
 "/ atags (tags generation)
 "/
