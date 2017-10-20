@@ -232,6 +232,11 @@ xnoremap <M-P> "+P
 " C-c to copy content on visual mode
 vnoremap <C-c> <M-y>
 
+
+" Map to toggle quickfix and location windows
+nnoremap <script> <silent> <leader>wl :call ToggleLocationList()<CR>
+nnoremap <script> <silent> <leader>wq :call ToggleQuickfixList()<CR>
+
 "/
 "/ Command line mapping
 "/
@@ -286,7 +291,6 @@ nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
 nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
-" nnoremap <Leader><Leader>lt :terminal php artisan tinker<cr>
 
 "/
 "/ Custom macros
@@ -341,6 +345,40 @@ function! DoXmlPretty()
   exe "set ft=" . l:origft
 endfunction
 command! XMLPretty call DoXmlPretty()
+
+
+" toggles the quickfix window.
+function! ToggleQuickfixList()
+  if exists("g:qfix_win")
+    cclose
+  else
+    execute "copen "
+  endif
+endfunction
+
+" used to track the quickfix window
+augroup QFixToggle
+ autocmd!
+ autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+ autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+augroup END
+
+" toggles the location window.
+function! ToggleLocationList()
+  if exists("g:loc_win")
+    cclose
+  else
+    execute "copen "
+  endif
+endfunction
+
+" used to track the quickfix window
+augroup QLocToggle
+ autocmd!
+ autocmd BufWinEnter location let g:loc_win = bufnr("$")
+ autocmd BufWinLeave * if exists("g:loc_win") && expand("<abuf>") == g:loc_win | unlet! g:loc_win | endif
+augroup END
+
 
 " }}}
 " ============================================================================
@@ -498,15 +536,6 @@ nnoremap <leader>% :BLines<space>
 if has('nvim')
   let $FZF_DEFAULT_OPTS .= ' --inline-info'  " put info inline into fzf finder
 endif
-
-
-"/
-"/ vim-tooglelist
-"/
-let g:toggle_list_no_mappings = 1
-nnoremap <script> <silent> <leader>wl :call ToggleLocationList()<CR>
-nnoremap <script> <silent> <leader>wq :call ToggleQuickfixList()<CR>
-
 
 "/
 "/ vim-easy-align

@@ -65,7 +65,6 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
    Plug 'majutsushi/tagbar'                                          " show current file ctags in a diferent view
    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer
-   Plug 'milkypostman/vim-togglelist'                                " A simple plugin to toogle quickfix and location windows
    Plug 'moll/vim-bbye'                                              " Delete buffers and close files in NeoVim without closing windows
  " helper
    Plug 'lifepillar/vim-cheat40'                                     " Helper cheat
