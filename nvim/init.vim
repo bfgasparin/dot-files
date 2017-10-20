@@ -352,7 +352,7 @@ function! ToggleQuickfixList()
   if exists("g:qfix_win")
     cclose
   else
-    execute "copen "
+    copen
   endif
 endfunction
 
@@ -366,16 +366,23 @@ augroup END
 " toggles the location window.
 function! ToggleLocationList()
   if exists("g:loc_win")
-    cclose
+    lclose
   else
-    execute "copen "
+    try
+      lopen
+    catch /E776/
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      echohl None
+      return
+    endtry
   endif
 endfunction
 
 " used to track the quickfix window
 augroup QLocToggle
  autocmd!
- autocmd BufWinEnter location let g:loc_win = bufnr("$")
+ autocmd BufWinEnter quickfix let g:loc_win = bufnr("$")
  autocmd BufWinLeave * if exists("g:loc_win") && expand("<abuf>") == g:loc_win | unlet! g:loc_win | endif
 augroup END
 
