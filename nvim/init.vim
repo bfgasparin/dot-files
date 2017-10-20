@@ -737,6 +737,7 @@ let g:ale_php_langserver_use_global=1
 let g:ale_php_langserver_executable= $HOME. '/.config/nvim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php'
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
 let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
+let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
 \}

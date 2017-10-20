@@ -459,8 +459,6 @@ Next quickfix entry      ]q            N
 wrapping around content
 Prev quickfix entry      [q            N
 wrapping around content
-Prev quickfix entry      [q            N
-wrapping around content
 Next location entry      ]l            N
 wrapping around content
 Prev location entry      [l            N
