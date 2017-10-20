@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
    if has('nvim')
-       Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language Server Protocol support
+       " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language Server Protocol support
        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
        Plug 'fntlnz/atags.vim'                                   " Simplified ctags generation for neovim
    endif
@@ -36,13 +36,12 @@ call plug#begin('~/.config/nvim/plugged')
   " PHP
    Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
    Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
-   Plug 'stephpy/vim-php-cs-fixer'                               " Integrates php-cs-fixer
    Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
    Plug 'alvan/vim-php-manual'                                   " PHP Manual
    Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
    Plug 'lumiliet/vim-twig'                                      " Twig syntax Highlight and indenting
    if has('nvim')
-       Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}    " Langhage Server php source for LanguageClient
+       " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}    " Langhage Server php source for LanguageClient
    endif
 
    " HTML/CSS

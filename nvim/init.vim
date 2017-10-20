@@ -566,9 +566,12 @@ endif
 "/
 "/ Language Client Neovim  (Language Server Protocol support)
 "/
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-let g:LanguageClient_autoStart = 1 " Automatically start language servers.
-let g:LanguageClient_diagnosticsEnable = 0 " Disable diagnostic/lint information via gutter and quickfix (Ale does this very well)
+
+" Commented cause crashes a lot and conflits with ale lint when echoing message
+
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" let g:LanguageClient_autoStart = 1 " Automatically start language servers.
+" let g:LanguageClient_diagnosticsEnable = 0 " Disable diagnostic/lint information via gutter and quickfix (Ale does this very well)
 
 
 "/
