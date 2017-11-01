@@ -275,11 +275,16 @@ vmap <Leader>ol ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr
 "/ Laravel Specific
 "/
 " Open specific laravel directories
+nnoremap <Leader><Leader>l/ :Files app/
 nnoremap <Leader><Leader>lrw :e routes/web.php<cr>
 nnoremap <Leader><Leader>lra :e routes/api.php<cr>
+nnoremap <Leader><Leader>la :Files app<cr>
+nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>lc :Files app/Http/Controllers<cr>
+nnoremap <Leader><Leader>ln :Files app/Notifications<cr>
+nnoremap <Leader><Leader>ll :Files app/Listeners<cr>
 nnoremap <Leader><Leader>lp :Files app/Policies<cr>
-nnoremap <Leader><Leader>lt :Files tests/<cr>
+nnoremap <Leader><Leader>lt :Files tests<cr>
 nnoremap <Leader><Leader>l, :Files config<cr>
 nnoremap <Leader><Leader>ldm :Files database/migrations<cr>
 nnoremap <Leader><Leader>lds :Files database/seeds<cr>
