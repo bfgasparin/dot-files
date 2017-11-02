@@ -812,6 +812,8 @@ current file
 Open location list with  :GV?         VN
 current file/selection
 revision
+(needs to disable Ale
+in order to work)
 Display commit content   o            *N
 Ditto                    «CR»         *N
 Display commits diff     o             V
