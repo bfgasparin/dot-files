@@ -459,8 +459,6 @@ Next quickfix entry      ]q            N
 wrapping around content
 Prev quickfix entry      [q            N
 wrapping around content
-Prev quickfix entry      [q            N
-wrapping around content
 Next location entry      ]l            N
 wrapping around content
 Prev location entry      [l            N
@@ -814,6 +812,8 @@ current file
 Open location list with  :GV?         VN
 current file/selection
 revision
+(needs to disable Ale
+in order to work)
 Display commit content   o            *N
 Ditto                    «CR»         *N
 Display commits diff     o             V

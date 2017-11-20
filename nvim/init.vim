@@ -281,10 +281,13 @@ nnoremap <Leader><Leader>lra :e routes/api.php<cr>
 nnoremap <Leader><Leader>la :Files app<cr>
 nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>lc :Files app/Http/Controllers<cr>
-nnoremap <Leader><Leader>ln :Files app/Notifications<cr>
+nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>ll :Files app/Listeners<cr>
+nnoremap <Leader><Leader>la :Files app/<cr>
+nnoremap <Leader><Leader>l/ :Files app/
 nnoremap <Leader><Leader>lp :Files app/Policies<cr>
-nnoremap <Leader><Leader>lt :Files tests<cr>
+nnoremap <Leader><Leader>ln :Files app/Notifications<cr>
+nnoremap <Leader><Leader>lt :Files tests/<cr>
 nnoremap <Leader><Leader>l, :Files config<cr>
 nnoremap <Leader><Leader>ldm :Files database/migrations<cr>
 nnoremap <Leader><Leader>lds :Files database/seeds<cr>
@@ -296,6 +299,15 @@ nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
 nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
+
+function! RegistersVKMappings()
+    nnoremap <Leader><Leader>vkc :Files app/Contracts<cr>
+    nnoremap <Leader><Leader>vks :Files app/Services<cr>
+    nnoremap <Leader><Leader>vkf :Files app/Facades<cr>
+    nnoremap <Leader><Leader>vkm :Files app/Models<cr>
+    nnoremap <Leader><Leader>vkr :Files app/REports<cr>
+endfunction
+command! RegistersVKMappings call RegistersVKMappings()
 
 "/
 "/ Custom macros
@@ -442,6 +454,9 @@ nnoremap <C-\> :TagbarOpenAutoClose<CR>
 "/ GitGutter
 "/
 let g:gitgutter_map_keys = 0  " Set up Gitgutter to not map any key
+" set up hunk-jumping maps
+nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>GitGutterNextHunk
 
 
 "/
@@ -742,6 +757,7 @@ let g:ale_php_langserver_use_global=1
 let g:ale_php_langserver_executable= $HOME. '/.config/nvim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php'
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
 let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
+let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
 \}
