@@ -760,18 +760,21 @@ buffer
 Ditto                    :Blines       N
 Open line search in      :Lines        N
 loaded buffers
-Search text      (Rg)    «Ldr»F …      N
-ignoring .gitignore and .ignore
-" Optional arguments:
-" a:1  pre text search
-" a:2  path fo filter
-" «C-a» to select all
-" «C-d» to deselect all
 Search text      (Rg)    «Ldr»f …      N
 considering .gitignore and .ignore
 " «C-a» to select all
 " «C-d» to deselect all
 Ditto                    :Rg           N
+Search text      (Rg)    «Ldr»F …      N
+ignoring .gitignore and .ignore
+Search text      (Rg)    «Ldr»f -uu …  N
+ignoring .gitignore and .ignore but
+considering hidden files
+" Optional arguments:
+" a:1  pre text search
+" a:2  path fo filter
+" «C-a» to select all
+" «C-d» to deselect all
 Open command history     :History:     N
 Open search history      :History/     N
 Open normal mappings     :Maps         N
