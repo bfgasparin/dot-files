@@ -275,11 +275,8 @@ vmap <Leader>ol ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr
 "/ Laravel Specific
 "/
 " Open specific laravel directories
-nnoremap <Leader><Leader>l/ :Files app/
 nnoremap <Leader><Leader>lrw :e routes/web.php<cr>
 nnoremap <Leader><Leader>lra :e routes/api.php<cr>
-nnoremap <Leader><Leader>la :Files app<cr>
-nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>lc :Files app/Http/Controllers<cr>
 nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>ll :Files app/Listeners<cr>
@@ -745,7 +742,7 @@ augroup END
 "/
 "/ VIM JSX
 "/
-let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js files along .jsx
+let g:jsx_ext_required = 1 "  Enable syntax highlighting and indenting on .js files along .jsx
 
 "/
 "/ Ale (assynchronous lint engine)
@@ -760,13 +757,16 @@ let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live i
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
+\   'javascript': ['eslint', 'flow'],
 \}
 
 " Fixers
 let g:ale_php_phpcbf_standard='PSR2'
+
 let g:ale_fixers = {
-  \   'php': ['phpcbf'],
-  \}
+\   'php': ['phpcbf'],
+\   'javascript': ['eslint'],
+ \}
 " Bind F9 to fixing problems with ALE
 nmap <F9> <Plug>(ale_fix)
 
@@ -823,6 +823,10 @@ nmap <M-?> <plug>Cheat40Open
 " Shortcut to open Git status windows
 nmap <C-g> :Gstatus<cr>
 
+"/
+"/ EditorConfig
+"/
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid loading EditorConfig for any git and remote files over ssh
 " }}}
 
 " ---------Notes and Tips---------------"

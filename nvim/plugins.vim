@@ -48,6 +48,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
 
    " Javascript
+   Plug 'mxw/vim-Javascript'                                    " Required by vim-jsx
    Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
 
   " Languages (General)
@@ -60,12 +61,14 @@ call plug#begin('~/.config/nvim/plugged')
   " Markdown
    Plug 'kannokanno/previm'                                          " Preview markdown and reStructuredText into browser
 
-  " " navigation
+  " navigation
    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
    Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
    Plug 'majutsushi/tagbar'                                          " show current file ctags in a diferent view
    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer
    Plug 'moll/vim-bbye'                                              " Delete buffers and close files in NeoVim without closing windows
+
  " helper
    Plug 'lifepillar/vim-cheat40'                                     " Helper cheat
+   Plug 'editorconfig/editorconfig-vim'                              " EditorConfig plugin for Vim
 call plug#end()
