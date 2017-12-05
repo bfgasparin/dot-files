@@ -1,4 +1,5 @@
 # My global gitignore file.
 # Copy to ~/ and run `git config --global core.excludesfile ~/.gitignore`
 .ctagsignore
+.ctags
 .ignore
