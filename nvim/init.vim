@@ -734,15 +734,15 @@ let g:user_emmet_complete_tag = 0 " disable omnifunc provided by emmet
 let g:user_emmet_install_global = 0   " disable emmet for all files and enable it only for html and css and scss
 augroup emmet
     autocmd!
-    autocmd FileType html,css,scss,blade,html.twig,javascript.jsx imap <silent><buffer><expr><tab> <sid>expandHtmlTab()
-    autocmd FileType html,css,scss,blade,html.twig,javascript.jsx EmmetInstall
+    autocmd FileType html,css,scss,blade,html.twig,javascript.jsx,vue imap <silent><buffer><expr><tab> <sid>expandHtmlTab()
+    autocmd FileType html,css,scss,blade,html.twig,javascript.jsx,vue EmmetInstall
 augroup END
 
 
 "/
 "/ VIM JSX
 "/
-let g:jsx_ext_required = 1 "  Enable syntax highlighting and indenting on .js files along .jsx
+let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js files along .jsx
 
 "/
 "/ Ale (assynchronous lint engine)
@@ -902,7 +902,8 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid load
 "       - docutils (required for previm)
 "       - rst2html (required for previm to preview reStructuredText)
 "   npm deps:
-"       - yarn add mermaid     (used for previm to generate graphs)
+"       - yarn global add mermaid     (used for previm to generate graphs)
+"       - yarn global add eslint eslint-plugin-vue     (used for Ale linter and vim-vue plugin)
 "
 "   install globally with composer
 "     phpcs/phpcs                   (for ale)

@@ -48,12 +48,14 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
 
    " Javascript
-   Plug 'mxw/vim-Javascript'                                    " Required by vim-jsx
+   Plug 'pangloss/vim-javascript'                               " Required by vim-jsx
    Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
+   Plug 'posva/vim-vue'                                         " Syntax Highlight for vue components
 
   " Languages (General)
    Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast
    Plug 'SirVer/ultisnips'                                       " Add snippet support
+   Plug 'honza/vim-snippets'                                     " Default snippets for a lot of languages
    Plug 'tobyS/vmustache'                                        " Template system engine (required by tobyS/pdv)
    Plug 'tobyS/pdv'                                              " to generate PHP docblock
    Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
