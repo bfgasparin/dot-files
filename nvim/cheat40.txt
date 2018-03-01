@@ -668,7 +668,8 @@ Ditto                    :Filetypes …  N
 buffer
 # setf php
 # setf javascript
-
+Pretty JSON              :%!python -m  N
+                         json.tool
 
 Plugins {{{1
 Vim Easy Align {{{2
