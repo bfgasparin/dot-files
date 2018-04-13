@@ -64,6 +64,13 @@ set softtabstop=4                 " tabs width on on insert mode (tab or backspa
 set shiftwidth=4                  " number of spaces to use for indent and unindent on normal mode ( <shift>< or > )
 set expandtab                     " insert spaces rather then tabs <Tab>
 
+
+augroup fix_tab_spacing_for_js
+    autocmd!
+    " autocmd FileType javascript.jsx,vue set tabstop=4 | softtabstop=2 | set shiftwidth=2
+    autocmd FileType javascript.jsx,vue set tabstop=4 | set softtabstop=2 | set shiftwidth=2
+augroup END
+
 " auto completions
 set completeopt+=noinsert         " Do not insert any text for a match until I selected
 set completeopt-=preview          " remove the preview option to the completeopt. (Do not show preview information)
@@ -608,8 +615,12 @@ if has('nvim')
     let g:deoplete#enable_at_startup = 1                " Enable it at startup
     let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
     " run phpcd as deoplete omni source
-    let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
-    let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
+    " commented because I commented phpcd
+    let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+    let g:deoplete#ignore_sources.php = ['omni']
+    " let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
+    " let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
+
     " let g:deoplete#keyword_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
     let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
@@ -757,7 +768,7 @@ let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live i
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
-\   'javascript': ['eslint', 'flow'],
+\   'javascript': ['eslint', 'standard'],
 \}
 
 " Fixers
@@ -765,7 +776,7 @@ let g:ale_php_phpcbf_standard='PSR2'
 
 let g:ale_fixers = {
 \   'php': ['phpcbf'],
-\   'javascript': ['eslint'],
+\   'javascript': ['standard'],
  \}
 " Bind F9 to fixing problems with ALE
 nmap <F9> <Plug>(ale_fix)
