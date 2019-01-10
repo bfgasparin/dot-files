@@ -11,6 +11,17 @@
     </description>
  <arg name="tab-width" value="4"/>
 
+ <exclude-pattern>*/database/*</exclude-pattern>
+ <exclude-pattern>*/cache/*</exclude-pattern>
+ <exclude-pattern>*/*.js</exclude-pattern>
+ <exclude-pattern>*/*.css</exclude-pattern>
+ <exclude-pattern>*/*.xml</exclude-pattern>
+ <exclude-pattern>*/*.blade.php</exclude-pattern>
+ <exclude-pattern>*/autoload.php</exclude-pattern>
+ <exclude-pattern>*/storage/*</exclude-pattern>
+ <exclude-pattern>*/docs/*</exclude-pattern>
+ <exclude-pattern>*/vendor/*</exclude-pattern>
+ <exclude-pattern>*/migrations/*</exclude-pattern>
  <!-- Include the whole PSR-2 standard excluding the Use declaration-->
  <rule ref="PSR2">
      <exclude name="PSR2.Namespaces.UseDeclaration"/>

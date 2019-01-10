@@ -132,8 +132,9 @@ highlight vertsplit ctermfg=234 ctermbg=127 guibg=#A55989 guifg=bg
 " customize the Visual and Search mode highlights colors (better with dark theme)
 highlight Visual ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
 highlight Search ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
-" disable foreground for Cursorline
-highlight Cursorline ctermfg=none guifg=none
+" disable foreground for Cursorline (you can put any value diferent than empty and none. or airline would not to change the cursorline nighlights)
+" https://github.com/vim-airline/vim-airline/pull/1408<Paste>
+highlight Cursorline ctermfg=231 guifg=97
 " -----------------------------------------------------------------------------------
 
 " Highlights For Theme: papercolor (change the iTerm Profile to Light Gasparin Theme )
@@ -284,6 +285,7 @@ vmap <Leader>ol ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr
 " Open specific laravel directories
 nnoremap <Leader><Leader>lrw :e routes/web.php<cr>
 nnoremap <Leader><Leader>lra :e routes/api.php<cr>
+nnoremap <Leader><Leader>lrc :e routes/channels.php<cr>
 nnoremap <Leader><Leader>lc :Files app/Http/Controllers<cr>
 nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>ll :Files app/Listeners<cr>
@@ -302,16 +304,16 @@ nnoremap <Leader><Leader>lmc :!php artisan make:controller<space>
 nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
-nnoremap <Leader><Leader>lt :tabe \| terminal php artisan tinker<cr>
+nnoremap <Leader><Leader>lt :tabe \| terminal docker-compose exec api php artisan tinker<cr>
 
-function! RegistersVKMappings()
-    nnoremap <Leader><Leader>vkc :Files app/Contracts<cr>
-    nnoremap <Leader><Leader>vks :Files app/Services<cr>
-    nnoremap <Leader><Leader>vkf :Files app/Facades<cr>
-    nnoremap <Leader><Leader>vkm :Files app/Models<cr>
-    nnoremap <Leader><Leader>vkr :Files app/REports<cr>
+function! RegistersDacxiMappings()
+    nnoremap <Leader><Leader>ldc :Files app/Contracts<cr>
+    nnoremap <Leader><Leader>ldf :Files app/Support/Facades<cr>
+    nnoremap <Leader><Leader>ldpg :Files app/Payment/Gateways<cr>
+    nnoremap <Leader><Leader>ldt :Files app/Transactions<cr>
 endfunction
-command! RegistersVKMappings call RegistersVKMappings()
+command! RegistersDacxiMappings call RegistersDacxiMappings()
+
 
 "/
 "/ Custom macros
@@ -826,7 +828,7 @@ nnoremap <silent> <leader>tg :TestVisit<CR>
 "/
 "/ Vim Cheat40
 "/
-nmap <M-?> <plug>Cheat40Open
+nmap <M-?> :Cheat40<cr>
 
 "/
 "/ Fugitive (Git)

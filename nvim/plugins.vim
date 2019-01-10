@@ -34,7 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'                                 " Shows a git diff in the 'gutter'
 
   " PHP
-   Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
+   " Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
    Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
    Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
    Plug 'alvan/vim-php-manual'                                   " PHP Manual

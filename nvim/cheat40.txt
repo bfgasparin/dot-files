@@ -620,6 +620,37 @@ Browse command history   q:            N
 Browse command history   «C-f»         C
 # Use «C-c» to return to command prompt
 
+Laravel {{{1
+Open routes/web.php      ‹Ldr›‹Ldr›lrw N
+Open routes/api.php      ‹Ldr›‹Ldr›lra N
+Open routes/channels.php ‹Ldr›‹Ldr›lrc N
+List Controllers folder  ‹Ldr›‹Ldr›lc  N
+List Exceptions folder   ‹Ldr›‹Ldr›le  N
+List Listeners folder    ‹Ldr›‹Ldr›ll  N
+List app folder          ‹Ldr›‹Ldr›la  N
+Open app folder          ‹Ldr›‹Ldr›l/  N
+List Policies folder     ‹Ldr›‹Ldr›lp  N
+List Notifications folder‹Ldr›‹Ldr›ln  N
+List tests folder        ‹Ldr›‹Ldr›lt  N
+List config folder       ‹Ldr›‹Ldr›l,  N
+List migrations folder   ‹Ldr›‹Ldr›ldm N
+List seeds folder        ‹Ldr›‹Ldr›lds N
+List factories folder    ‹Ldr›‹Ldr›ldf N
+
+Laravel {{{2
+Run make:model           ‹Ldr›‹Ldr›lmm N
+Run make:controller      ‹Ldr›‹Ldr›lmc N
+Run make:policy          ‹Ldr›‹Ldr›lmp N
+Run make:request         ‹Ldr›‹Ldr›lmr N
+Run make:test            ‹Ldr›‹Ldr›lmt N
+Open tinker              ‹Ldr›‹Ldr›lt  N
+
+Laravel Dacxi {{{2
+List Contracts folder    ‹Ldr›‹Ldr›ldc N
+List Facades folder      ‹Ldr›‹Ldr›ldf N
+List P Gateways folder   ‹Ldr›‹Ldr›ldpgN
+List Transactions folder ‹Ldr›‹Ldr›ldt N
+
 Terminal {{{1
 Exec. cmd in a new       :terminal «F1»N
 terminal buffer
@@ -682,9 +713,8 @@ About {{{3
   cases with the concept of
   "alignment rule".
 
-  `Delimiter keys`: a single keystroke;
-  <Space>, `=`, `:`, `.`, `|`, `&`,
-  `#`, `,`
+  `Delimiter_keys`: a single keystroke;
+  <Space>, `=`, `:`, `.`, `|`, `&`, `#`, `,`
   `Flags`:
    `<none>`: Around the 1st occurrences
     `2`: Around the 2nd occurrences
