@@ -304,7 +304,7 @@ nnoremap <Leader><Leader>lmc :!php artisan make:controller<space>
 nnoremap <Leader><Leader>lmp :!php artisan make:policy<space>
 nnoremap <Leader><Leader>lmr :!php artisan make:request<space>
 nnoremap <Leader><Leader>lmt :!php artisan make:test<space>
-nnoremap <Leader><Leader>lt :tabe \| terminal docker-compose exec api php artisan tinker<cr>
+nnoremap <Leader><Leader>lt :tabe \| terminal docker-compose exec api php artisan tinker<cr>i
 
 function! RegistersDacxiMappings()
     nnoremap <Leader><Leader>ldc :Files app/Contracts<cr>
@@ -833,8 +833,8 @@ nmap <M-?> :Cheat40<cr>
 "/
 "/ Fugitive (Git)
 "/
-" Shortcut to open Git status windows
-nmap <C-g> :Gstatus<cr>
+" Shortcut to open Git status windows. Also tells fugitive to open Gstatus windows at the bottom
+nmap <C-g> :botright Gstatus<cr>
 
 "/
 "/ EditorConfig
