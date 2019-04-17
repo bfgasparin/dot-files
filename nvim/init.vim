@@ -68,7 +68,7 @@ set expandtab                     " insert spaces rather then tabs <Tab>
 augroup fix_tab_spacing_for_js
     autocmd!
     " autocmd FileType javascript.jsx,vue set tabstop=4 | softtabstop=2 | set shiftwidth=2
-    autocmd FileType javascript.jsx,vue set tabstop=4 | set softtabstop=2 | set shiftwidth=2
+    autocmd FileType javascript.jsx,vue,spec.php set tabstop=4 | set softtabstop=2 | set shiftwidth=2
 augroup END
 
 " auto completions
