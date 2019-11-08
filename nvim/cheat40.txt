@@ -908,6 +908,8 @@ codeAction current line  «Ldr»ac       N
 autoFix current line     «Ldr»qf       N
 Trigger Completion       «M»«Spc»      I
 Show diagnostics         «Spc»a        N
+Rename current word      «Ldr»rn       N
+(for refactory)
 Jump to next diagnostic  ]c            N
 Jump to previous diacno  [c            N
 
