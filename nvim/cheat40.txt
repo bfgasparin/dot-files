@@ -884,22 +884,6 @@ Jump to next closed pair «M-n»         I
 # " and ", ` and `
 }}}
 
-PHPCD {{{2
-About {{{3
-    Auto completion Daemon for PHP
-    (Used as omnifunc for deoplete)
-}}}
-Jump to definition       «C-]»        *N
-Jump to definition using «C-w»«C-]»   *N
-split
-Jump to definition using «C-w»«C-\»   *N
-vsplit
-Jump back                «C-t»         N
-vsplit
-List method implementa   K            *N
-tions
-}}}
-
 UltiSnipts {{{2
 About {{{3
     An Snippet pluggin
@@ -916,6 +900,18 @@ file considering public  Edit!
 snippets
 }}}
 
+Coc {{{2
+About {{{3
+  Intellisense engine, full language server protocol support
+}}}
+codeAction current line  «Ldr»ac       N
+autoFix current line     «Ldr»qf       N
+Trigger Completion       «M»«Spc»      I
+Show diagnostics         «Spc»a        N
+Jump to next diagnostic  ]c            N
+Jump to previous diacno  [c            N
+
+
 Ale {{{2
 About {{{3
   Runs code lints asynchronously.
@@ -923,8 +919,8 @@ About {{{3
   windows.
   Configured to run on buffer edit
 
-  PHP: php -l, phpcs, phpmd,
-       languageserver
+  PHP: phpcs, phpmd
+  Javascript: eslint, standard
 }}}
 Open lint errors         «Ldr»wl       N
 Run commands to fix      «F8»          N

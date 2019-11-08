@@ -25,6 +25,17 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+set noshowmode
+
+if !has('gui_running')
+  set t_Co=256
+endif
+
+"-------------backup-------------"
+" Required for coc plugin. Some coc servers have issues with backup files, see https://github.com/neoclide/coc.nvim/issues/649
+set nobackup
+set nowritebackup
+
 "------------Mapping---------------------"
 
 " set a map leader for more key combos
@@ -132,8 +143,7 @@ highlight vertsplit ctermfg=234 ctermbg=127 guibg=#A55989 guifg=bg
 " customize the Visual and Search mode highlights colors (better with dark theme)
 highlight Visual ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
 highlight Search ctermfg=231 ctermbg=97 guifg=fg guibg=#605A79
-" disable foreground for Cursorline (you can put any value diferent than empty and none. or airline would not to change the cursorline nighlights)
-" https://github.com/vim-airline/vim-airline/pull/1408<Paste>
+" disable foreground for Cursorline (you can put any value diferent than empty and none.
 highlight Cursorline ctermfg=231 guifg=97
 " -----------------------------------------------------------------------------------
 
@@ -466,32 +476,48 @@ nmap ]c <Plug>GitGutterNextHunk
 
 
 "/
-"/ Airlines
+"/ Lightline
 "/
-let g:airline#extensions#tabline#enabled = 1                " Enable tabline
-let g:airline#extensions#tabline#fnamemod = ':'            " Show just the filename
-let g:airline#extensions#tabline#tab_nr_type = 1            " configure how numbers are displayed in tab mode. > tab number
-let g:airline#extensions#tabline#show_buffers = 0           " disable displaying buffers when there is one tab
-let g:airline#extensions#tabline#show_tabs = 0              " disable displaying tabs
-let g:airline#extensions#tabline#tab_min_count = 30         " configure the minimum number of tabs needed to show the tabline.
-let g:airline#extensions#tabline#show_tab_type = 0          " disable displaying tab type
-let airline#extensions#tabline#show_splits = 0              " Disable shoing open splits per tab
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = '|'
-let g:airline#extensions#tabline#buffer_nr_show = 0         " Show the buffer number
-let g:airline#extensions#tabline#show_tab_nr = 0            " Show tab number
-let g:airline#extensions#tabline#buffers_label = ''
-let g:airline#extensions#tabline#tabs_label = ''
-let g:airline_powerline_fonts= 1
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = '|'
-let g:airline_theme='gasparin'  " dark theme
-" let g:airline_theme='papercolor'  " light theme
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ]],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
+      \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ 'component_expand': {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ },
+      \ 'component_type': {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ },
+      \'tabline': {
+      \     'left': [['tabs']],
+      \     'right': [['close']]
+      \   },
+      \   'tab': {
+      \     'active': ['tabnum', 'filename', 'modified'],
+      \     'inactive': ['tabnum', 'filename', 'modified']
+      \   }
+      \ }
 
+" change the fg bg of the tabline
+let s:palette = g:lightline#colorscheme#seoul256#palette
+let s:palette.tabline.tabsel = [ [ '#d0d0d0', '#5f8787', 252, 66, 'bold' ] ]
+unlet s:palette
 "/
 "/ Fzf (Fuzzy File Finder)
 "/
@@ -609,37 +635,6 @@ augroup END
 "/
 :nnoremap <Leader>c :Bdelete<CR>
 
-
-"/
-"/ Deoplete (autocomplete)
-"/
-if has('nvim')
-    let g:deoplete#enable_at_startup = 1                " Enable it at startup
-    let g:deoplete#complete_method = 'complete'         " Use both completfunc and omnifunc
-    " run phpcd as deoplete omni source
-    " commented because I commented phpcd
-    let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-    let g:deoplete#ignore_sources.php = ['omni']
-    " let g:deoplete#omni_patterns = get(g:,'deoplete#omni_patterns',{})
-    " let g:deoplete#omni_patterns.php = '->\|::'         " Configure deoplete to call omnifunc for php when I type -> or :: (disable deoplete features when this happen) lvht/phpcd omnifunc is used in these cases
-
-    " let g:deoplete#keyword_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
-    let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-    let g:deoplete#ignore_sources.php = ['omni'] " disable omni source for php
-    let g:deoplete#disable_auto_complete = 0             " Makes auto complete start automatically
-endif
-
-"/
-"/ Language Client Neovim  (Language Server Protocol support)
-"/
-
-" Commented cause crashes a lot and conflits with ale lint when echoing message
-
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-" let g:LanguageClient_autoStart = 1 " Automatically start language servers.
-" let g:LanguageClient_diagnosticsEnable = 0 " Disable diagnostic/lint information via gutter and quickfix (Ale does this very well)
-
-
 "/
 "/ atags (tags generation)
 "/
@@ -664,7 +659,7 @@ let g:AutoPairsCenterLine = 0              " Disable auto center line alter retu
 "/
 "/ UltiSnipts
 "/
-" let g:UltiSnipsExpandTrigger="<tab>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
+let g:UltiSnipsExpandTrigger="<TAB>"         " Add key to trigger UltiSnips snippets. Can not use <tab> to not conflict with shortcut from deoplete
 
 "/
 "/ pdv PHP Documenter VIM
@@ -763,13 +758,13 @@ let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js fi
 " Linters
 let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
 let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
-let g:ale_php_langserver_use_global=1
-let g:ale_php_langserver_executable= $HOME. '/.config/nvim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php'
+let g:ale_php_phpcs_use_global = 1
+let g:ale_php_phpmd_use_global = 1
 let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
 let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_linters = {
-\   'php': ['php', 'phpcs', 'phpmd', 'langserver'],
+\   'php': ['phpcs', 'phpmd'],
 \   'javascript': ['eslint', 'standard'],
 \}
 
@@ -786,27 +781,43 @@ nmap <F9> <Plug>(ale_fix)
 " Disable phpmd and phpcs for tests files cause on test files some code pattern may change
 let g:ale_pattern_options = {
 \    '.*tests/.*\.php$': {
-\        'ale_linters': {'php': ['php', 'langserver']}
+\        'ale_linters': {'php': ['']}
 \    }
 \}
 
-" Ale completion has support only for Typescript so I disabled. When complete support for language server, consider
-" remove deoplete and use Ale for that
+" Ale completion has support only for Typescript so I disabled. Instead we use the coc intellisense engine
 let g:ale_completion_enabled = 0
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+"/
+"/ Coc (Conquer of Completion)
+"/
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <M-space>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<M-space>" :
+      \ coc#refresh()
 
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
+inoremap <expr> <M-j> pumvisible() ? "\<C-n>" : "\<M-j>"
+inoremap <expr> <M-k> pumvisible() ? "\<C-p>" : "\<M-k>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-set statusline=%{LinterStatus()}
+
+" " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" " Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 
 "/
@@ -895,6 +906,11 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid load
 " For nvim works well with Alacritty terminal (https://github.com/jwilm/alacritty), I needed to set
 " the background color of Alacritty same as the current background colorscheme of nvim.
 
+" Install CoC extensions:
+
+" :CocInstall coc-phpls     (for php)
+" :CocInstall coc-tsserver  (for javascript and typescript)
+
 "/
 "/ External libs
 "/
@@ -905,8 +921,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid load
 "       (optionally use `git config --global alias.ctags '!.git/hooks/ctags'` then type `git ctags` to create ctags)
 " - ryanoasis/nerd-fonts for fonts with devicons
 " - BurntSushi/ripgrep (rg for code searching) - uses .ignore and .gitignore to ignore files
-"   msgpack php extention (msgpack/msgpack-php) - used by lvht/phpcd omnifunc
-"   PCNTL php extention - used by lvht/phpcd omnifunc
 "   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
 "

@@ -5,8 +5,8 @@ call plug#begin('~/.config/nvim/plugged')
    " Plug 'albertorestifo/github.vim'         " light colorscheme
 
   " visual
-   Plug 'vim-airline/vim-airline'        " fancy statusline
-   Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
+   Plug 'itchyny/lightline.vim'
+   Plug 'maximbaz/lightline-ale'
    Plug 'Yggdroot/indentLine'            " Display the indention levels with thin vertical lines
    Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces and enable commands to fix it
 
@@ -18,8 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
    if has('nvim')
-       " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }     " Language Server Protocol support
-       Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete feature
+       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}      " autocompletion feature
        Plug 'fntlnz/atags.vim'                                   " Simplified ctags generation for neovim
    endif
    Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
@@ -34,15 +33,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'                                 " Shows a git diff in the 'gutter'
 
   " PHP
-   " Plug 'lvht/phpcd.vim', { 'for': 'php' , 'do': 'composer update' } " autocomplete for php
    Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
    Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
    Plug 'alvan/vim-php-manual'                                   " PHP Manual
    Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
    Plug 'lumiliet/vim-twig'                                      " Twig syntax Highlight and indenting
-   if has('nvim')
-       " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}    " Langhage Server php source for LanguageClient
-   endif
 
    " HTML/CSS
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
