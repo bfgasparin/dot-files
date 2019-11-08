@@ -1,2 +1,23 @@
-# My local projecgt ctags file.
-# Common ignore files are located at .ctags file
+# Git
+.git
+# PHP
+.phpmd-rulesets.xml
+.phpcs-rulesets.xml
+.ignore
+.php_cs.cache
+.phpcd
+composer.json
+composer.lock
+vendor/phpunit/php-code-coverage
+vendor/bin
+composer.phar
+# Laravel
+public
+_ide_helper.php
+# Vim
+.neovimsession.vim
+webpack.mix.js
+# Frontend
+node_modules
+yarn.lock
+package-lock.json

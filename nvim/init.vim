@@ -296,6 +296,8 @@ vmap <Leader>ol ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr
 nnoremap <Leader><Leader>lrw :e routes/web.php<cr>
 nnoremap <Leader><Leader>lra :e routes/api.php<cr>
 nnoremap <Leader><Leader>lrc :e routes/channels.php<cr>
+nnoremap <Leader><Leader>lra :Files resources/assets<cr>
+nnoremap <Leader><Leader>lrv :Files resources/views<cr>
 nnoremap <Leader><Leader>lc :Files app/Http/Controllers<cr>
 nnoremap <Leader><Leader>le :Files app/Exceptions<cr>
 nnoremap <Leader><Leader>ll :Files app/Listeners<cr>
@@ -482,11 +484,11 @@ let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ]],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
-      \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
+      \              [  'cocstatus', 'linter_checking', 'linter_errors', 'linter_warnings']]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
@@ -496,13 +498,11 @@ let g:lightline = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
       \ },
       \ 'component_type': {
       \     'linter_checking': 'left',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
       \ },
       \'tabline': {
       \     'left': [['tabs']],
@@ -588,7 +588,7 @@ nnoremap <leader>h :History<CR>
 " Open list fo file into contents of files of the project using ripgrep
 nnoremap <leader>f :Rg<space>-i<space>
 " Open list fo file into contents of files of the project using ripgrep ignoring .gitiggore and .ignore (but including hidden files)
-nnoremap <leader>F :Rg<space>-i<space>-u<space>
+nnoremap <leader>F :Rg<space>-i<space>--no-ignore-vcs<space>
 " Find in current buffer
 nnoremap <leader>% :BLines<space>
 
@@ -624,11 +624,10 @@ let g:indentLine_faster = 1          " Better performance to draw indentLines
 " Configure the background color for trailing whitespaces
 highlight ExtraWhitespace ctermbg=236 guibg=#282E33
 " removes trailing whitespaces when saving buffer
-augroup clear_trailing_whitespace
-    autocmd!
-    autocmd BufEnter * EnableStripWhitespaceOnSave
-augroup END
-
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0 " do not confirm for whitespace strip
+let g:strip_whitelines_at_eof=1 " strip whitespace at the end of the file
 
 "/
 "/ Vim Bbye (Buffer Bye)
@@ -653,6 +652,9 @@ let g:move_key_modifier = 'M'  " Change de move key to Meta
 "/ Auto-Pairs
 "/
 let g:AutoPairsShortcutToggle = ''         " Disable AutoPairs toogle Shortcut
+let g:AutoPairsShortcutJump = ''           " Disable AutoPairs shortcup jump
+let g:AutoPairsShortcutFastWrap = ''         " Disable AutoPairs fast wrap Shortcut
+
 let g:AutoPairsShortcutFastWrap = ''       " Disable FastWrap Shortcut
 let g:AutoPairsCenterLine = 0              " Disable auto center line alter return from inserting pairs
 
@@ -670,37 +672,6 @@ augroup php_docblocks
     autocmd!
     autocmd FileType php nnoremap <buffer> <leader><leader>d :call pdv#DocumentWithSnip()<CR>
 augroup END
-
-"/
-"/ Vim PHP Namespace
-"/
-let g:php_namespace_sort_after_insert = 0               " Sort dependencies every time one is inserted
-"
-" Insert use statement at the top of the file
-"     new Response<-- cursor here or on the name; hit <leader>u now to insert the use statement
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-" Expand the fully qualified classe name
-"     new Response<-- cursor here or on the name; hit <leader>ec now to insert the use statement
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
-
-" Created shortcuts for php namespace only on php files
-augroup php_namespace
-    autocmd!
-    autocmd FileType php inoremap <buffer> <Leader>uu <Esc>:call IPhpInsertUse()<CR>
-    autocmd FileType php noremap <buffer> <Leader>uu :call PhpInsertUse()<CR>
-    autocmd FileType php inoremap <buffer> <Leader>ec <Esc>:call IPhpExpandClass()<CR>
-    autocmd FileType php noremap <buffer> <Leader>ec :call PhpExpandClass()<CR>
-    " Sort php use statements
-    autocmd FileType php inoremap <buffer> <Leader>su <Esc>:call PhpSortUse()<CR>
-    autocmd FileType php noremap <buffer> <Leader>su :call PhpSortUse()<CR>
-augroup END
-
 
 "/
 "/ Vim PHP Manual
@@ -799,8 +770,8 @@ inoremap <silent><expr> <M-space>
       \ <SID>check_back_space() ? "\<M-space>" :
       \ coc#refresh()
 
-inoremap <expr> <M-j> pumvisible() ? "\<C-n>" : "\<M-j>"
-inoremap <expr> <M-k> pumvisible() ? "\<C-p>" : "\<M-k>"
+inoremap <expr> <M-n> pumvisible() ? "\<C-n>" : "\<M-n>"
+inoremap <expr> <M-p> pumvisible() ? "\<C-p>" : "\<M-p>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -815,9 +786,24 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+
+" Highlight symbol under cursor on CursorHold
+
+augroup coc
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 
 "/
@@ -850,7 +836,8 @@ nmap <C-g> :botright Gstatus<cr>
 "/
 "/ EditorConfig
 "/
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid loading EditorConfig for any git and remote files over ssh
+" let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid loading EditorConfig for any git and remote files over ssh
+"
 " }}}
 
 " ---------Notes and Tips---------------"
@@ -910,6 +897,8 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " avoid load
 
 " :CocInstall coc-phpls     (for php)
 " :CocInstall coc-tsserver  (for javascript and typescript)
+" :CocInstall coc-highlight  (for higlight current word)
+" :CocInstall coc-emmet      (for emmeth completion)
 
 "/
 "/ External libs

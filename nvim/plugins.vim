@@ -2,7 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 
  " colorschemes
    Plug 'gosukiwi/vim-atom-dark'           " dark colorscheme
-   " Plug 'albertorestifo/github.vim'         " light colorscheme
+   Plug 'albertorestifo/github.vim'         " light colorscheme
 
   " visual
    Plug 'itchyny/lightline.vim'
@@ -33,7 +33,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'                                 " Shows a git diff in the 'gutter'
 
   " PHP
-   Plug 'arnaud-lb/vim-php-namespace'                            " add use statement and expand fully qualified php classes
    Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
    Plug 'alvan/vim-php-manual'                                   " PHP Manual
    Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
@@ -52,7 +51,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'SirVer/ultisnips'                                       " Add snippet support
    Plug 'honza/vim-snippets'                                     " Default snippets for a lot of languages
    Plug 'tobyS/vmustache'                                        " Template system engine (required by tobyS/pdv)
-   Plug 'tobyS/pdv'                                              " to generate PHP docblock
+   Plug 'tobys/pdv'                                              " to generate PHP docblock
    Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
 
   " Markdown
@@ -67,5 +66,5 @@ call plug#begin('~/.config/nvim/plugged')
 
  " helper
    Plug 'lifepillar/vim-cheat40'                                     " Helper cheat
-   Plug 'editorconfig/editorconfig-vim'                              " EditorConfig plugin for Vim
+   " Plug 'editorconfig/editorconfig-vim'                              " EditorConfig plugin for Vim
 call plug#end()
