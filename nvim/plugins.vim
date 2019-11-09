@@ -18,7 +18,8 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
    if has('nvim')
-       Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}      " autocompletion feature
+       Plug 'neoclide/coc.nvim', {'branch': 'release'}
+       " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}      " autocompletion feature
    endif
    Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
    Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
@@ -42,8 +43,9 @@ call plug#begin('~/.config/nvim/plugged')
 
    " Javascript
    Plug 'pangloss/vim-javascript'                               " Required by vim-jsx
+   Plug 'posva/vim-vue'                                       " Syntax highlight for vue
    Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
-   Plug 'posva/vim-vue'                                         " Syntax Highlight for vue components
+
 
   " Languages (General)
    Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast

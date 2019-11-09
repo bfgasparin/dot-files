@@ -805,7 +805,6 @@ augroup coc
     autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
-
 "/
 "/ Previm (preview markdown and reStructuredText on browser)
 "/
@@ -906,13 +905,21 @@ nmap <C-g> :botright Gstatus<cr>
 "   fzf (fuzzy file finder) (brew install fzf to use the homebrew fzf)
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
 "
+"   coc extensions
+"       - emmet       (to autocomplete emmets)
+"       - highlight   (to highlight some texts)
+"       - phpls       (to autocomplete php)
+"       - utilsnips   (to autocomplete snippets)
+"       - json        (to autocomplete json)
+"       - vetur        (to autocomplete vue components)
+"
 "   python libs:
 "       - neovim
 "       - docutils (required for previm)
 "       - rst2html (required for previm to preview reStructuredText)
 "   npm deps:
 "       - yarn global add mermaid     (used for previm to generate graphs)
-"       - yarn global add eslint eslint-plugin-vue     (used for Ale linter and vim-vue plugin)
+"       - yarn global add eslint eslint-plugin-vue     (used for Ale linter)
 "
 "   install globally with composer
 "     phpcs/phpcs                   (for ale)
