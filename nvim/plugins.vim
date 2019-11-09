@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
 
    if has('nvim')
        Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}      " autocompletion feature
-       Plug 'fntlnz/atags.vim'                                   " Simplified ctags generation for neovim
    endif
    Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
    Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
@@ -51,8 +50,10 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'SirVer/ultisnips'                                       " Add snippet support
    Plug 'honza/vim-snippets'                                     " Default snippets for a lot of languages
    Plug 'tobyS/vmustache'                                        " Template system engine (required by tobyS/pdv)
+
    Plug 'tobys/pdv'                                              " to generate PHP docblock
-   Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
+   " commented ale in order to test linting and autocompletoin from nowclide/coc
+   " Plug 'w0rp/ale'                                               " Assynchronous Lint Engine
 
   " Markdown
    Plug 'kannokanno/previm'                                          " Preview markdown and reStructuredText into browser

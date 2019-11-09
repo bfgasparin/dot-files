@@ -116,7 +116,7 @@ set incsearch               " set incremental search, like modern browsers
 " ignored when expanding wildcards, completing file or
 " directory names, and influences the result of expand(), glob() and
 " globpath()
-set wildignore+=.git/*,.DS_Store,.hg,.svn,.ctagsignore,.ignore,tags,.vimsession.vim,.php_cs.cache,.phpcd/*
+set wildignore+=.git/*,.DS_Store,.hg,.svn,.ignore,.vimsession.vim,.php_cs.cache,.phpcd/*
 
 
 " }}}
@@ -494,11 +494,6 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head',
       \   'cocstatus': 'coc#status'
       \ },
-      \ 'component_expand': {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \ },
       \ 'component_type': {
       \     'linter_checking': 'left',
       \     'linter_warnings': 'warning',
@@ -530,7 +525,6 @@ let g:fzf_files_options =
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'   " Enable per command history > <C-n> <C-p>
 
-let g:fzf_tags_command = '.git/hooks/ctags' " [Tags] Command to generate tags file
 " let g:fzf_layout = { 'down': '~40%' }                " Fzf layout
 let g:fzf_layout = { 'window': '-tabnew' }             " Full screen Fzf layout
 
@@ -635,14 +629,6 @@ let g:strip_whitelines_at_eof=1 " strip whitespace at the end of the file
 :nnoremap <Leader>c :Bdelete<CR>
 
 "/
-"/ atags (tags generation)
-"/
-if has('nvim')
-    let g:atags_build_commands_list = [".git/hooks/ctags"]
-    command! CtagsGenerate call atags#generate()
-endif
-
-"/
 "/ Vim Move
 "/
 let g:move_key_modifier = 'M'  " Change de move key to Meta
@@ -727,37 +713,37 @@ let g:jsx_ext_required = 0 "  Enable syntax highlighting and indenting on .js fi
 "/ Ale (assynchronous lint engine)
 "/
 " Linters
-let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
-let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
-let g:ale_php_phpcs_use_global = 1
-let g:ale_php_phpmd_use_global = 1
-let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
-let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
-let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
-let g:ale_linters = {
-\   'php': ['phpcs', 'phpmd'],
-\   'javascript': ['eslint', 'standard'],
-\}
+" let g:ale_php_phpcs_standard='phpcs-ruleset.xml'
+" let g:ale_php_phpmd_ruleset='phpmd-ruleset.xml'
+" let g:ale_php_phpcs_use_global = 1
+" let g:ale_php_phpmd_use_global = 1
+" let g:ale_lint_on_text_changed='normal'  " Configure ale to run lint only on normal mode
+" let g:ale_lint_on_insert_leave=1         " Configure ale to run lint when live insert mode
+" let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
+" let g:ale_linters = {
+" \   'php': ['phpcs', 'phpmd'],
+" \   'javascript': ['eslint', 'standard'],
+" \}
 
-" Fixers
-let g:ale_php_phpcbf_standard='PSR2'
+" " Fixers
+" let g:ale_php_phpcbf_standard='PSR2'
 
-let g:ale_fixers = {
-\   'php': ['phpcbf'],
-\   'javascript': ['standard'],
- \}
-" Bind F9 to fixing problems with ALE
-nmap <F9> <Plug>(ale_fix)
+" let g:ale_fixers = {
+" \   'php': ['phpcbf'],
+" \   'javascript': ['standard'],
+"  \}
+" " Bind F9 to fixing problems with ALE
+" nmap <F9> <Plug>(ale_fix)
 
 " Disable phpmd and phpcs for tests files cause on test files some code pattern may change
-let g:ale_pattern_options = {
-\    '.*tests/.*\.php$': {
-\        'ale_linters': {'php': ['']}
-\    }
-\}
+" let g:ale_pattern_options = {
+" \    '.*tests/.*\.php$': {
+" \        'ale_linters': {'php': ['']}
+" \    }
+" \}
 
 " Ale completion has support only for Typescript so I disabled. Instead we use the coc intellisense engine
-let g:ale_completion_enabled = 0
+" let g:ale_completion_enabled = 0
 
 "/
 "/ Coc (Conquer of Completion)
@@ -884,8 +870,6 @@ nmap <C-g> :botright Gstatus<cr>
 "/
 " phpmd-ruleset.xml
 " phpcs-ruleset.xml
-" .ctagsignore               used for ctags
-" .git_templates              for git repositories (contains ctag executable to generate ctags)
 " .ignore                    used by ripgrep
 " For Meta key  (M) mapping to work on iTerm, I configured Profile > Keys > Left option key acting as '+Esc'
 " ntpope/vim-rhubarb needs to configure the authentication on github api. Used the following command:
@@ -903,11 +887,6 @@ nmap <C-g> :botright Gstatus<cr>
 "/
 "/ External libs
 "/
-" - universal-ctags (for tagging files) - uses .ctagsignore to ignore files .
-"       Git templates are used to generate ctags. Assuming ~/.git_templates contains the git hooks,
-"       use `git config --global init.templatedir '~/.git_template' ` to configure
-"       git templates on machine and then `git init` on existing repo to copy the hooks
-"       (optionally use `git config --global alias.ctags '!.git/hooks/ctags'` then type `git ctags` to create ctags)
 " - ryanoasis/nerd-fonts for fonts with devicons
 " - BurntSushi/ripgrep (rg for code searching) - uses .ignore and .gitignore to ignore files
 "   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
