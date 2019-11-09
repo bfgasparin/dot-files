@@ -18,8 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
    if has('nvim')
-       Plug 'neoclide/coc.nvim', {'branch': 'release'}
-       " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}      " autocompletion feature
+       Plug 'neoclide/coc.nvim', {'branch': 'release'}           "autocomplete with LSP feature
    endif
    Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
    Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
