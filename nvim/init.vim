@@ -904,7 +904,7 @@ nmap <C-g> :botright Gstatus<cr>
 "/
 "/ External libs
 "/
-" - ryanoasis/nerd-fonts for fonts with devicons
+" - firacode nerd-font for fonts with devicons (brew tap homebrew/cask-fonts && brew cask install font-firacode-nerd-font)
 " - BurntSushi/ripgrep (rg for code searching) - uses .ignore and .gitignore to ignore files
 "   fzf (fuzzy file finder) (brew install fzf to use the homebrew fzf)
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
