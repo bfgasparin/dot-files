@@ -59,7 +59,7 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'kannokanno/previm'                                          " Preview markdown and reStructuredText into browser
 
   " navigation
-   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
+   Plug '/usr/local/opt/fzf'
    Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
    Plug 'liuchengxu/vista.vim'                                       " View and search LSP symbols
    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer

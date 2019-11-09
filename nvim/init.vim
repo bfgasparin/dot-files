@@ -533,8 +533,6 @@ unlet s:palette
 "/ Fzf (Fuzzy File Finder)
 "/
 " Add preview content of the file
-set rtp+=/usr/local/opt/fzf                       " set fzf file to runtimepath
-
 let g:fzf_files_options =
             \ '--preview "(highlight -s denim -O xterm256 {} || cat {}) 2> /dev/null | head -'.2*&lines.'"' .
             \ ' --bind alt-j:preview-down,alt-k:preview-up,alt-f:preview-page-down,alt-b:preview-page-up'
@@ -905,7 +903,7 @@ nmap <C-g> :botright Gstatus<cr>
 "/
 " - ryanoasis/nerd-fonts for fonts with devicons
 " - BurntSushi/ripgrep (rg for code searching) - uses .ignore and .gitignore to ignore files
-"   fzf (fuzzy file finder) (brew install fzf && /usr/local/opt/fzf/install) uses its own fzf binary installed by the 'junegunn/fzf' plugin
+"   fzf (fuzzy file finder) (brew install fzf to use the homebrew fzf)
 "   highlight (brew install highlight)  - for Highlight in fzf preview - http://www.andre-simon.de
 "
 "   python libs:
