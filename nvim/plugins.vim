@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " visual
    Plug 'itchyny/lightline.vim'
-   Plug 'maximbaz/lightline-ale'
+   " Plug 'maximbaz/lightline-ale'
    Plug 'Yggdroot/indentLine'            " Display the indention levels with thin vertical lines
    Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces and enable commands to fix it
 
@@ -61,7 +61,7 @@ call plug#begin('~/.config/nvim/plugged')
   " navigation
    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy file finder (installed throw homebrew
    Plug 'junegunn/fzf.vim'                                           " Customize fzf into vim
-   Plug 'majutsushi/tagbar'                                          " show current file ctags in a diferent view
+   Plug 'liuchengxu/vista.vim'                                       " View and search LSP symbols
    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " file drawer
    Plug 'moll/vim-bbye'                                              " Delete buffers and close files in NeoVim without closing windows
 

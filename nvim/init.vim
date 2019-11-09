@@ -462,10 +462,26 @@ augroup nerd_loader
 augroup END
 
 "/
-"/ Tagbar
+"/ Vista
 "/
-" Open the Tagbar window, jump to it and close it on tag selection
-nnoremap <C-\> :TagbarOpenAutoClose<CR>
+"
+" How each level is indented and what to prepend.
+" This could make the display more compact or more spacious.
+" e.g., more compact: ["▸ ", ""]
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'coc'
+
+nnoremap <C-\> :Vista<CR>
+
+nnoremap <leader>\ :Vista finder<CR>
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+let g:vista_fzf_preview = ['right:50%']
 
 
 "/
@@ -497,7 +513,7 @@ let g:lightline = {
       \ 'component_type': {
       \     'linter_checking': 'left',
       \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
+      \     'linter_errors': 'error'
       \ },
       \'tabline': {
       \     'left': [['tabs']],
