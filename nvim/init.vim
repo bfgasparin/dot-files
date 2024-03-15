@@ -76,12 +76,6 @@ set shiftwidth=4                  " number of spaces to use for indent and unind
 set expandtab                     " insert spaces rather then tabs <Tab>
 
 
-augroup fix_tab_spacing_for_js
-    autocmd!
-    " autocmd FileType javascript.jsx,vue set tabstop=4 | softtabstop=2 | set shiftwidth=2
-    autocmd FileType javascript.jsx,vue,spec.php set tabstop=4 | set softtabstop=2 | set shiftwidth=2
-augroup END
-
 " auto completions
 set completeopt+=noinsert         " Do not insert any text for a match until I selected
 set completeopt-=preview          " remove the preview option to the completeopt. (Do not show preview information)
@@ -117,7 +111,6 @@ set incsearch               " set incremental search, like modern browsers
 " directory names, and influences the result of expand(), glob() and
 " globpath()
 set wildignore+=.git/*,.DS_Store,.hg,.svn,.ignore,.vimsession.vim,.php_cs.cache,.phpcd/*
-
 
 " }}}
 " ============================================================================
@@ -157,11 +150,6 @@ highlight Cursorline ctermfg=231 guifg=97
 " -----------------------------------------------------------------------------------
 
 " Highlight cursorline, but not in insert mode
-augroup customize_cursorline
-    autocmd!
-    autocmd InsertLeave,WinEnter * set cursorline
-    autocmd InsertEnter,WinLeave * set nocursorline
-augroup END
 
 
 " }}}
@@ -179,6 +167,7 @@ noremap [I [I:let nr = input("Type the number and \<Enter\>: ")<Bar>exe "normal 
 
 " Break line in insert mode
 nnoremap <CR> i<cr><esc>
+
 " " Restore <CR> mapping in quickfix and location windows
 augroup cr_mapping
   autocmd BufReadPost quickfix,location nnoremap <buffer> <CR> <CR>
@@ -205,7 +194,6 @@ nnoremap [t  :tabprevious<cr>
 nnoremap ]t  :tabnext<cr>
 nnoremap [T  :tabfirst<cr>
 nnoremap ]T  :tablast<cr>
-
 
 " Quickly go forward and backward quickfix list and wrap around
 nmap [q  :cprevious<cr>zz
@@ -326,7 +314,6 @@ function! RegistersDacxiMappings()
 endfunction
 command! RegistersDacxiMappings call RegistersDacxiMappings()
 
-
 "/
 "/ Custom macros
 "/
@@ -381,7 +368,6 @@ function! DoXmlPretty()
 endfunction
 command! XMLPretty call DoXmlPretty()
 
-
 " toggles the quickfix window.
 function! ToggleQuickfixList()
   if exists("g:qfix_win")
@@ -420,7 +406,6 @@ augroup QLocToggle
  autocmd BufWinEnter quickfix let g:loc_win = bufnr("$")
  autocmd BufWinLeave * if exists("g:loc_win") && expand("<abuf>") == g:loc_win | unlet! g:loc_win | endif
 augroup END
-
 
 " }}}
 " ============================================================================
@@ -616,7 +601,7 @@ nmap ga <Plug>(EasyAlign)
 "/
 "/ IndentLine
 "/
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
 let g:indentLine_concealcursor = 0
 let g:indentLine_color_gui = '#383838' " for dark theme
 let g:indentLine_color_term = 237      " for dark theme
@@ -624,7 +609,6 @@ let g:indentLine_color_term = 237      " for dark theme
 " let g:indentLine_color_term = 7      " for light theme
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1          " Better performance to draw indentLines
-
 
 "/
 "/ Vim Better Whitespace
@@ -804,10 +788,10 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " Highlight symbol under cursor on CursorHold
 
-augroup coc
-    autocmd!
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
+" augroup coc
+"     autocmd!
+"     autocmd CursorHold * silent call CocActionAsync('highlight')
+" augroup END
 
 "/
 "/ Previm (preview markdown and reStructuredText on browser)

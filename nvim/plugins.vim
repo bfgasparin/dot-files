@@ -17,9 +17,9 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'tpope/vim-abolish'                                      " easily search for, substitute, and abbreviate multiple variants of a word (snakeCase, camelCase, ...)
    Plug 'arithran/vim-delete-hidden-buffers'                     " Simple command to delete hidden non saved buffers
 
-   if has('nvim')
-       Plug 'neoclide/coc.nvim', {'branch': 'release'}           "autocomplete with LSP feature
-   endif
+   " if has('nvim')
+   "     Plug 'neoclide/coc.nvim', {'branch': 'release'}           "autocomplete with LSP feature
+   " endif
    Plug 'danro/rename.vim'                                       " Rename a file on buffer and disk retaining the relative path
    Plug 'tpope/vim-repeat'                                       " Enable repeating plugin maps with .
    Plug 'matze/vim-move'                                         " Quickly move line up and down
@@ -32,25 +32,27 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'                                 " Shows a git diff in the 'gutter'
 
   " PHP
-   Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
-   Plug 'alvan/vim-php-manual'                                   " PHP Manual
-   Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
-   Plug 'lumiliet/vim-twig'                                      " Twig syntax Highlight and indenting
+   " Plug 'pbrisbin/vim-mkdir'                                     " Auto create any non-existent directories before write buffer
+   " Plug 'alvan/vim-php-manual'                                   " PHP Manual
+   " Plug 'jwalton512/vim-blade'                                   " Laravel Blade Highlight
+   " Plug 'lumiliet/vim-twig'                                      " Twig syntax Highlight and indenting
 
    " HTML/CSS
    Plug 'mattn/emmet-vim'                                        " Emmet for vim
 
    " Javascript
-   Plug 'pangloss/vim-javascript'                               " Required by vim-jsx
-   Plug 'posva/vim-vue'                                       " Syntax highlight for vue
-   Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
+   " Plug 'pangloss/vim-javascript'                               " Required by vim-jsx
+   " Plug 'posva/vim-vue'                                       " Syntax highlight for vue
+   " Plug 'mxw/vim-jsx'                                           " React JSX syntax highlighting and indenting for vim.
 
+   " Typescript
+   " Plug 'leafgarland/typescript-vim'
 
-  " Languages (General)
-   Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast
-   Plug 'SirVer/ultisnips'                                       " Add snippet support
-   Plug 'honza/vim-snippets'                                     " Default snippets for a lot of languages
-   Plug 'tobyS/vmustache'                                        " Template system engine (required by tobyS/pdv)
+   " Languages (General)
+   " Plug 'janko-m/vim-test'                                       " Add support for running tests easily and fast
+   " Plug 'SirVer/ultisnips'                                       " Add snippet support
+   " Plug 'honza/vim-snippets'                                     " Default snippets for a lot of languages
+   " Plug 'tobyS/vmustache'                                        " Template system engine (required by tobyS/pdv)
 
    Plug 'tobys/pdv'                                              " to generate PHP docblock
    " commented ale in order to test linting and autocompletoin from nowclide/coc
